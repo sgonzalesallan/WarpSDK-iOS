@@ -1,4 +1,9 @@
 # WarpSDK-iOS
+
+[![Twitter](https://img.shields.io/badge/Twitter-%40kuyazee-blue.svg)](http://twitter.com/kuyazee)
+
+__The Warp iOS SDK__ is available through the dependency manager [CocoaPods](http://cocoapods.org). 
+
 ===================
 
 __The Warp iOS SDK__ is a library built in top of **[Alamofire](https://github.com/Alamofire/Alamofire)** for implementing the Warp Framework using Swift. It is designed to work with projects built on-top of the **[Warp Server](http://github.com/dividedbyzeroco/warp-server)**.
