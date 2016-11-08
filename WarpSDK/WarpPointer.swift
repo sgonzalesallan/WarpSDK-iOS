@@ -40,10 +40,37 @@ class WarpPointer<T where T:WarpModel>: EVObject {
         }
     }
     
-    static func map(className className:String, id:Int) -> [String:AnyObject]{
+    static func map(className className:String, id:Int) -> [String:AnyObject] {
         return ["type":"Pointer",
                 "className":className,
                 "id":id]
     }
 
+    static func map(warpObject object:WarpObject) -> [String:AnyObject] {
+        return ["type":"Pointer",
+                "className":object.className,
+                "id":object.objectId,
+                "attributes":object.objects]
+    }
+    
+    static func map(warpUser object:WarpUser) -> [String:AnyObject] {
+        return ["type":"Pointer",
+                "className":object.className,
+                "id":object.objectId,
+                "attributes":object.objects]
+    }
+    
+    static func map(className className:String, id:Int, attributes:AnyObject?) -> [String:AnyObject] {
+        if attributes != nil {
+            return ["type":"Pointer",
+                    "className":className,
+                    "id":id,
+                    "attributes":attributes!]
+    
+        } else {
+            return ["type":"Pointer",
+                    "className":className,
+                    "id":id]
+        }
+    }
 }

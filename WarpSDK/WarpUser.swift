@@ -88,14 +88,12 @@ public class WarpUser:WarpUserProtocol {
             return self
         default:
             if value is WarpObject {
-                let warpObject = value as! WarpObject
-                self.param[key] = WarpPointer.map(className: warpObject.className, id: warpObject.objectId)
+                self.param[key] = WarpPointer.map(warpObject: value as! WarpObject)
                 return self
             }
             
             if value is WarpUser {
-                let warpUser = value as! WarpUser
-                self.param[key] = WarpPointer.map(className: "user", id: warpUser.objectId)
+                self.param[key] = WarpPointer.map(warpUser: value as! WarpUser)
                 return self
             }
             self.param[key] = value
