@@ -29,7 +29,7 @@ public class WarpUser:WarpUserProtocol {
     }
     
     internal var className:String = ""
-    var objects:[String : AnyObject] {
+    public var objects:[String : AnyObject] {
         return param
     }
     
@@ -86,10 +86,6 @@ public class WarpUser:WarpUserProtocol {
         }
         self.param[key] = value
         return self
-    }
-    
-    internal class func createWithoutData(id id: Int, className: String) -> WarpUser {
-        return createWithoutData(id: id)
     }
     
     public func objectForKey(key:String) -> AnyObject? {
@@ -153,7 +149,7 @@ public class WarpUser:WarpUserProtocol {
         return self
     }
     
-    func login(username:String, password:String, completion: (success: Bool, error: WarpError?) -> Void) {
+    public func login(username:String, password:String, completion: (success: Bool, error: WarpError?) -> Void) {
         let warp = Warp.sharedInstance
         guard warp != nil else {
             completion(success: false, error: WarpError(code: .ServerNotInitialized))
@@ -179,7 +175,7 @@ public class WarpUser:WarpUserProtocol {
         }
     }
     
-    func signUp(completion: (success: Bool, error: WarpError?) -> Void) {
+    public func signUp(completion: (success: Bool, error: WarpError?) -> Void) {
         let warp = Warp.sharedInstance
         guard warp != nil else {
             completion(success: false, error: WarpError(code: .ServerNotInitialized))
@@ -203,7 +199,7 @@ public class WarpUser:WarpUserProtocol {
         }
     }
 
-    func logout(completion: (success: Bool, error: WarpError?) -> Void) {
+    public func logout(completion: (success: Bool, error: WarpError?) -> Void) {
         let warp = Warp.sharedInstance
         guard warp != nil else {
             completion(success: false, error: WarpError(code: .ServerNotInitialized))
