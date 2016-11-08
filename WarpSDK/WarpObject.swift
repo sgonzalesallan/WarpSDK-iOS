@@ -8,8 +8,8 @@
 
 import Foundation
 
-public class WarpObject {
-    private var param:[String : AnyObject] = [:] {
+public class WarpObject:WarpObjectProtocol {
+    internal var param:[String : AnyObject] = [:] {
         didSet {
             for (key, value) in param {
                 switch key {
@@ -21,27 +21,27 @@ public class WarpObject {
             }
         }
     }
-    private var className:String = ""
+    internal var className:String = ""
     var objects:[String : AnyObject] {
         return param
     }
     
-    private var _objectId:Int = 0
+    internal var _objectId:Int = 0
     var objectId:Int {
         return _objectId
     }
     
-    private var _createdAt:String = ""
+    internal var _createdAt:String = ""
     var createdAt:String {
         return _createdAt
     }
     
-    private var _updatedAt:String = ""
+    internal var _updatedAt:String = ""
     var updatedAt:String {
         return _updatedAt
     }
     
-    init(className:String) {
+    public required init(className:String) {
         self.className = className
     }
     
@@ -50,8 +50,14 @@ public class WarpObject {
         setValues(JSON)
     }
     
-    class func createWithoutData(id id:Int, className:String) -> WarpObject{
+    public class func createWithoutData(id id:Int, className:String) -> WarpObject{
         let warpObject = WarpObject(className: className)
+        warpObject.setObject(id, forKey: "id")
+        return warpObject
+    }
+    
+    internal class func createWithoutData(id id:Int) -> WarpObject{
+        let warpObject = WarpObject(className: "")
         warpObject.setObject(id, forKey: "id")
         return warpObject
     }
