@@ -84,7 +84,6 @@ protocol WarpUserProtocol {
     var _updatedAt:String { get set }
     var updatedAt:String { get }
     
-    static func createWithoutData(id id:Int, className:String) -> WarpUser
     static func createWithoutData(id id:Int) -> WarpUser
     
     init()
@@ -94,7 +93,6 @@ protocol WarpUserProtocol {
     func objectForKey(key:String) -> AnyObject?
     
     func save()
-    
     func save(completion:WarpCompletion)
     
     
