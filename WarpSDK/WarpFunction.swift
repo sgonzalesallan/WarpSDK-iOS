@@ -12,7 +12,7 @@ public class WarpFunction {
     private var functionName:String = ""
     private init () { }
     
-    static func run(functionName:String, parameters:[String : AnyObject]?, completion:(result:AnyObject?, error:WarpError?) -> Void) {
+    public static func run(functionName:String, parameters:[String : AnyObject]?, completion:(result:AnyObject?, error:WarpError?) -> Void) {
         let warp = Warp.sharedInstance
         guard warp != nil else {
             completion(result: nil, error: WarpError(code: .ServerNotInitialized))

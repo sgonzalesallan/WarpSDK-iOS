@@ -22,22 +22,22 @@ public class WarpObject:WarpObjectProtocol {
         }
     }
     internal var className:String = ""
-    var objects:[String : AnyObject] {
+    public var objects:[String : AnyObject] {
         return param
     }
     
     internal var _objectId:Int = 0
-    var objectId:Int {
+    public var objectId:Int {
         return _objectId
     }
     
     internal var _createdAt:String = ""
-    var createdAt:String {
+    public var createdAt:String {
         return _createdAt
     }
     
     internal var _updatedAt:String = ""
-    var updatedAt:String {
+    public var updatedAt:String {
         return _updatedAt
     }
     
@@ -74,7 +74,7 @@ public class WarpObject:WarpObjectProtocol {
         self._updatedAt = updatedAt
     }
     
-    func setObject(value:AnyObject, forKey key:String) -> WarpObject {
+    public func setObject(value:AnyObject, forKey key:String) -> WarpObject {
         if value is WarpObject {
             let warpObject = value as! WarpObject
             self.param[key] = WarpPointer.map(className: warpObject.className, id: warpObject.objectId)
@@ -84,17 +84,17 @@ public class WarpObject:WarpObjectProtocol {
         return self
     }
     
-    func objectForKey(key:String) -> AnyObject? {
+    public func objectForKey(key:String) -> AnyObject? {
         return self.param[key]
     }
     
-    func destroy() {
+    public func destroy() {
         destroy { (success, error) in
             
         }
     }
     
-    func destroy(completion:(success:Bool, error:WarpError?) -> Void) {
+    public func destroy(completion:(success:Bool, error:WarpError?) -> Void) {
         let warp = Warp.sharedInstance
         guard warp != nil else {
             completion(success: false, error: WarpError(code: .ServerNotInitialized))
@@ -122,13 +122,13 @@ public class WarpObject:WarpObjectProtocol {
         }
     }
     
-    func save() {
+    public func save() {
         save { (success, error) in
             
         }
     }
     
-    func save(completion:(success:Bool, error:WarpError?) -> Void) {
+    public func save(completion:(success:Bool, error:WarpError?) -> Void) {
         let warp = Warp.sharedInstance
         guard warp != nil else {
             completion(success: false, error: WarpError(code: .ServerNotInitialized))
