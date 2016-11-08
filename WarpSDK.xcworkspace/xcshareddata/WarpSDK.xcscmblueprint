@@ -5,11 +5,13 @@
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
     "D9D672FFAD695F3902A7413CFC25E80D61239245" : 9223372036854775807,
+    "C340B50EE85733D3EA247F313D2350126F116920" : 9223372036854775807,
     "67620B5EFA902936DF04070AF595B76AB0333747" : 9223372036854775807
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "A5D5073D-E145-469E-8E08-2DB343F7B235",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "D9D672FFAD695F3902A7413CFC25E80D61239245" : "WarpSDK-iOS\/",
+    "C340B50EE85733D3EA247F313D2350126F116920" : "WarpSDK-iOS\/Carthage\/Checkouts\/EVReflection\/",
     "67620B5EFA902936DF04070AF595B76AB0333747" : "WarpSDK-iOS\/Carthage\/Checkouts\/Alamofire\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "WarpSDK",
@@ -20,6 +22,11 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Alamofire\/Alamofire.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "67620B5EFA902936DF04070AF595B76AB0333747"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/evermeer\/EVReflection.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C340B50EE85733D3EA247F313D2350126F116920"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/kuyazee\/WarpSDK-iOS.git",

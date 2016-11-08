@@ -28,6 +28,7 @@
 		A655FCA41DD19E66003F00E1 /* WarpPointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A655FC981DD19E66003F00E1 /* WarpPointer.swift */; };
 		A655FCA51DD19E66003F00E1 /* WarpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A655FC991DD19E66003F00E1 /* WarpModel.swift */; };
 		A655FCA81DD1A017003F00E1 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A655FCA71DD1A017003F00E1 /* Alamofire.framework */; };
+		A655FCAB1DD1CE65003F00E1 /* EVReflection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A655FCAA1DD1CE65003F00E1 /* EVReflection.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		A655FC981DD19E66003F00E1 /* WarpPointer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WarpPointer.swift; sourceTree = "<group>"; };
 		A655FC991DD19E66003F00E1 /* WarpModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WarpModel.swift; sourceTree = "<group>"; };
 		A655FCA71DD1A017003F00E1 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "Carthage/Checkouts/Alamofire/build/Debug-iphoneos/Alamofire.framework"; sourceTree = "<group>"; };
+		A655FCAA1DD1CE65003F00E1 /* EVReflection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EVReflection.framework; path = "Carthage/Checkouts/EVReflection/EVReflection/build/Debug-iphoneos/EVReflection.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A655FCAB1DD1CE65003F00E1 /* EVReflection.framework in Frameworks */,
 				A655FCA81DD1A017003F00E1 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -143,6 +146,7 @@
 		A655FCA61DD1A017003F00E1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A655FCAA1DD1CE65003F00E1 /* EVReflection.framework */,
 				A655FCA71DD1A017003F00E1 /* Alamofire.framework */,
 			);
 			name = Frameworks;
