@@ -6,7 +6,7 @@
 //
 //
 
-import EVReflection
+//import EVReflection
 import Alamofire
 
 class Warp {
@@ -36,7 +36,59 @@ class Warp {
     }
 }
 
+typealias WarpCompletion = (success:Bool, error:WarpError?) -> Void
 
+protocol WarpObjectProtocol {
+    var param:[String : AnyObject] { get set }
+    var className:String { get set }
+    var objects:[String : AnyObject] { get }
+    
+    var _objectId:Int { get set }
+    var objectId:Int { get }
+    
+    var _createdAt:String { get set }
+    var createdAt:String { get }
+    
+    var _updatedAt:String { get set }
+    var updatedAt:String { get }
+    
+    static func createWithoutData() -> WarpObject
+    
+    init(className:String)
+    init()
+    
+    func setObject(value:AnyObject, forKey:String) -> WarpObject
+    
+    func objectForKey(key:String) -> AnyObject?
+    
+    func destroy()
+    
+    func destroy(completion:WarpCompletion)
+    
+    func save()
+    
+    func save(completion:WarpCompletion)
+}
+
+protocol WarpUserProtocol {
+    var _username:String { get set }
+    var username:String { get }
+    var _password:String { get set }
+    var password:String { get }
+    var _sessionToken:String { get set }
+    var sessionToken:String { get }
+    
+    func setUsername(username:String) -> WarpUser
+    func setPassword(password:String) -> WarpUser
+    
+    func login(username:String, password:String, completion:WarpCompletion)
+    func signUp(completion:WarpCompletion)
+    func logout(completion:WarpCompletion)
+    
+    static func current()
+    static func deleteCurrent()
+    func setCurrentuser()
+}
 
 protocol WarpModelProtocol {
     func map() -> [String:AnyObject]
