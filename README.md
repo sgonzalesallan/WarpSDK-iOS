@@ -35,7 +35,7 @@ __The Warp iOS SDK__ is a library built in top of **[Alamofire](https://github.c
     
 ## Installation
 
-To install the Warp iOS SDK via cocoapods, simply use the install command to save it in your podfile:
+To install the Warp iOS SDK via cocoapods, simply use the add this in your podfile and then run `pod install`
 
 ```Cocoapods
 pod 'WarpSDK'
