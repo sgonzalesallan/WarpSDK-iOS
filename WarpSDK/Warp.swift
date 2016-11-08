@@ -93,10 +93,6 @@ protocol WarpUserProtocol {
     
     func objectForKey(key:String) -> AnyObject?
     
-    func destroy()
-    
-    func destroy(completion:WarpCompletion)
-    
     func save()
     
     func save(completion:WarpCompletion)

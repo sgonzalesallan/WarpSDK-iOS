@@ -67,11 +67,6 @@ public class WarpUser:WarpUserProtocol {
         self.className = "user"
     }
     
-    init(className:String, JSON:Dictionary<String,AnyObject>) {
-        self.className = className
-        setValues(JSON)
-    }
-    
     public class func createWithoutData(id id:Int) -> WarpUser {
         let user = WarpUser()
         user.param["id"] = id
@@ -101,44 +96,8 @@ public class WarpUser:WarpUserProtocol {
         return self.param[key]
     }
     
-    internal func destroy() {
-        destroy { (success, error) in
-            
-        }
-    }
-    
-    func destroy(completion:(success:Bool, error:WarpError?) -> Void) {
-        let warp = Warp.sharedInstance
-        guard warp != nil else {
-            completion(success: false, error: WarpError(code: .ServerNotInitialized))
-            return
-        }
-        if objectId > 0 {
-            WarpAPI.delete(warp!.API_ENDPOINT! + "classes/\(className)/\(objectId)", parameters: param, headers: warp!.HEADER()) { (warpResult) in
-                switch warpResult {
-                case .Success(let JSON):
-                    let warpResponse = WarpResponse(JSON: JSON, result: Dictionary<String,AnyObject>.self)
-                    switch warpResponse.statusType {
-                    case .Success:
-                        self.setValues(warpResponse.result!)
-                        completion(success: true, error: nil)
-                    default:
-                        completion(success: true, error: WarpError(message: warpResponse.message, status: warpResponse.status))
-                    }
-                    break
-                case .Failure(let error):
-                    completion(success: false, error: error)
-                }
-            }
-        } else {
-            completion(success: false, error: WarpError(code: .ObjectDoesNotExist))
-        }
-    }
-    
     public func save() {
-        save { (success, error) in
-            
-        }
+        save { (success, error) in }
     }
     
     public func save(completion: (success: Bool, error: WarpError?) -> Void) {
@@ -182,10 +141,9 @@ public class WarpUser:WarpUserProtocol {
         }
     }
     
-    
-   public  func setUsername(username:String) -> WarpUser {
+    public func setUsername(username:String) -> WarpUser {
         _username = username
-        param["username"] = password
+        param["username"] = username
         return self
     }
     
@@ -193,11 +151,6 @@ public class WarpUser:WarpUserProtocol {
         _password = password
         param["password"] = password
         return self
-    }
-    
-    
-    init(JSON:Dictionary<String,AnyObject>) {
-//        super.init(className: "user", JSON: JSON)
     }
     
     func login(username:String, password:String, completion: (success: Bool, error: WarpError?) -> Void) {
