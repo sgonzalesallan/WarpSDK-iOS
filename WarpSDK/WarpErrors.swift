@@ -9,8 +9,8 @@
 import UIKit
 import Foundation
 
-class WarpError:NSError {
-    init(code:WarpDomainCode) {
+public class WarpError:NSError {
+    public init(code:WarpDomainCode) {
         var string:String = ""
         
         switch code {
@@ -32,12 +32,12 @@ class WarpError:NSError {
         super.init(domain: error.domain, code: error.code, userInfo: error.userInfo)
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
 
-enum WarpDomainCode:Int {
+public enum WarpDomainCode:Int {
     case ServerNotInitialized = 701
     case ResponseValueIsNil = 702
     case ObjectDoesNotExist = 703

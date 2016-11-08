@@ -8,7 +8,7 @@
 
 import Foundation
 
-class WarpFunction {
+public class WarpFunction {
     private var functionName:String = ""
     private init () { }
     

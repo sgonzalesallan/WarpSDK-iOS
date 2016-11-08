@@ -8,16 +8,16 @@
 
 import Foundation
 
-class WarpQuery {
+public class WarpQuery {
     private var queryConstraints:[WarpQueryConstraint] = []
     private var queryBuilder:WarpQueryBuilder = WarpQueryBuilder()
     private var className:String = ""
     
-    init(className:String) {
+    public init(className:String) {
         self.className = className
     }
     
-    func get(objectId:Int, completion:(warpObject:WarpObject?, error:WarpError?) -> Void) {
+    public func get(objectId:Int, completion:(warpObject:WarpObject?, error:WarpError?) -> Void) {
         let warp = Warp.sharedInstance
         guard warp != nil else {
             completion(warpObject: nil, error: WarpError(code: .ServerNotInitialized))
@@ -40,7 +40,7 @@ class WarpQuery {
         }
     }
     
-    func find(completion:(warpObjects:[WarpObject]?, error:WarpError?) -> Void) {
+    public func find(completion:(warpObjects:[WarpObject]?, error:WarpError?) -> Void) {
         let warp = Warp.sharedInstance
         guard warp != nil else {
             completion(warpObjects: nil, error: WarpError(code: .ServerNotInitialized))
@@ -67,29 +67,29 @@ class WarpQuery {
         }
     }
     
-    func first(completion:(warpObject:WarpObject?, error:WarpError?) -> Void) {
+    public func first(completion:(warpObject:WarpObject?, error:WarpError?) -> Void) {
         limit(1)
         find { (warpObjects, error) in
             completion(warpObject: warpObjects?.first, error: error)
         }
     }
     
-    func limit(value:Int) -> WarpQuery {
+    public func limit(value:Int) -> WarpQuery {
         queryBuilder.param["limit"] = value
         return self
     }
     
-    func skip(value:Int) -> WarpQuery {
+    public func skip(value:Int) -> WarpQuery {
         queryBuilder.param["skip"] = value
         return self
     }
     
-    func include(values:[String]) -> WarpQuery {
+    public func include(values:[String]) -> WarpQuery {
         queryBuilder.param["include"] = String(values)
         return self
     }
     
-    func sort(values:[WarpSort]) -> WarpQuery {
+    public func sort(values:[WarpSort]) -> WarpQuery {
         var string:String = ""
         for i in 0..<values.count {
             let value = values[i]
@@ -102,73 +102,72 @@ class WarpQuery {
         return self
     }
     
-    
-    func equalTo(value:AnyObject, forKey key:String) -> WarpQuery {
+    public func equalTo(value:AnyObject, forKey key:String) -> WarpQuery {
         queryConstraints.append(WarpQueryConstraint(equalTo: value, key: key))
         return self
     }
 
-    func notEqualTo(value:AnyObject, forKey key:String) -> WarpQuery {
+    public func notEqualTo(value:AnyObject, forKey key:String) -> WarpQuery {
         queryConstraints.append(WarpQueryConstraint(notEqualTo: value, key: key))
         return self
     }
     
-    func lessThan(value:AnyObject, forKey key:String) -> WarpQuery {
+    public func lessThan(value:AnyObject, forKey key:String) -> WarpQuery {
         queryConstraints.append(WarpQueryConstraint(lessThan: value, key: key))
         return self
     }
     
-    func lessThanOrEqualTo(value:AnyObject, forKey key:String) -> WarpQuery {
+    public func lessThanOrEqualTo(value:AnyObject, forKey key:String) -> WarpQuery {
         queryConstraints.append(WarpQueryConstraint(lessThanOrEqualTo: value, key: key))
         return self
     }
     
-    func greaterThanOrEqualTo(value:AnyObject, forKey key:String) -> WarpQuery {
+    public func greaterThanOrEqualTo(value:AnyObject, forKey key:String) -> WarpQuery {
         queryConstraints.append(WarpQueryConstraint(greaterThanOrEqualTo: value, key: key))
         return self
     }
     
-    func greaterThan(value:AnyObject, forKey key:String) -> WarpQuery {
+    public func greaterThan(value:AnyObject, forKey key:String) -> WarpQuery {
         queryConstraints.append(WarpQueryConstraint(greaterThan: value, key: key))
         return self
     }
     
-    func existsKey(key:String) -> WarpQuery {
+    public func existsKey(key:String) -> WarpQuery {
         queryConstraints.append(WarpQueryConstraint(existsKey: key))
         return self
     }
     
-    func notExistsKey(key:String) -> WarpQuery {
+    public func notExistsKey(key:String) -> WarpQuery {
         queryConstraints.append(WarpQueryConstraint(notExistsKey: key))
         return self
     }
     
-    func containedIn(values:[AnyObject], forKey key:String) -> WarpQuery {
+    public func containedIn(values:[AnyObject], forKey key:String) -> WarpQuery {
         queryConstraints.append(WarpQueryConstraint(containedIn: values, key: key))
         return self
     }
     
-    func notContainedIn(values:[AnyObject], forKey key:String) -> WarpQuery {
+    public func notContainedIn(values:[AnyObject], forKey key:String) -> WarpQuery {
         queryConstraints.append(WarpQueryConstraint(notContainedIn: values, key: key))
         return self
     }
     
-    func startsWith(value:String, forKey key:String) -> WarpQuery {
+    public func startsWith(value:String, forKey key:String) -> WarpQuery {
         queryConstraints.append(WarpQueryConstraint(startsWith: value, key: key))
         return self
     }
     
-    func endsWith(value:String, forKey key:String) -> WarpQuery {
+    public func endsWith(value:String, forKey key:String) -> WarpQuery {
         queryConstraints.append(WarpQueryConstraint(endsWith: value, key: key))
         return self
     }
     
-    func contains(value:String, forKey key:String) -> WarpQuery {
+    public func contains(value:String, forKey key:String) -> WarpQuery {
         queryConstraints.append(WarpQueryConstraint(contains: value, key: key))
         return self
     }
     
-    func contains(value:String, keys:[String]) -> WarpQuery {
+    public func contains(value:String, keys:[String]) -> WarpQuery {
         queryConstraints.append(WarpQueryConstraint(contains: value, keys: keys))
         return self
     }

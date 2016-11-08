@@ -8,7 +8,7 @@
 
 import Foundation
 
-class WarpObject {
+public class WarpObject {
     private var param:[String : AnyObject] = [:] {
         didSet {
             for (key, value) in param {

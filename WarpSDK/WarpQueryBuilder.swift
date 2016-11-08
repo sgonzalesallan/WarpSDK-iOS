@@ -217,7 +217,7 @@ enum WarpConstraint:String {
     case ContainsString = "has"
 }
 
-struct WarpSort {
+public struct WarpSort {
     var key:String = ""
     var order:WarpOrder = .Ascending
     

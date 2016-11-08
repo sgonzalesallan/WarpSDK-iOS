@@ -9,7 +9,7 @@
 //import EVReflection
 import Alamofire
 
-class Warp {
+public class Warp {
     static var sharedInstance:Warp?
     var API_ENDPOINT:String?
     private var APPLICATION_VERSION:String?
@@ -20,7 +20,7 @@ class Warp {
         API_KEY = apiKey
     }
     
-    static func Initialize(baseURL:String, apiKey:String) {
+    public static func Initialize(baseURL:String, apiKey:String) {
         Warp.sharedInstance = Warp.init(baseURL: baseURL, apiKey: apiKey)
     }
     

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class WarpUser:WarpObject {
+public class WarpUser:WarpObject {
     private var _username:String = ""
     private var _password:String = ""
     private var _sessionToken:String = ""
@@ -216,7 +216,7 @@ extension WarpUser {
         }
     }
     
-    static func current() -> WarpUser? {
+    public static func current() -> WarpUser? {
         let user:WarpUser = WarpUser()
         let keys:[String] = NSUserDefaults.standardUserDefaults().arrayForKey("swrxCurrentUserKeys_rbBEAFVAWFBVWW") as! [String]
         if keys.count == 0 {
@@ -228,7 +228,7 @@ extension WarpUser {
         return user
     }
     
-    static func deleteCurrent() {
+    public static func deleteCurrent() {
         NSUserDefaults.standardUserDefaults().setObject([], forKey: "swrxCurrentUserKeys_rbBEAFVAWFBVWW")
         let keys:[String] = NSUserDefaults.standardUserDefaults().arrayForKey("swrxCurrentUserKeys_rbBEAFVAWFBVWW") as! [String]
         for key in keys {
