@@ -1,4 +1,12 @@
 # WarpSDK-iOS
+
+[![Twitter](https://img.shields.io/badge/Twitter-%40kuyazee-blue.svg)](http://twitter.com/kuyazee)
+[![Github](https://img.shields.io/badge/Github-kuyazee-blue.svg)](https://github.com/kuyazee)
+[![Cocoapods](https://img.shields.io/badge/Cocoapods-0.0.1-red.svg)](#installation)
+[![DividedByZero](https://img.shields.io/badge/Divided%20By%20Zero-Exploring%20the%20undefined-yellow.svg)](https://github.com/dividedbyzeroco)
+
+__The Warp iOS SDK__ is available through the dependency manager [CocoaPods](http://cocoapods.org). 
+
 ===================
 
 __The Warp iOS SDK__ is a library built in top of **[Alamofire](https://github.com/Alamofire/Alamofire)** for implementing the Warp Framework using Swift. It is designed to work with projects built on-top of the **[Warp Server](http://github.com/dividedbyzeroco/warp-server)**.
@@ -27,7 +35,7 @@ __The Warp iOS SDK__ is a library built in top of **[Alamofire](https://github.c
     
 ## Installation
 
-To install the Warp iOS SDK via cocoapods, simply use the install command to save it in your podfile:
+To install the Warp iOS SDK via cocoapods, simply use the add this in your podfile and then run `pod install`
 
 ```Cocoapods
 pod 'WarpSDK'
