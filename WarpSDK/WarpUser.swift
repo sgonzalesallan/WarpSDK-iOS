@@ -8,59 +8,196 @@
 
 import Foundation
 
-public class WarpUser:WarpObject {
-    private var _username:String = ""
-    private var _password:String = ""
-    private var _sessionToken:String = ""
-    var username:String {
+public class WarpUser:WarpUserProtocol {
+    internal var param:[String : AnyObject] = [:] {
+        didSet {
+            for (key, value) in param {
+                switch key {
+                case "id":
+                    _objectId = value as! Int
+                case "created_at":
+                    _createdAt = value as! String
+                case "updated_at":
+                    _updatedAt = value as! String
+                case "session_token":
+                    _sessionToken = value as! String
+                default:
+                    break
+                }
+            }
+        }
+    }
+    
+    internal var className:String = ""
+    var objects:[String : AnyObject] {
+        return param
+    }
+    
+    internal var _objectId:Int = 0
+    public var objectId:Int {
+        return _objectId
+    }
+    
+    internal var _createdAt:String = ""
+    public var createdAt:String {
+        return _createdAt
+    }
+    
+    internal var _updatedAt:String = ""
+    public var updatedAt:String {
+        return _updatedAt
+    }
+    
+    internal var _username:String = ""
+    public var username:String {
         return _username
     }
-    var password:String {
+    
+    internal var _password:String = ""
+    public var password:String {
         return _password
     }
-    var sessionToken:String {
+    
+    internal var _sessionToken:String = ""
+    public var sessionToken:String {
         return _sessionToken
     }
+
+    required public init() {
+        self.className = "user"
+    }
     
-    func setUsername(username:String) -> WarpUser {
-        setObject(username, forKey: "username")
+    init(className:String, JSON:Dictionary<String,AnyObject>) {
+        self.className = className
+        setValues(JSON)
+    }
+    
+    public class func createWithoutData(id id:Int) -> WarpUser {
+        let user = WarpUser()
+        user.param["id"] = id
+        user._objectId = id
+        return WarpUser()
+    }
+    
+    func setValues(JSON:Dictionary<String,AnyObject>) {
+        self.param = JSON
+    }
+    
+    public func setObject(value:AnyObject, forKey key:String) -> WarpUser {
+        if value is WarpObject {
+            let warpObject = value as! WarpObject
+            self.param[key] = WarpPointer.map(className: warpObject.className, id: warpObject.objectId)
+            return self
+        }
+        self.param[key] = value
         return self
     }
     
-    func setPassword(password:String) -> WarpUser {
-        setObject(password, forKey: "password")
+    internal class func createWithoutData(id id: Int, className: String) -> WarpUser {
+        return createWithoutData(id: id)
+    }
+    
+    public func objectForKey(key:String) -> AnyObject? {
+        return self.param[key]
+    }
+    
+    internal func destroy() {
+        destroy { (success, error) in
+            
+        }
+    }
+    
+    func destroy(completion:(success:Bool, error:WarpError?) -> Void) {
+        let warp = Warp.sharedInstance
+        guard warp != nil else {
+            completion(success: false, error: WarpError(code: .ServerNotInitialized))
+            return
+        }
+        if objectId > 0 {
+            WarpAPI.delete(warp!.API_ENDPOINT! + "classes/\(className)/\(objectId)", parameters: param, headers: warp!.HEADER()) { (warpResult) in
+                switch warpResult {
+                case .Success(let JSON):
+                    let warpResponse = WarpResponse(JSON: JSON, result: Dictionary<String,AnyObject>.self)
+                    switch warpResponse.statusType {
+                    case .Success:
+                        self.setValues(warpResponse.result!)
+                        completion(success: true, error: nil)
+                    default:
+                        completion(success: true, error: WarpError(message: warpResponse.message, status: warpResponse.status))
+                    }
+                    break
+                case .Failure(let error):
+                    completion(success: false, error: error)
+                }
+            }
+        } else {
+            completion(success: false, error: WarpError(code: .ObjectDoesNotExist))
+        }
+    }
+    
+    public func save() {
+        save { (success, error) in
+            
+        }
+    }
+    
+    public func save(completion: (success: Bool, error: WarpError?) -> Void) {
+        let warp = Warp.sharedInstance
+        guard warp != nil else {
+            completion(success: false, error: WarpError(code: .ServerNotInitialized))
+            return
+        }
+        if objectId > 0 {
+            WarpAPI.put(warp!.API_ENDPOINT! + "users/\(objectId)", parameters: self.objects, headers: warp!.HEADER()) { (warpResult) in
+                switch warpResult {
+                case .Success(let JSON):
+                    let warpResponse = WarpResponse(JSON: JSON, result: Dictionary<String,AnyObject>.self)
+                    switch warpResponse.statusType {
+                    case .Success:
+                        self.setValues(warpResponse.result!)
+                        completion(success: true, error: nil)
+                    default:
+                        completion(success: true, error: WarpError(message: warpResponse.message, status: warpResponse.status))
+                    }
+                case .Failure(let error):
+                    completion(success: false, error: error)
+                }
+            }
+        } else {
+            WarpAPI.post(warp!.API_ENDPOINT! + "users", parameters: self.objects, headers: warp!.HEADER()) { (warpResult) in
+                switch warpResult {
+                case .Success(let JSON):
+                    let warpResponse = WarpResponse(JSON: JSON, result: Dictionary<String,AnyObject>.self)
+                    switch warpResponse.statusType {
+                    case .Success:
+                        self.setValues(warpResponse.result!)
+                        completion(success: true, error: nil)
+                    default:
+                        completion(success: true, error: WarpError(message: warpResponse.message, status: warpResponse.status))
+                    }
+                case .Failure(let error):
+                    completion(success: false, error: error)
+                }
+            }
+        }
+    }
+    
+    
+   public  func setUsername(username:String) -> WarpUser {
+        _username = username
+        param["username"] = password
         return self
     }
     
-    init() {
-        super.init(className: "user")
+    public func setPassword(password:String) -> WarpUser {
+        _password = password
+        param["password"] = password
+        return self
     }
+    
     
     init(JSON:Dictionary<String,AnyObject>) {
-        super.init(className: "user", JSON: JSON)
-    }
-    
-    override func setObject(value:AnyObject, forKey key:String) -> WarpObject {
-        switch key {
-        case "session_token":
-            _sessionToken = value as! String
-        case "username":
-            _username = value as! String
-        case "password:":
-            _password = value as! String
-        default:
-            break
-        }
-        return super.setObject(value, forKey: key)
-    }
-    
-    override func setValues(JSON: Dictionary<String, AnyObject>) {
-        var anotherJSON: Dictionary<String, AnyObject> = [:]
-        self._sessionToken = JSON["session_token"] as! String
-        anotherJSON["id"] = JSON["user"]!["id"]
-        anotherJSON["session_token"] = JSON["session_token"]
-        anotherJSON["username"] = JSON["username"]
-        super.setValues(anotherJSON)
+//        super.init(className: "user", JSON: JSON)
     }
     
     func login(username:String, password:String, completion: (success: Bool, error: WarpError?) -> Void) {
@@ -136,76 +273,7 @@ public class WarpUser:WarpObject {
         }
     }
     
-    override func destroy() {
-        destroy { (success, error) in
-            
-        }
-    }
-    
-    override func destroy(completion: (success: Bool, error: WarpError?) -> Void) {
-        let warp = Warp.sharedInstance
-        guard warp != nil else {
-            completion(success: false, error: WarpError(code: .ServerNotInitialized))
-            return
-        }
-    }
-    
-    static func createWithoutData(id id:Int) -> WarpUser {
-        //DO THIS OMG
-        return WarpUser()
-    }
-    
-    override func save() {
-        save { (success, error) in
-            
-        }
-    }
-    
-    override func save(completion: (success: Bool, error: WarpError?) -> Void) {
-        let warp = Warp.sharedInstance
-        guard warp != nil else {
-            completion(success: false, error: WarpError(code: .ServerNotInitialized))
-            return
-        }
-        if objectId > 0 {
-            WarpAPI.put(warp!.API_ENDPOINT! + "users/\(objectId)", parameters: self.objects, headers: warp!.HEADER()) { (warpResult) in
-                switch warpResult {
-                case .Success(let JSON):
-                    let warpResponse = WarpResponse(JSON: JSON, result: Dictionary<String,AnyObject>.self)
-                    switch warpResponse.statusType {
-                    case .Success:
-                        self.setValues(warpResponse.result!)
-                        completion(success: true, error: nil)
-                    default:
-                        completion(success: true, error: WarpError(message: warpResponse.message, status: warpResponse.status))
-                    }
-                case .Failure(let error):
-                    completion(success: false, error: error)
-                }
-            }
-        } else {
-            WarpAPI.post(warp!.API_ENDPOINT! + "users", parameters: self.objects, headers: warp!.HEADER()) { (warpResult) in
-                switch warpResult {
-                case .Success(let JSON):
-                    let warpResponse = WarpResponse(JSON: JSON, result: Dictionary<String,AnyObject>.self)
-                    switch warpResponse.statusType {
-                    case .Success:
-                        self.setValues(warpResponse.result!)
-                        completion(success: true, error: nil)
-                    default:
-                        completion(success: true, error: WarpError(message: warpResponse.message, status: warpResponse.status))
-                    }
-                case .Failure(let error):
-                    completion(success: false, error: error)
-                }
-            }
-        }
-    }
-}
-
-//Defaults
-extension WarpUser {
-    private func setCurrentUser() {
+    internal func setCurrentUser() {
         var strings:[String] = []
         for key in self.objects.keys {
             strings.append(key)
