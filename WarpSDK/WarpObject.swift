@@ -15,6 +15,10 @@ public class WarpObject:WarpObjectProtocol {
                 switch key {
                 case "id":
                     _objectId = value as! Int
+                case "created_at":
+                    _createdAt = value as! String
+                case "updated_at":
+                    _updatedAt = value as! String
                 default:
                     break
                 }
@@ -52,13 +56,13 @@ public class WarpObject:WarpObjectProtocol {
     
     public class func createWithoutData(id id:Int, className:String) -> WarpObject{
         let warpObject = WarpObject(className: className)
-        warpObject.setObject(id, forKey: "id")
+        warpObject.param["id"] = id
         return warpObject
     }
     
     internal class func createWithoutData(id id:Int) -> WarpObject{
         let warpObject = WarpObject(className: "")
-        warpObject.setObject(id, forKey: "id")
+        warpObject.param["id"] = id
         return warpObject
     }
     
@@ -75,13 +79,28 @@ public class WarpObject:WarpObjectProtocol {
     }
     
     public func setObject(value:AnyObject, forKey key:String) -> WarpObject {
-        if value is WarpObject {
-            let warpObject = value as! WarpObject
-            self.param[key] = WarpPointer.map(className: warpObject.className, id: warpObject.objectId)
+        switch key {
+        case "created_at":
+            return self
+        case "updated_at":
+            return self
+        case "id":
+            return self
+        default:
+            if value is WarpObject {
+                let warpObject = value as! WarpObject
+                self.param[key] = WarpPointer.map(className: warpObject.className, id: warpObject.objectId)
+                return self
+            }
+            
+            if value is WarpUser {
+                let warpUser = value as! WarpUser
+                self.param[key] = WarpPointer.map(className: "user", id: warpUser.objectId)
+                return self
+            }
+            self.param[key] = value
             return self
         }
-        self.param[key] = value
-        return self
     }
     
     public func objectForKey(key:String) -> AnyObject? {

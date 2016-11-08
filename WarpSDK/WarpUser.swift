@@ -79,13 +79,28 @@ public class WarpUser:WarpUserProtocol {
     }
     
     public func setObject(value:AnyObject, forKey key:String) -> WarpUser {
-        if value is WarpObject {
-            let warpObject = value as! WarpObject
-            self.param[key] = WarpPointer.map(className: warpObject.className, id: warpObject.objectId)
+        switch key {
+        case "created_at":
+            return self
+        case "updated_at":
+            return self
+        case "id":
+            return self
+        default:
+            if value is WarpObject {
+                let warpObject = value as! WarpObject
+                self.param[key] = WarpPointer.map(className: warpObject.className, id: warpObject.objectId)
+                return self
+            }
+            
+            if value is WarpUser {
+                let warpUser = value as! WarpUser
+                self.param[key] = WarpPointer.map(className: "user", id: warpUser.objectId)
+                return self
+            }
+            self.param[key] = value
             return self
         }
-        self.param[key] = value
-        return self
     }
     
     public func objectForKey(key:String) -> AnyObject? {
