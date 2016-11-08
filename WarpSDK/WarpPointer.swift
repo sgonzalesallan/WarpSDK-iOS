@@ -1,0 +1,49 @@
+//
+//  WarpPointer.swift
+//  SwipeRX
+//
+//  Created by Zonily Jame Pesquera on 06/10/2016.
+//
+//
+
+import EVReflection
+
+class WarpPointer<T where T:WarpModel>: EVObject {
+    var id:Int = 0
+    var type:String = ""
+    var className:String = ""
+    var attributes:T = T()
+    
+    required init(){
+        super.init()
+    }
+    
+    init(type:String, className:String, id:Int){
+        super.init()
+        self.type = type
+        self.className = className
+        self.id = id
+    }
+    
+    override func setValue(value: AnyObject?, forUndefinedKey key: String) {
+        switch key {
+        case "attributes":
+            self.attributes = value as! T
+        case "id":
+            self.id = value as! Int
+        case "className":
+            self.className = value as! String
+        case "type":
+            self.type = value as! String
+        default:
+            WarpTools.showLog(value, key: key, model: "WarpPointer")
+        }
+    }
+    
+    static func map(className className:String, id:Int) -> [String:AnyObject]{
+        return ["type":"Pointer",
+                "className":className,
+                "id":id]
+    }
+
+}
