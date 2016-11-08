@@ -52,10 +52,10 @@ protocol WarpObjectProtocol {
     var _updatedAt:String { get set }
     var updatedAt:String { get }
     
-    static func createWithoutData() -> WarpObject
+    static func createWithoutData(id id:Int, className:String) -> WarpObject
+    static func createWithoutData(id id:Int) -> WarpObject
     
     init(className:String)
-    init()
     
     func setObject(value:AnyObject, forKey:String) -> WarpObject
     
@@ -71,6 +71,37 @@ protocol WarpObjectProtocol {
 }
 
 protocol WarpUserProtocol {
+    var param:[String : AnyObject] { get set }
+    var className:String { get set }
+    var objects:[String : AnyObject] { get }
+    
+    var _objectId:Int { get set }
+    var objectId:Int { get }
+    
+    var _createdAt:String { get set }
+    var createdAt:String { get }
+    
+    var _updatedAt:String { get set }
+    var updatedAt:String { get }
+    
+    static func createWithoutData(id id:Int, className:String) -> WarpUser
+    static func createWithoutData(id id:Int) -> WarpUser
+    
+    init()
+    
+    func setObject(value:AnyObject, forKey:String) -> WarpUser
+    
+    func objectForKey(key:String) -> AnyObject?
+    
+    func destroy()
+    
+    func destroy(completion:WarpCompletion)
+    
+    func save()
+    
+    func save(completion:WarpCompletion)
+    
+    
     var _username:String { get set }
     var username:String { get }
     var _password:String { get set }
@@ -85,9 +116,9 @@ protocol WarpUserProtocol {
     func signUp(completion:WarpCompletion)
     func logout(completion:WarpCompletion)
     
-    static func current()
+    static func current() -> WarpUser?
     static func deleteCurrent()
-    func setCurrentuser()
+    func setCurrentUser()
 }
 
 protocol WarpModelProtocol {
