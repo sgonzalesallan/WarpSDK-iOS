@@ -7,7 +7,7 @@
 //
 
 import Alamofire
-import EVReflection
+//import EVReflection
 
 class WarpAPI {
     static func get(URLString: URLStringConvertible, parameters: [String : AnyObject]?, headers: [String : String], completionHandler: (warpResult:WarpResult) -> Void){

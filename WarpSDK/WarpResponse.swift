@@ -6,7 +6,7 @@
 //
 //
 
-import EVReflection
+//import EVReflection
 class WarpResponse<T>:EVObject {
     var message:String = ""
     var result:T?

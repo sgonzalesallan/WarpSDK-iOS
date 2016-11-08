@@ -6,7 +6,7 @@
 //
 //
 
-import EVReflection
+//import EVReflection
 
 class WarpModel: EVObject, WarpModelProtocol {
     var id:Int = 0
@@ -38,5 +38,11 @@ class WarpModel: EVObject, WarpModelProtocol {
     
     func map() -> [String : AnyObject] {
         return ["":""]
+    }
+}
+
+class EVObject:NSObject {
+    override required init() {
+        
     }
 }

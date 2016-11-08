@@ -27,6 +27,7 @@
 		A655FCA31DD19E66003F00E1 /* WarpQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = A655FC971DD19E66003F00E1 /* WarpQuery.swift */; };
 		A655FCA41DD19E66003F00E1 /* WarpPointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A655FC981DD19E66003F00E1 /* WarpPointer.swift */; };
 		A655FCA51DD19E66003F00E1 /* WarpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A655FC991DD19E66003F00E1 /* WarpModel.swift */; };
+		A655FCA81DD1A017003F00E1 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A655FCA71DD1A017003F00E1 /* Alamofire.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		A655FC971DD19E66003F00E1 /* WarpQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WarpQuery.swift; sourceTree = "<group>"; };
 		A655FC981DD19E66003F00E1 /* WarpPointer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WarpPointer.swift; sourceTree = "<group>"; };
 		A655FC991DD19E66003F00E1 /* WarpModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WarpModel.swift; sourceTree = "<group>"; };
+		A655FCA71DD1A017003F00E1 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "Carthage/Checkouts/Alamofire/build/Debug-iphoneos/Alamofire.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A655FCA81DD1A017003F00E1 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +98,7 @@
 				A655FC641DD19D2E003F00E1 /* WarpSDK */,
 				A655FC6F1DD19D2F003F00E1 /* WarpSDKTests */,
 				A655FC631DD19D2E003F00E1 /* Products */,
+				A655FCA61DD1A017003F00E1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -120,8 +124,7 @@
 				A655FC951DD19E66003F00E1 /* WarpTools.swift */,
 				A655FC961DD19E66003F00E1 /* WarpErrors.swift */,
 				A655FC971DD19E66003F00E1 /* WarpQuery.swift */,
-				A655FC981DD19E66003F00E1 /* WarpPointer.swift */,
-				A655FC991DD19E66003F00E1 /* WarpModel.swift */,
+				A655FCA91DD1AE9C003F00E1 /* For Future Updates */,
 				A655FC651DD19D2E003F00E1 /* WarpSDK.h */,
 				A655FC661DD19D2E003F00E1 /* Info.plist */,
 			);
@@ -135,6 +138,23 @@
 				A655FC721DD19D2F003F00E1 /* Info.plist */,
 			);
 			path = WarpSDKTests;
+			sourceTree = "<group>";
+		};
+		A655FCA61DD1A017003F00E1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A655FCA71DD1A017003F00E1 /* Alamofire.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A655FCA91DD1AE9C003F00E1 /* For Future Updates */ = {
+			isa = PBXGroup;
+			children = (
+				A655FC981DD19E66003F00E1 /* WarpPointer.swift */,
+				A655FC991DD19E66003F00E1 /* WarpModel.swift */,
+			);
+			name = "For Future Updates";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -400,7 +420,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.WarpSDK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
@@ -419,7 +439,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.WarpSDK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};
