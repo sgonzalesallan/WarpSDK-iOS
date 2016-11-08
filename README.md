@@ -2,6 +2,8 @@
 
 [![Twitter](https://img.shields.io/badge/Twitter-%40kuyazee-blue.svg)](http://twitter.com/kuyazee)
 [![Github](https://img.shields.io/badge/Github-kuyazee-blue.svg)](https://github.com/kuyazee)
+[![Cocoapods](https://img.shields.io/badge/Cocoapods-0.0.1-red.svg)](#installation)]
+[![DividedByZero](https://img.shields.io/badge/Divided%20By%20Zero-Exploring%20the%20undefined-yellow.svg)](https://github.com/dividedbyzeroco)]
 
 __The Warp iOS SDK__ is available through the dependency manager [CocoaPods](http://cocoapods.org). 
 
