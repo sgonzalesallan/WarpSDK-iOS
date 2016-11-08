@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "WarpSDK"
-  s.version      = "1.0.0"
+  s.version      = "1.0.1"
   s.summary      = "The Warp iOS SDK is a library designed to work with projects built on-top of the Warp Server."
   s.homepage     = "https://github.com/dividedbyzeroco/warp-server"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
