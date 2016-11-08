@@ -30,7 +30,7 @@ public class Warp {
             WarpHeader.ContentType.rawValue : WarpTools.CONTENT_TYPE,
             WarpHeader.Session.rawValue     : WarpUser.current() == nil ? "" : WarpUser.current()!.sessionToken,
             WarpHeader.Client.rawValue      : "ios",
-            WarpHeader.WarpVersion.rawValue : "1.0.0",
+            WarpHeader.WarpVersion.rawValue : "0.0.2",
             WarpHeader.AppVersion.rawValue  : NSBundle.mainBundle().infoDictionary?["CFBundleShortVersionString"] == nil ? "0.0.0" : NSBundle.mainBundle().infoDictionary?["CFBundleShortVersionString"] as! String
         ]
     }
