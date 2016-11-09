@@ -84,12 +84,12 @@ public class WarpQuery {
         return self
     }
     
-    public func include(values:[String]) -> WarpQuery {
+    public func include(values:String...) -> WarpQuery {
         queryBuilder.param["include"] = String(values)
         return self
     }
     
-    public func sort(values:[WarpSort]) -> WarpQuery {
+    public func sort(values:WarpSort...) -> WarpQuery {
         var string:String = ""
         for i in 0..<values.count {
             let value = values[i]
@@ -142,7 +142,7 @@ public class WarpQuery {
         return self
     }
     
-    public func containedIn(values:[AnyObject], forKey key:String) -> WarpQuery {
+    public func containedIn(values:AnyObject..., forKey key:String) -> WarpQuery {
         queryConstraints.append(WarpQueryConstraint(containedIn: values, key: key))
         return self
     }
@@ -167,7 +167,7 @@ public class WarpQuery {
         return self
     }
     
-    public func contains(value:String, keys:[String]) -> WarpQuery {
+    public func contains(value:String, keys:String...) -> WarpQuery {
         queryConstraints.append(WarpQueryConstraint(contains: value, keys: keys))
         return self
     }
