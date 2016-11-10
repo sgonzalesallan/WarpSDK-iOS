@@ -9,10 +9,10 @@
 import EVReflection
 
 public class WarpPointer<T where T:WarpModel>: EVObject {
-    var id:Int = 0
-    var type:String = ""
-    var className:String = ""
-    var attributes:T = T()
+    public var id:Int = 0
+    public var type:String = ""
+    public var className:String = ""
+    public var attributes:T = T()
     
     public required init(){
         super.init()
@@ -66,7 +66,6 @@ public class WarpPointer<T where T:WarpModel>: EVObject {
                     "className":className,
                     "id":id,
                     "attributes":attributes!]
-    
         } else {
             return ["type":"Pointer",
                     "className":className,

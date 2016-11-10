@@ -9,9 +9,9 @@
 import EVReflection
 
 public class WarpModel: EVObject, WarpModelProtocol {
-    var id:Int = 0
-    var createdAt:String = ""
-    var updatedAt:String = ""
+    public var id:Int = 0
+    public var createdAt:String = ""
+    public var updatedAt:String = ""
     
     required public init(){
         super.init()
