@@ -8,24 +8,24 @@
 
 //import EVReflection
 
-class WarpPointer<T where T:WarpModel>: EVObject {
+public class WarpPointer<T where T:WarpModel>: EVObject {
     var id:Int = 0
     var type:String = ""
     var className:String = ""
     var attributes:T = T()
     
-    required init(){
+    public required init(){
         super.init()
     }
     
-    init(type:String, className:String, id:Int){
+    public init(type:String, className:String, id:Int){
         super.init()
         self.type = type
         self.className = className
         self.id = id
     }
     
-    override func setValue(value: AnyObject?, forUndefinedKey key: String) {
+    override public func setValue(value: AnyObject?, forUndefinedKey key: String) {
         switch key {
         case "attributes":
             self.attributes = value as! T
@@ -40,27 +40,27 @@ class WarpPointer<T where T:WarpModel>: EVObject {
         }
     }
     
-    static func map(className className:String, id:Int) -> [String:AnyObject] {
+    public static func map(className className:String, id:Int) -> [String:AnyObject] {
         return ["type":"Pointer",
                 "className":className,
                 "id":id]
     }
 
-    static func map(warpObject object:WarpObject) -> [String:AnyObject] {
+    public static func map(warpObject object:WarpObject) -> [String:AnyObject] {
         return ["type":"Pointer",
                 "className":object.className,
                 "id":object.objectId,
                 "attributes":object.objects]
     }
     
-    static func map(warpUser object:WarpUser) -> [String:AnyObject] {
+    public static func map(warpUser object:WarpUser) -> [String:AnyObject] {
         return ["type":"Pointer",
                 "className":object.className,
                 "id":object.objectId,
                 "attributes":object.objects]
     }
     
-    static func map(className className:String, id:Int, attributes:AnyObject?) -> [String:AnyObject] {
+    public static func map(className className:String, id:Int, attributes:AnyObject?) -> [String:AnyObject] {
         if attributes != nil {
             return ["type":"Pointer",
                     "className":className,

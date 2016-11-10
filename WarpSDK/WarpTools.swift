@@ -8,7 +8,7 @@
 
 import Alamofire
 
-class WarpTools {
+public class WarpTools {
     static let CONTENT_TYPE = "application/json"
     static let dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
     
@@ -35,45 +35,7 @@ class WarpTools {
     }
 }
 
-enum WarpResponseCode:Int {
-    case Success = 200
-    case MissingConfiguration = 300
-    case InternalServerError = 100
-    case QueryError = 101
-    case InvalidCredentials = 102
-    case InvalidSessionToken = 103
-    case InvalidObjectKey = 104
-    case InvalidPointer = 105
-    case ForbiddenOperation = 106
-    case UsernameTaken = 107
-    case EmailTaken = 108
-    case InvalidAPIKey = 109
-    case ModelNotFound = 110
-    case FunctionNotFound = 111
-    case Other
-    
-    init(int:Int) {
-        switch int {
-        case 200: self = .Success
-        case 300: self = .MissingConfiguration
-        case 100: self = .InternalServerError
-        case 101: self = .QueryError
-        case 102: self = .InvalidCredentials
-        case 103: self = .InvalidSessionToken
-        case 104: self = .InvalidObjectKey
-        case 105: self = .ForbiddenOperation
-        case 106: self = .UsernameTaken
-        case 107: self = .UsernameTaken
-        case 108: self = .EmailTaken
-        case 109: self = .InvalidAPIKey
-        case 110: self = .ModelNotFound
-        case 111: self = .FunctionNotFound
-        default: self = .Other
-        }
-    }
-}
-
-enum WarpHeader:String {
+public enum WarpHeader:String {
     case APIKey = "X-Warp-API-Key"
     case ContentType = "Content-Type"
     case Client = "X-Warp-Client"
@@ -82,7 +44,7 @@ enum WarpHeader:String {
     case Session = "X-Warp-Session-Token"
 }
 
-enum WarpResult {
+public enum WarpResult {
     case Success(AnyObject)
     case Failure(WarpError)
     
@@ -107,7 +69,7 @@ enum WarpResult {
     }
 }
 
-enum WarpOrder:Int {
+public enum WarpOrder:Int {
     case Ascending = 1
     case Descending = -1
 }
