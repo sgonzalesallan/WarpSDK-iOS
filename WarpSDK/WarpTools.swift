@@ -48,7 +48,7 @@ public enum WarpResult {
     case Success(AnyObject)
     case Failure(WarpError)
     
-    var isSuccess:Bool {
+    public var isSuccess:Bool {
         switch self {
         case .Success:
             return true
@@ -57,14 +57,21 @@ public enum WarpResult {
         }
     }
     
-    func showResult() {
+    public func showResult() {
         switch self {
         case .Success(let JSON): print("Success Result: \(JSON)")
         case .Failure(let ERROR): print("Error Result: \(ERROR)")
         }
     }
     
-    var isFailure:Bool {
+    public func getResult() -> AnyObject {
+        switch self {
+        case .Success(let JSON): return JSON
+        case .Failure(let ERROR): return ERROR
+        }
+    }
+    
+    public var isFailure:Bool {
         return !isSuccess
     }
 }

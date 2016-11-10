@@ -115,29 +115,29 @@ protocol WarpUserProtocol {
     func setCurrentUser()
 }
 
-protocol WarpModelProtocol {
+public protocol WarpModelProtocol {
     func map() -> [String:AnyObject]
     static func endPoint() -> String
     static func endPoint(id:Int) -> String
 }
 
-struct APIResult<T> {
-    var hasFailed:Bool = true
-    var message:String = ""
-    var error:NSError?
-    var result:T?
+public struct APIResult<T> {
+    public var hasFailed:Bool = true
+    public var message:String = ""
+    public var error:NSError?
+    public var result:T?
     
-    var isSuccess:Bool {
+    public var isSuccess:Bool {
         return !hasFailed
     }
     
-    init(hasFailed:Bool, message:String?, result:T){
+    public init(hasFailed:Bool, message:String?, result:T){
         self.hasFailed = hasFailed
         self.message = message == nil ? "" : message!
         self.result = result
     }
     
-    init(hasFailed:Bool, message:String?){
+    public init(hasFailed:Bool, message:String?){
         self.hasFailed = hasFailed
         self.message = message == nil ? "" : message!
     }

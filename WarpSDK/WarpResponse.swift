@@ -8,30 +8,30 @@
 
 import EVReflection
 
-class WarpResponse<T>:EVObject {
-    var message:String = ""
-    var result:T?
-    var status:Int = 0
-    var statusType:WarpResponseCode = .Other
+public class WarpResponse<T>:EVObject {
+    public var message:String = ""
+    public var result:T?
+    public var status:Int = 0
+    public var statusType:WarpResponseCode = .Other
     
-    init(setMessage message:String, setResult result:T?, setStatus status:Int){
+    public init(setMessage message:String, setResult result:T?, setStatus status:Int){
         self.message = message;
         self.result = result
         self.status = status
     }
     
-    required init(){
+    required public  init(){
         super.init()
     }
     
-    init(JSON:AnyObject, result:T.Type) {
+    public init(JSON:AnyObject, result:T.Type) {
         self.message = JSON["message"] as! String
         self.result = JSON["result"] as? T
         self.status = JSON["status"] as! Int
         self.statusType = WarpResponseCode(int: status)
     }
     
-    init(JSON:AnyObject) {
+    public init(JSON:AnyObject) {
         self.message = JSON["message"] as! String
         self.result = nil
         self.status = JSON["status"] as! Int
@@ -56,7 +56,7 @@ public enum WarpResponseCode:Int {
     case FunctionNotFound = 111
     case Other
     
-    init(int:Int) {
+    public init(int:Int) {
         switch int {
         case 200: self = .Success
         case 300: self = .MissingConfiguration
