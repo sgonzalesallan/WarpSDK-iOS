@@ -9,14 +9,14 @@
 import Alamofire
 
 public class WarpTools {
-    static let CONTENT_TYPE = "application/json"
-    static let dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+    public static let CONTENT_TYPE = "application/json"
+    public static let dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
     
-    static func showLog(value:AnyObject?, key:String, model:String){
+    public static func showLog(value:AnyObject?, key:String, model:String){
         print("---> setValue '\(value)' for key '\(key)' should be handled. MODEL:\(model)")
     }
     
-    static func toResult(response:Response<AnyObject, NSError>) -> WarpResult {
+    public static func toResult(response:Response<AnyObject, NSError>) -> WarpResult {
         guard response.result.isSuccess else {
             return .Failure(WarpError(error: response.result.error!))
         }
@@ -26,7 +26,7 @@ public class WarpTools {
         return .Success(JSON)
     }
     
-    static func dateFormatter() -> NSDateFormatter {
+    public static func dateFormatter() -> NSDateFormatter {
         let formatter = NSDateFormatter()
         formatter.dateFormat = dateFormat
         formatter.dateStyle = NSDateFormatterStyle.MediumStyle
