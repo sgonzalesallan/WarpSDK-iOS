@@ -6,7 +6,7 @@
 //
 //
 
-//import EVReflection
+import EVReflection
 
 public class WarpPointer<T where T:WarpModel>: EVObject {
     var id:Int = 0
