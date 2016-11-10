@@ -266,7 +266,7 @@ alienQuery.existsKey("type")
 alienQuery.notExistsKey("type")
 
 // If you need to find if a given key belongs in a list, you can use the following constraints
-alienQuery.containedIn(["Doctor", "Warrior"], forKey: "role")
+alienQuery.containedIn("Doctor", "Warrior", forKey: "role")
 alienQuery.notContainedIn([18, 20], forKey: "age")
 
 // If you need to search a string for a substring
@@ -275,7 +275,7 @@ alienQuery.endsWith("Master", forKey: "name")
 alienQuery.contains("M", forKey: "name")
 
 // If you need to search multiple keys for a substring
-alienQuery.contains("M", keys: ["name", "username", "email"])
+alienQuery.contains("M", keys: "name", "username", "email")
 ```
 
 
@@ -308,7 +308,7 @@ alienQuery.sortByDescending(['created_at', 'life_points']); // You can also use 
 In order to include keys that belong to a pointer, we can use the `.include(values: [String])` method.
 
 ```Swift
-alienQuery.include(["planet.name", "planet.color"])
+alienQuery.include("planet.name", "planet.color")
 ```
 
 The above query will return aliens with their respective planets as pointers:
