@@ -133,26 +133,18 @@ public struct APIResult<T> {
     
     public init(hasFailed:Bool, message:String?, result:T){
         self.hasFailed = hasFailed
-        self.message = message == nil ? "" : message!
+        self.message = message ?? ""
         self.result = result
     }
     
     public init(hasFailed:Bool, message:String?){
         self.hasFailed = hasFailed
-        self.message = message == nil ? "" : message!
+        self.message = message ?? ""
     }
-}
-
-public extension NSArray {
-    func JSONIFY() -> String {
-        let data = try! NSJSONSerialization.dataWithJSONObject(self, options: .PrettyPrinted)
-        return String(data:data, encoding: NSUTF8StringEncoding)!
-    }
-}
-
-public extension NSDictionary {
-    func JSONIFY() -> String {
-        let data = try! NSJSONSerialization.dataWithJSONObject(self, options: .PrettyPrinted)
-        return String(data:data, encoding: NSUTF8StringEncoding)!
+    
+    public init(hasFailed:Bool, message:String?, error:NSError?){
+        self.hasFailed = hasFailed
+        self.message = message ?? ""
+        self.error = error
     }
 }
