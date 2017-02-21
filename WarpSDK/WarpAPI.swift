@@ -66,6 +66,12 @@ public class WarpAPI {
             }
         }
     }
+    
+    
+    static func asd() {
+//        Alamofire.Manager(configuration: <#T##NSURLSessionConfiguration#>, delegate: <#T##Manager.SessionDelegate#>, serverTrustPolicyManager: <#T##ServerTrustPolicyManager?#>)
+//        Alamofire.Manager(session: <#T##NSURLSession#>, delegate: <#T##Manager.SessionDelegate#>, serverTrustPolicyManager: <#T##ServerTrustPolicyManager?#>)
+    }
 }
 
 
