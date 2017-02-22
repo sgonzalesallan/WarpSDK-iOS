@@ -7,64 +7,25 @@
 //
 
 import Alamofire
-//import EVReflection
 
-public class WarpAPI {
-    public static func get(URLString: URLStringConvertible, parameters: [String : AnyObject]?, headers: [String : String], completionHandler: (warpResult:WarpResult) -> Void) -> Request {
-        if parameters == nil {
-            return Alamofire.request(.GET, URLString, encoding: .URL, headers: headers)
-                .responseJSON { (response) in
-                    completionHandler(warpResult: WarpTools.toResult(response))
-            }
-        } else {
-            return Alamofire.request(.GET, URLString, parameters: parameters, encoding: .URL, headers: headers)
-                .responseJSON { (response) in
-                    completionHandler(warpResult: WarpTools.toResult(response))
-            }
-        }
+open class WarpAPI {
+    open static func get(_ URLString: URLConvertible, parameters: [String : Any]?, headers: [String : String], completionHandler: @escaping (_ warpResult:WarpResult) -> Void) -> Request {
+        return Alamofire.request(URLString, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: headers)
+            .responseJSON(completionHandler: { completionHandler(WarpTools.toResult($0)) })
     }
     
-    public static func post(URLString: URLStringConvertible, parameters: [String : AnyObject]?, headers: [String : String], completionHandler: (warpResult:WarpResult) -> Void) -> Request {
-        if parameters == nil {
-            return Alamofire.request(.POST, URLString, encoding: .JSON, headers: headers)
-                .responseJSON { (response) in
-                    completionHandler(warpResult: WarpTools.toResult(response))
-            }
-        } else {
-            return Alamofire.request(.POST, URLString, parameters: parameters, encoding: .JSON, headers: headers)
-                .responseJSON { (response) in
-                    completionHandler(warpResult: WarpTools.toResult(response))
-            }
-        }
+    open static func post(_ URLString: URLConvertible, parameters: [String : Any]?, headers: [String : String], completionHandler: @escaping (_ warpResult:WarpResult) -> Void) -> Request {
+        return Alamofire.request(URLString, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
+            .responseJSON(completionHandler: { completionHandler(WarpTools.toResult($0)) })
     }
     
-    public static func put(URLString: URLStringConvertible, parameters: [String : AnyObject]?, headers: [String : String], completionHandler: (warpResult:WarpResult) -> Void) -> Request {
-        if parameters == nil {
-            return Alamofire.request(.PUT, URLString, encoding: .JSON, headers: headers)
-                .responseJSON { (response) in
-                    completionHandler(warpResult: WarpTools.toResult(response))
-            }
-        } else {
-            return Alamofire.request(.PUT, URLString, parameters: parameters, encoding: .JSON, headers: headers)
-                .responseJSON { (response) in
-                    completionHandler(warpResult: WarpTools.toResult(response))
-            }
-        }
-        
-    }
+    open static func put(_ URLString: URLConvertible, parameters: [String : Any]?, headers: [String : String], completionHandler: @escaping (_ warpResult:WarpResult) -> Void) -> Request {
+        return Alamofire.request(URLString, method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
+            .responseJSON(completionHandler: { completionHandler(WarpTools.toResult($0)) })    }
     
-    public static func delete(URLString: URLStringConvertible, parameters: [String : AnyObject]?, headers: [String : String], completionHandler: (warpResult:WarpResult) -> Void) -> Request {
-        if parameters == nil {
-            return Alamofire.request(.DELETE, URLString, encoding: .JSON, headers: headers)
-                .responseJSON { (response) in
-                    completionHandler(warpResult: WarpTools.toResult(response))
-            }
-        } else {
-            return Alamofire.request(.DELETE, URLString, parameters: parameters, encoding: .JSON, headers: headers)
-                .responseJSON { (response) in
-                    completionHandler(warpResult: WarpTools.toResult(response))
-            }
-        }
+    open static func delete(_ URLString: URLConvertible, parameters: [String : Any]?, headers: [String : String], completionHandler: @escaping (_ warpResult:WarpResult) -> Void) -> Request {
+        return Alamofire.request(URLString, method: .delete, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
+            .responseJSON(completionHandler: { completionHandler(WarpTools.toResult($0)) })
     }
     
     

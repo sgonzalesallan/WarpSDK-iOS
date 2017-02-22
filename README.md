@@ -76,7 +76,7 @@ To save an Object for a specific model, use the `WarpObject` class:
 let alien = WarpObject(className: "alien")
 ```
 
-You can set the values of the Object's keys using the `.setObject(value:AnyObject, forKey:String)` method:
+You can set the values of the Object's keys using the `.setObject(value: AnyObject, forKey: String)` method:
 
 ```Swift
 alien.setObject("TheDoctor", forKey: "name")
@@ -114,7 +114,7 @@ alienQuery.first { (warpObject, error) in
 }
 ```
 
-Now that you have fetched the object, you can also get its keys using the `.objectForKey(key:String)` method:
+Now that you have fetched the object, you can also get its keys using the `.objectForKey(key: String)` method:
 
 ```Swift
 let name = alien.objectForKey("name")
@@ -130,12 +130,12 @@ var createdAt = alien.createdAt
 var updatedAt = alien.updatedAt
 ```
 
-Note that these fields cannot be retrieved via the `.objectForKey(key:String)` method.
+Note that these fields cannot be retrieved via the `.objectForKey(key: String)` method.
 
 
 ### Updating Objects
 
-Whenever you use `.save()` or `Warp Queries` to save/retrieve objects, you can modify the keys of these objects directly using the same `.setObject(value:AnyObject, forKey:String)` method. Warp automatically knows that you've updated these fields and prepares the object for updating.
+Whenever you use `.save()` or `Warp Queries` to save/retrieve objects, you can modify the keys of these objects directly using the same `.setObject(value: AnyObject, forKey: String)` method. Warp automatically knows that you've updated these fields and prepares the object for updating.
 
 For example, after the `.save()` method:
 
@@ -349,7 +349,7 @@ Note that for Warp Query, instead of specifiying 'user' as the string, we can si
 
 ### Logging In
 
-In order to log in to a user account, you would use the `.login(username:String, password: String, completion: { (success, error) in })` method:
+In order to log in to a user account, you would use the `.login(username: String, password: String, completion: { (success, error) in })` method:
 
 ```Swift
 WarpUser().login("username", password: "password") { (success, error) in
@@ -413,7 +413,7 @@ user.logout { (success, error) in
 To run Warp [Functions](http://github.com/dividedbyzeroco/warp-server#functions) from the API, you may use Warp Functions:
 
 ```Swift
-// WarpFunction.run(functionName:String, parameters: [String:AnyObject]?, completion: { (result, error) in })
+// WarpFunction.run(functionName: String, parameters: [String: AnyObject]?, completion: { (result, error) in })
 
 WarpFunction.run("get-votes", parameters: ["from":"2016-08-14", "to":"2016-08-15"]) { (result, error) in
     if error == nil {

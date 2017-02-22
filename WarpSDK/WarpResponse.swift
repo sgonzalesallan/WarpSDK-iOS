@@ -8,13 +8,13 @@
 
 import EVReflection
 
-public class WarpResponse<T>:EVObject {
-    public var message:String = ""
-    public var result:T?
-    public var status:Int = 0
-    public var statusType:WarpResponseCode = .Other
+open class WarpResponse<T>: EVObject {
+    open var message: String = ""
+    open var result:T?
+    open var status: Int = 0
+    open var statusType:WarpResponseCode = .other
     
-    public init(setMessage message:String, setResult result:T?, setStatus status:Int){
+    public init(setMessage message: String, setResult result:T?, setStatus status: Int){
         self.message = message;
         self.result = result
         self.status = status
@@ -24,14 +24,14 @@ public class WarpResponse<T>:EVObject {
         super.init()
     }
     
-    public init(JSON:AnyObject, result:T.Type) {
+    public init(JSON: AnyObject, result: T.Type) {
         self.message = JSON["message"] as! String
         self.result = JSON["result"] as? T
         self.status = JSON["status"] as! Int
         self.statusType = WarpResponseCode(int: status)
     }
     
-    public init(JSON:AnyObject) {
+    public init(JSON: AnyObject) {
         self.message = JSON["message"] as! String
         self.result = nil
         self.status = JSON["status"] as! Int
@@ -39,40 +39,40 @@ public class WarpResponse<T>:EVObject {
     }
 }
 
-public enum WarpResponseCode:Int {
-    case Success = 200
-    case MissingConfiguration = 300
-    case InternalServerError = 100
-    case QueryError = 101
-    case InvalidCredentials = 102
-    case InvalidSessionToken = 103
-    case InvalidObjectKey = 104
-    case InvalidPointer = 105
-    case ForbiddenOperation = 106
-    case UsernameTaken = 107
-    case EmailTaken = 108
-    case InvalidAPIKey = 109
-    case ModelNotFound = 110
-    case FunctionNotFound = 111
-    case Other
+public enum WarpResponseCode: Int {
+    case success = 200
+    case missingConfiguration = 300
+    case internalServerError = 100
+    case queryError = 101
+    case invalidCredentials = 102
+    case invalidSessionToken = 103
+    case invalidObjectKey = 104
+    case invalidPointer = 105
+    case forbiddenOperation = 106
+    case usernameTaken = 107
+    case emailTaken = 108
+    case invalidAPIKey = 109
+    case modelNotFound = 110
+    case functionNotFound = 111
+    case other
     
-    public init(int:Int) {
+    public init(int: Int) {
         switch int {
-        case 200: self = .Success
-        case 300: self = .MissingConfiguration
-        case 100: self = .InternalServerError
-        case 101: self = .QueryError
-        case 102: self = .InvalidCredentials
-        case 103: self = .InvalidSessionToken
-        case 104: self = .InvalidObjectKey
-        case 105: self = .ForbiddenOperation
-        case 106: self = .UsernameTaken
-        case 107: self = .UsernameTaken
-        case 108: self = .EmailTaken
-        case 109: self = .InvalidAPIKey
-        case 110: self = .ModelNotFound
-        case 111: self = .FunctionNotFound
-        default: self = .Other
+        case 200: self = .success
+        case 300: self = .missingConfiguration
+        case 100: self = .internalServerError
+        case 101: self = .queryError
+        case 102: self = .invalidCredentials
+        case 103: self = .invalidSessionToken
+        case 104: self = .invalidObjectKey
+        case 105: self = .forbiddenOperation
+        case 106: self = .usernameTaken
+        case 107: self = .usernameTaken
+        case 108: self = .emailTaken
+        case 109: self = .invalidAPIKey
+        case 110: self = .modelNotFound
+        case 111: self = .functionNotFound
+        default: self = .other
         }
     }
 }

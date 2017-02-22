@@ -11,14 +11,14 @@ import UIKit
 
 public extension NSArray {
     func JSONIFY() -> String {
-        let data = try! NSJSONSerialization.dataWithJSONObject(self, options: .PrettyPrinted)
-        return String(data:data, encoding: NSUTF8StringEncoding)!
+        let data = try! JSONSerialization.data(withJSONObject: self, options: .prettyPrinted)
+        return String(data:data, encoding: String.Encoding.utf8)!
     }
 }
 
 public extension NSDictionary {
     func JSONIFY() -> String {
-        let data = try! NSJSONSerialization.dataWithJSONObject(self, options: .PrettyPrinted)
-        return String(data:data, encoding: NSUTF8StringEncoding)!
+        let data = try! JSONSerialization.data(withJSONObject: self, options: .prettyPrinted)
+        return String(data:data, encoding: String.Encoding.utf8)!
     }
 }

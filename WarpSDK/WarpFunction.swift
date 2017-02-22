@@ -8,28 +8,28 @@
 
 import Foundation
 
-public class WarpFunction {
-    private var functionName:String = ""
-    private init () { }
+open class WarpFunction {
+    fileprivate var functionName: String = ""
+    fileprivate init () { }
     
-    public static func run(functionName:String, parameters:[String : AnyObject]?, completion:(result:AnyObject?, error:WarpError?) -> Void) {
+    open static func run(_ functionName: String, parameters: [String: AnyObject]?, completion:@escaping (_ result: AnyObject?, _ error: WarpError?) -> Void) {
         let warp = Warp.sharedInstance
         guard warp != nil else {
-            completion(result: nil, error: WarpError(code: .ServerNotInitialized))
+            completion(nil, WarpError(code: .serverNotInitialized))
             return
         }
-        WarpAPI.post(warp!.API_ENDPOINT! + "functions/" + functionName, parameters: parameters, headers: warp!.HEADER()) { (warpResult) in
+        let _ = WarpAPI.post(warp!.API_ENDPOINT! + "functions/" + functionName, parameters: parameters, headers: warp!.HEADER()) { (warpResult) in
             switch warpResult {
-            case .Success(let JSON):
-                let warpResponse = WarpResponse(JSON: JSON, result: AnyObject.self)
+            case .success(let JSON):
+                let warpResponse = WarpResponse(JSON: JSON as AnyObject, result: AnyObject.self)
                 switch warpResponse.statusType {
-                case .Success:
-                    completion(result: warpResponse.result, error: nil)
+                case .success:
+                    completion(warpResponse.result, nil)
                 default:
-                    completion(result: nil, error: WarpError(message: warpResponse.message, status: warpResponse.status))
+                    completion(nil, WarpError(message: warpResponse.message, status: warpResponse.status))
                 }
-            case .Failure(let error):
-                completion(result: nil, error: error)
+            case .failure(let error):
+                completion(nil, error)
             }
         }
     }

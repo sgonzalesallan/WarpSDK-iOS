@@ -9,22 +9,22 @@
 import UIKit
 import Foundation
 
-public class WarpError:NSError {
+open class WarpError:NSError {
     public init(code:WarpDomainCode) {
-        var string:String = ""
+        var string: String = ""
         
         switch code {
-        case .ServerNotInitialized:
+        case .serverNotInitialized:
             string = "Server was not initialized"
-        case .ResponseValueIsNil:
+        case .responseValueIsNil:
             string = "Response value is nil"
-        case .ObjectDoesNotExist:
+        case .objectDoesNotExist:
             string = "Object does not exist"
         }
         super.init(domain: "WarpError", code: code.rawValue, userInfo: [NSLocalizedDescriptionKey:string])
     }
     
-    init(message:String, status:Int) {
+    init(message: String, status: Int) {
         super.init(domain: "WarpError", code: status, userInfo: [NSLocalizedDescriptionKey:message])
     }
     
@@ -37,8 +37,8 @@ public class WarpError:NSError {
     }
 }
 
-public enum WarpDomainCode:Int {
-    case ServerNotInitialized = 701
-    case ResponseValueIsNil = 702
-    case ObjectDoesNotExist = 703
+public enum WarpDomainCode: Int {
+    case serverNotInitialized = 701
+    case responseValueIsNil = 702
+    case objectDoesNotExist = 703
 }

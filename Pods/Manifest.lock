@@ -1,0 +1,14 @@
+PODS:
+  - EVReflection (4.3.3):
+    - EVReflection/Core (= 4.3.3)
+  - EVReflection/Core (4.3.3)
+
+DEPENDENCIES:
+  - EVReflection
+
+SPEC CHECKSUMS:
+  EVReflection: 037e7e8ae35e524f0210a5c13447e60d0723d565
+
+PODFILE CHECKSUM: 526f1e31bfe786f016788e26501b06e0951ded96
+
+COCOAPODS: 1.2.0

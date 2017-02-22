@@ -8,34 +8,34 @@
 
 import Alamofire
 
-public class WarpTools {
-    public static let CONTENT_TYPE = "application/json"
-    public static let dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+open class WarpTools {
+    open static let CONTENT_TYPE = "application/json"
+    open static let dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
     
-    public static func showLog(value:AnyObject?, key:String, model:String){
+    open static func showLog(_ value: Any?, key: String, model: String){
         print("---> setValue '\(value)' for key '\(key)' should be handled. MODEL:\(model)")
     }
     
-    public static func toResult(response:Response<AnyObject, NSError>) -> WarpResult {
+    open static func toResult(_ response: DataResponse<Any>) -> WarpResult {
         guard response.result.isSuccess else {
-            return .Failure(WarpError(error: response.result.error!))
+            return .failure(WarpError(error: response.result.error! as NSError))
         }
         guard let JSON = response.result.value else{
-            return .Failure(WarpError(code: .ResponseValueIsNil))
+            return .failure(WarpError(code: .responseValueIsNil))
         }
-        return .Success(JSON)
+        return .success(JSON)
     }
     
-    public static func dateFormatter() -> NSDateFormatter {
-        let formatter = NSDateFormatter()
+    open static func dateFormatter() -> DateFormatter {
+        let formatter = DateFormatter()
         formatter.dateFormat = dateFormat
-        formatter.dateStyle = NSDateFormatterStyle.MediumStyle
-        formatter.timeZone = NSTimeZone(name: "UTC")
+        formatter.dateStyle = DateFormatter.Style.medium
+        formatter.timeZone = TimeZone(identifier: "UTC")
         return formatter
     }
 }
 
-public enum WarpHeader:String {
+public enum WarpHeader: String {
     case APIKey = "X-Warp-API-Key"
     case ContentType = "Content-Type"
     case Client = "X-Warp-Client"
@@ -45,38 +45,38 @@ public enum WarpHeader:String {
 }
 
 public enum WarpResult {
-    case Success(AnyObject)
-    case Failure(WarpError)
+    case success(Any)
+    case failure(WarpError)
     
-    public var isSuccess:Bool {
+    public var isSuccess: Bool {
         switch self {
-        case .Success:
+        case .success:
             return true
-        case .Failure:
+        case .failure:
             return false
         }
     }
     
     public func showResult() {
         switch self {
-        case .Success(let JSON): print("Success Result: \(JSON)")
-        case .Failure(let ERROR): print("Error Result: \(ERROR)")
+        case .success(let JSON): print("Success Result: \(JSON)")
+        case .failure(let ERROR): print("Error Result: \(ERROR)")
         }
     }
     
-    public func getResult() -> AnyObject {
+    public func getResult() -> Any {
         switch self {
-        case .Success(let JSON): return JSON
-        case .Failure(let ERROR): return ERROR
+        case .success(let JSON): return JSON
+        case .failure(let ERROR): return ERROR
         }
     }
     
-    public var isFailure:Bool {
+    public var isFailure: Bool {
         return !isSuccess
     }
 }
 
-public enum WarpOrder:Int {
-    case Ascending = 1
-    case Descending = -1
+public enum WarpOrder: Int {
+    case ascending = 1
+    case descending = -1
 }

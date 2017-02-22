@@ -8,89 +8,88 @@
 
 import Foundation
 
-public class WarpQuery {
-    private var queryConstraints:[WarpQueryConstraint] = []
-    private var queryBuilder:WarpQueryBuilder = WarpQueryBuilder()
-    private var className:String = ""
+open class WarpQuery {
+    fileprivate var queryConstraints:[WarpQueryConstraint] = []
+    fileprivate var queryBuilder:WarpQueryBuilder = WarpQueryBuilder()
+    fileprivate var className: String = ""
     
-    public init(className:String) {
+    public init(className: String) {
         self.className = className
     }
     
-    public func get(objectId:Int, completion:(warpObject:WarpObject?, error:WarpError?) -> Void) {
+    open func get(_ objectId: Int, completion:@escaping (_ warpObject:WarpObject?, _ error: WarpError?) -> Void) {
         let warp = Warp.sharedInstance
         guard warp != nil else {
-            completion(warpObject: nil, error: WarpError(code: .ServerNotInitialized))
+            completion(nil, WarpError(code: .serverNotInitialized))
             return
         }
-        WarpAPI.get(warp!.API_ENDPOINT! + "classes/\(className)/\(objectId)", parameters: queryBuilder.query(queryConstraints).param, headers: warp!.HEADER()) { (warpResult) in
+        let _ = WarpAPI.get(warp!.API_ENDPOINT! + "classes/\(className)/\(objectId)", parameters: queryBuilder.query(queryConstraints).param, headers: warp!.HEADER()) { (warpResult) in
             switch warpResult {
-            case .Success(let JSON):
-                let warpResponse = WarpResponse(JSON: JSON, result: Dictionary<String,AnyObject>.self)
+            case .success(let JSON):
+                let warpResponse = WarpResponse(JSON: JSON as AnyObject, result: Dictionary<String,AnyObject>.self)
                 switch warpResponse.statusType {
-                case .Success:
-                    completion(warpObject: WarpObject(className: self.className, JSON: warpResponse.result!), error: nil)
+                case .success:
+                    completion(WarpObject(className: self.className, JSON: warpResponse.result!), nil)
                 default:
-                    completion(warpObject: nil, error: WarpError(message: warpResponse.message, status: warpResponse.status))
+                    completion(nil, WarpError(message: warpResponse.message, status: warpResponse.status))
                 }
                 break
-            case .Failure(let error):
-                completion(warpObject: nil, error: error)
+            case .failure(let error):
+                completion(nil, error)
             }
         }
     }
     
-    public func find(completion:(warpObjects:[WarpObject]?, error:WarpError?) -> Void) {
+    open func find(_ completion:@escaping (_ warpObjects:[WarpObject]?, _ error: WarpError?) -> Void) {
         let warp = Warp.sharedInstance
         guard warp != nil else {
-            completion(warpObjects: nil, error: WarpError(code: .ServerNotInitialized))
+            completion(nil, WarpError(code: .serverNotInitialized))
             return
         }
-        WarpAPI.get(warp!.API_ENDPOINT! + "classes/\(className)", parameters: queryBuilder.query(queryConstraints).param, headers: warp!.HEADER()) { (warpResult) in
+        let _ = WarpAPI.get(warp!.API_ENDPOINT! + "classes/\(className)", parameters: queryBuilder.query(queryConstraints).param, headers: warp!.HEADER()) { (warpResult) in
             switch warpResult {
-            case .Success(let JSON):
-                let warpResponse = WarpResponse(JSON: JSON, result: Array<Dictionary<String,AnyObject>>.self)
+            case .success(let JSON):
+                let warpResponse = WarpResponse(JSON: JSON as AnyObject, result: Array<Dictionary<String,AnyObject>>.self)
                 switch warpResponse.statusType {
-                case .Success:
+                case .success:
                     var warpObjects:[WarpObject] = []
                     for result in warpResponse.result! {
                         warpObjects.append(WarpObject(className: self.className, JSON: result))
                     }
-                    completion(warpObjects: warpObjects, error: nil)
+                    completion(warpObjects, nil)
                 default:
-                    completion(warpObjects: nil, error: WarpError(message: warpResponse.message, status: warpResponse.status))
+                    completion(nil, WarpError(message: warpResponse.message, status: warpResponse.status))
                 }
                 break
-            case .Failure(let error):
-                completion(warpObjects: nil, error: error)
+            case .failure(let error):
+                completion(nil, error)
             }
         }
     }
     
-    public func first(completion:(warpObject:WarpObject?, error:WarpError?) -> Void) {
-        limit(1)
-        find { (warpObjects, error) in
-            completion(warpObject: warpObjects?.first, error: error)
+    open func first(_ completion:@escaping (_ warpObject:WarpObject?, _ error: WarpError?) -> Void) {
+        let _ = limit(1).find { (warpObjects, error) in
+            completion(warpObjects?.first, error)
         }
     }
     
-    public func limit(value:Int) -> WarpQuery {
-        queryBuilder.param["limit"] = value
+    open func limit(_ value: Int) -> WarpQuery {
+        queryBuilder.param["limit"] = value as AnyObject?
         return self
     }
     
-    public func skip(value:Int) -> WarpQuery {
-        queryBuilder.param["skip"] = value
+    open func skip(_ value: Int) -> WarpQuery {
+        queryBuilder.param["skip"] = value as AnyObject?
         return self
     }
     
-    public func include(values:String...) -> WarpQuery {
-        queryBuilder.param["include"] = String(values)
+    open func include(_ values: String...) -> WarpQuery {
+        queryBuilder.param["include"] = String(describing: values) as AnyObject?
         return self
     }
     
-    public func sort(values:WarpSort...) -> WarpQuery {
-        var string:String = ""
+    open func sort(_ values:WarpSort...) -> WarpQuery {
+        var string: String = ""
         for i in 0..<values.count {
             let value = values[i]
             string = string + "{\"\(value.key)\": \(value.order.rawValue)}"
@@ -98,76 +97,76 @@ public class WarpQuery {
                 string = string + ", "
             }
         }
-        queryBuilder.param["sort"] = "[\(string)]"
+        queryBuilder.param["sort"] = "[\(string)]" as AnyObject?
         return self
     }
     
-    public func equalTo(value:AnyObject, forKey key:String) -> WarpQuery {
+    open func equalTo(_ value: AnyObject, forKey key: String) -> WarpQuery {
         queryConstraints.append(WarpQueryConstraint(equalTo: value, key: key))
         return self
     }
 
-    public func notEqualTo(value:AnyObject, forKey key:String) -> WarpQuery {
+    open func notEqualTo(_ value: AnyObject, forKey key: String) -> WarpQuery {
         queryConstraints.append(WarpQueryConstraint(notEqualTo: value, key: key))
         return self
     }
     
-    public func lessThan(value:AnyObject, forKey key:String) -> WarpQuery {
+    open func lessThan(_ value: AnyObject, forKey key: String) -> WarpQuery {
         queryConstraints.append(WarpQueryConstraint(lessThan: value, key: key))
         return self
     }
     
-    public func lessThanOrEqualTo(value:AnyObject, forKey key:String) -> WarpQuery {
+    open func lessThanOrEqualTo(_ value: AnyObject, forKey key: String) -> WarpQuery {
         queryConstraints.append(WarpQueryConstraint(lessThanOrEqualTo: value, key: key))
         return self
     }
     
-    public func greaterThanOrEqualTo(value:AnyObject, forKey key:String) -> WarpQuery {
+    open func greaterThanOrEqualTo(_ value: AnyObject, forKey key: String) -> WarpQuery {
         queryConstraints.append(WarpQueryConstraint(greaterThanOrEqualTo: value, key: key))
         return self
     }
     
-    public func greaterThan(value:AnyObject, forKey key:String) -> WarpQuery {
+    open func greaterThan(_ value: AnyObject, forKey key: String) -> WarpQuery {
         queryConstraints.append(WarpQueryConstraint(greaterThan: value, key: key))
         return self
     }
     
-    public func existsKey(key:String) -> WarpQuery {
+    open func existsKey(_ key: String) -> WarpQuery {
         queryConstraints.append(WarpQueryConstraint(existsKey: key))
         return self
     }
     
-    public func notExistsKey(key:String) -> WarpQuery {
+    open func notExistsKey(_ key: String) -> WarpQuery {
         queryConstraints.append(WarpQueryConstraint(notExistsKey: key))
         return self
     }
     
-    public func containedIn(values:AnyObject..., forKey key:String) -> WarpQuery {
+    open func containedIn(_ values: AnyObject..., forKey key: String) -> WarpQuery {
         queryConstraints.append(WarpQueryConstraint(containedIn: values, key: key))
         return self
     }
     
-    public func notContainedIn(values:[AnyObject], forKey key:String) -> WarpQuery {
+    open func notContainedIn(_ values:[AnyObject], forKey key: String) -> WarpQuery {
         queryConstraints.append(WarpQueryConstraint(notContainedIn: values, key: key))
         return self
     }
     
-    public func startsWith(value:String, forKey key:String) -> WarpQuery {
+    open func startsWith(_ value: String, forKey key: String) -> WarpQuery {
         queryConstraints.append(WarpQueryConstraint(startsWith: value, key: key))
         return self
     }
     
-    public func endsWith(value:String, forKey key:String) -> WarpQuery {
+    open func endsWith(_ value: String, forKey key: String) -> WarpQuery {
         queryConstraints.append(WarpQueryConstraint(endsWith: value, key: key))
         return self
     }
     
-    public func contains(value:String, forKey key:String) -> WarpQuery {
+    open func contains(_ value: String, forKey key: String) -> WarpQuery {
         queryConstraints.append(WarpQueryConstraint(contains: value, key: key))
         return self
     }
     
-    public func contains(value:String, keys:String...) -> WarpQuery {
+    open func contains(_ value: String, keys: String...) -> WarpQuery {
         queryConstraints.append(WarpQueryConstraint(contains: value, keys: keys))
         return self
     }

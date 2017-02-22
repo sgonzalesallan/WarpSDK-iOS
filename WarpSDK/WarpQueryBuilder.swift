@@ -6,22 +6,22 @@
 //
 //
 
-public class WarpQueryBuilder {
-    public var param:[String : AnyObject] = [:]
+open class WarpQueryBuilder {
+    open var param: [String: AnyObject] = [:]
     
     public init() {}
     
-    public init(_ param:[String : AnyObject]) {
+    public init(_ param: [String: AnyObject]) {
         self.param = param
     }
     
-    public func include(values:[String]) -> WarpQueryBuilder {
-        self.param["include"] = String(values)
+    open func include(_ values:[String]) -> WarpQueryBuilder {
+        self.param["include"] = String(describing: values) as AnyObject?
         return self
     }
     
-    public func query(values:[WarpQueryConstraint]) -> WarpQueryBuilder {
-        var string:String = ""
+    open func query(_ values:[WarpQueryConstraint]) -> WarpQueryBuilder {
+        var string: String = ""
         for i in 0..<values.count {
             let value = values[i]
             switch value.constraint {
@@ -41,12 +41,12 @@ public class WarpQueryBuilder {
                 string = string + ", "
             }
         }
-        self.param["where"] = "{\(string)}"
+        self.param["where"] = "{\(string)}" as AnyObject?
         return self
     }
     
-    public func sort(values:[WarpSort]) -> WarpQueryBuilder {
-        var string:String = ""
+    open func sort(_ values:[WarpSort]) -> WarpQueryBuilder {
+        var string: String = ""
         for i in 0..<values.count {
             let value = values[i]
             string = string + "{\"\(value.key)\": \(value.order.rawValue)}"
@@ -54,26 +54,26 @@ public class WarpQueryBuilder {
                 string = string + ", "
             }
         }
-        self.param["sort"] = "[\(string)]"
+        self.param["sort"] = "[\(string)]" as AnyObject?
         return self
     }
     
-    public func add(key:String, value:AnyObject) -> WarpQueryBuilder {
+    open func add(_ key: String, value: AnyObject) -> WarpQueryBuilder {
         self.param[key] = value
         return self
     }
     
-    public func limit(value:Int) -> WarpQueryBuilder {
-        self.param["limit"] = value
+    open func limit(_ value: Int) -> WarpQueryBuilder {
+        self.param["limit"] = value as AnyObject?
         return self
     }
     
-    public func skip(value:Int) -> WarpQueryBuilder {
-        self.param["skip"] = value
+    open func skip(_ value: Int) -> WarpQueryBuilder {
+        self.param["skip"] = value as AnyObject?
         return self
     }
     
-    public func showDebug() {
+    open func showDebug() {
         guard param.keys.count > 0 else {
             print("WARPLOG There are no parameters")
             return
@@ -93,7 +93,7 @@ public class WarpQueryBuilder {
             case "skip":
                 print("skip: ",String(param["skip"] as! Int))
             default:
-                print(key + ": ",String(param[key]))
+                print(key + ": ",String(describing: param[key]))
             }
         }
         print("\nWARPLOG END ===================")
@@ -101,90 +101,90 @@ public class WarpQueryBuilder {
 }
 
 public struct WarpQueryConstraint {
-    public var key:String = ""
+    public var key: String = ""
     public var constraint:WarpConstraint = .EqualTo
-    public var value:AnyObject = ""
+    public var value: AnyObject = "" as AnyObject
     
-    public init(equalTo value:AnyObject, key:String) {
+    public init(equalTo value: AnyObject, key: String) {
         self.key = key
         self.constraint = .EqualTo
         self.value = value
     }
     
-    public init(notEqualTo value:AnyObject, key:String) {
+    public init(notEqualTo value: AnyObject, key: String) {
         self.key = key
         self.constraint = .NotEqualTo
         self.value = value
     }
     
-    public init(lessThan value:AnyObject, key:String) {
+    public init(lessThan value: AnyObject, key: String) {
         self.key = key
         self.constraint = .LessThan
         self.value = value
     }
     
-    public init(lessThanOrEqualTo value:AnyObject, key:String) {
+    public init(lessThanOrEqualTo value: AnyObject, key: String) {
         self.key = key
         self.constraint = .LessThanOrEqualTo
         self.value = value
     }
     
-    public init(greaterThanOrEqualTo value:AnyObject, key:String) {
+    public init(greaterThanOrEqualTo value: AnyObject, key: String) {
         self.key = key
         self.constraint = .GreaterThanOrEqualTo
         self.value = value
     }
     
-    public init(greaterThan value:AnyObject, key:String) {
+    public init(greaterThan value: AnyObject, key: String) {
         self.key = key
         self.constraint = .GreaterThan
         self.value = value
     }
     
-    public init(existsKey key:String) {
+    public init(existsKey key: String) {
         self.key = key
         self.constraint = .Exists
-        self.value = 1
+        self.value = 1 as AnyObject
     }
     
-    public init(notExistsKey key:String) {
+    public init(notExistsKey key: String) {
         self.key = key
         self.constraint = .Exists
-        self.value = 0
+        self.value = 0 as AnyObject
     }
     
-    public init(containedIn values:[AnyObject], key:String) {
+    public init(containedIn values:[AnyObject], key: String) {
         self.key = key
         self.constraint = .ContainedInArray
-        self.value = values
+        self.value = values as AnyObject
     }
     
-    public init(notContainedIn values:[AnyObject], key:String) {
+    public init(notContainedIn values:[AnyObject], key: String) {
         self.key = key
         self.constraint = .NotContainedInArray
-        self.value = values
+        self.value = values as AnyObject
     }
     
-    public init(startsWith value:String, key:String) {
+    public init(startsWith value: String, key: String) {
         self.key = key
         self.constraint = .StartsWithString
-        self.value = value
+        self.value = value as AnyObject
     }
     
-    public init(endsWith value:String, key:String) {
+    public init(endsWith value: String, key: String) {
         self.key = key
         self.constraint = .EndsWithString
-        self.value = value
+        self.value = value as AnyObject
     }
     
-    public init(contains value:String, key:String) {
+    public init(contains value: String, key: String) {
         self.key = key
         self.constraint = .ContainsString
-        self.value = value
+        self.value = value as AnyObject
     }
     
-    public init(contains value:String, keys:[String]) {
-        var string:String = ""
+    public init(contains value: String, keys:[String]) {
+        var string: String = ""
         for i in 0..<keys.count {
             let key = keys[i]
             switch i {
@@ -198,11 +198,11 @@ public struct WarpQueryConstraint {
         }
         self.key = "\(string)"
         self.constraint = .ContainsString
-        self.value = value
+        self.value = value as AnyObject
     }
 }
 
-public enum WarpConstraint:String {
+public enum WarpConstraint: String {
     case EqualTo = "eq"
     case NotEqualTo = "neq"
     case GreaterThan = "gt"
@@ -218,20 +218,20 @@ public enum WarpConstraint:String {
 }
 
 public struct WarpSort {
-    var key:String = ""
-    var order:WarpOrder = .Ascending
+    var key: String = ""
+    var order:WarpOrder = .ascending
     
-    public init(by key:String) {
+    public init(by key: String) {
         self.key = key
-        self.order = .Ascending
+        self.order = .ascending
     }
     
-    public init(byDescending key:String) {
+    public init(byDescending key: String) {
         self.key = key
-        self.order = .Descending
+        self.order = .descending
     }
     
-//    init(key:String, order:WarpOrder) {
+//    init(key: String, order:WarpOrder) {
 //        self.key = key
 //        self.order = order
 //    }

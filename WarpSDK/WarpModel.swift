@@ -8,16 +8,16 @@
 
 import EVReflection
 
-public class WarpModel: EVObject, WarpModelProtocol {
-    public var id:Int = 0
-    public var createdAt:String = ""
-    public var updatedAt:String = ""
+open class WarpModel: EVObject, WarpModelProtocol {
+    open var id: Int = 0
+    open var createdAt: String = ""
+    open var updatedAt: String = ""
     
     required public init(){
         super.init()
     }
     
-    override public func setValue(value: AnyObject!, forUndefinedKey key: String) {
+    override open func setValue(_ value: Any?, forKey key: String) {
         switch key {
         case "created_at":
             self.createdAt = value as! String
@@ -28,15 +28,15 @@ public class WarpModel: EVObject, WarpModelProtocol {
         }
     }
     
-    public class func endPoint() -> String {
+    open class func endPoint() -> String {
         return ""
     }
     
-    public class func endPoint(id: Int) -> String {
+    open class func endPoint(_ id: Int) -> String {
         return ""
     }
     
-    public func map() -> [String : AnyObject] {
-        return ["":""]
+    open func map() -> [String : AnyObject] {
+        return ["":"" as AnyObject]
     }
 }

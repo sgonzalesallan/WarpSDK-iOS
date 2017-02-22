@@ -8,24 +8,24 @@
 
 import EVReflection
 
-public class WarpPointer<T where T:WarpModel>: EVObject {
-    public var id:Int = 0
-    public var type:String = ""
-    public var className:String = ""
-    public var attributes:T = T()
+open class WarpPointer<T>: EVObject where T:WarpModel {
+    open var id: Int = 0
+    open var type: String = ""
+    open var className: String = ""
+    open var attributes:T = T()
     
     public required init(){
         super.init()
     }
     
-    public init(type:String, className:String, id:Int){
+    public init(type: String, className: String, id: Int){
         super.init()
         self.type = type
         self.className = className
         self.id = id
     }
     
-    override public func setValue(value: AnyObject?, forUndefinedKey key: String) {
+    override open func setValue(_ value: Any?, forUndefinedKey key: String) {
         switch key {
         case "attributes":
             self.attributes = value as! T
@@ -40,36 +40,36 @@ public class WarpPointer<T where T:WarpModel>: EVObject {
         }
     }
     
-    public static func map(className className:String, id:Int) -> [String:AnyObject] {
-        return ["type":"Pointer",
-                "className":className,
-                "id":id]
+    open static func map(className: String, id: Int) -> [String: AnyObject] {
+        return ["type":"Pointer" as AnyObject,
+                "className":className as AnyObject,
+                "id":id as AnyObject]
     }
 
-    public static func map(warpObject object:WarpObject) -> [String:AnyObject] {
-        return ["type":"Pointer",
-                "className":object.className,
-                "id":object.objectId,
-                "attributes":object.objects]
+    open static func map(warpObject object:WarpObject) -> [String: AnyObject] {
+        return ["type":"Pointer" as AnyObject,
+                "className":object.className as AnyObject,
+                "id":object.objectId as AnyObject,
+                "attributes":object.objects as AnyObject]
     }
     
-    public static func map(warpUser object:WarpUser) -> [String:AnyObject] {
-        return ["type":"Pointer",
-                "className":object.className,
-                "id":object.objectId,
-                "attributes":object.objects]
+    open static func map(warpUser object:WarpUser) -> [String: AnyObject] {
+        return ["type":"Pointer" as AnyObject,
+                "className":object.className as AnyObject,
+                "id":object.objectId as AnyObject,
+                "attributes":object.objects as AnyObject]
     }
     
-    public static func map(className className:String, id:Int, attributes:AnyObject?) -> [String:AnyObject] {
+    open static func map(className: String, id: Int, attributes: AnyObject?) -> [String: AnyObject] {
         if attributes != nil {
-            return ["type":"Pointer",
-                    "className":className,
-                    "id":id,
+            return ["type":"Pointer" as AnyObject,
+                    "className":className as AnyObject,
+                    "id":id as AnyObject,
                     "attributes":attributes!]
         } else {
-            return ["type":"Pointer",
-                    "className":className,
-                    "id":id]
+            return ["type":"Pointer" as AnyObject,
+                    "className":className as AnyObject,
+                    "id":id as AnyObject]
         }
     }
 }

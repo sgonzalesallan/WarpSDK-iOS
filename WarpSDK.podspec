@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "WarpSDK"
-  s.version      = "0.0.9"
+  s.version      = "1.0.0"
   s.summary      = "The Warp iOS SDK is a library designed to work with projects built on-top of the Warp Server."
   s.homepage     = "https://github.com/dividedbyzeroco/warp-server"
   s.license      = { :type => "MIT", :file => "LICENSE" }
@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/kuyazee/WarpSDK-iOS.git", :tag => "#{s.version}" }
   s.source_files  = "WarpSDK", "WarpSDK/**/*.{h,swift}"
 
-  s.dependency "Alamofire", "~> 3.5.0"
-  s.dependency "EVReflection", "~> 2.6"
+  s.dependency "Alamofire", "~> 4.3"
+  s.dependency "EVReflection", "~> 4.2.0"
 
 end
