@@ -13,6 +13,10 @@ open class WarpModel: EVObject, WarpModelProtocol {
     open var createdAt: String = ""
     open var updatedAt: String = ""
     
+    open var className: String {
+        return ""
+    }
+    
     required public init(){
         super.init()
     }
@@ -24,7 +28,7 @@ open class WarpModel: EVObject, WarpModelProtocol {
         case "updated_at":
             self.updatedAt = value as! String
         default:
-            WarpTools.showLog(value, key: key, model: "WarpObject")
+            WarpTools.showLog(value, key: key, model: "WarpModel_BaseObject")
         }
     }
     
@@ -36,7 +40,7 @@ open class WarpModel: EVObject, WarpModelProtocol {
         return ""
     }
     
-    open func map() -> [String : AnyObject] {
+    open func map() -> [String : Any] {
         return ["":"" as AnyObject]
     }
 }

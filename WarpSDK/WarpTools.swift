@@ -13,17 +13,17 @@ open class WarpTools {
     open static let dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
     
     open static func showLog(_ value: Any?, key: String, model: String){
-        print("---> setValue '\(value)' for key '\(key)' should be handled. MODEL:\(model)")
+        print("---> setValue '\(String(describing: value))' for key '\(String(describing: key))' should be handled. MODEL:\(String(describing: model))")
     }
     
     open static func toResult(_ response: DataResponse<Any>) -> WarpResult {
         guard response.result.isSuccess else {
             return .failure(WarpError(error: response.result.error! as NSError))
         }
-        guard let JSON = response.result.value else{
+        guard let jsonData = response.result.value else{
             return .failure(WarpError(code: .responseValueIsNil))
         }
-        return .success(JSON)
+        return .success(WarpJSON(jsonData))
     }
     
     open static func dateFormatter() -> DateFormatter {
@@ -35,7 +35,7 @@ open class WarpTools {
     }
 }
 
-public enum WarpHeader: String {
+public enum WarpHeaderKeys: String {
     case APIKey = "X-Warp-API-Key"
     case ContentType = "Content-Type"
     case Client = "X-Warp-Client"
@@ -45,7 +45,7 @@ public enum WarpHeader: String {
 }
 
 public enum WarpResult {
-    case success(Any)
+    case success(WarpJSON)
     case failure(WarpError)
     
     public var isSuccess: Bool {

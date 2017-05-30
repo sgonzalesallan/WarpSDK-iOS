@@ -9,8 +9,8 @@
 import UIKit
 import Foundation
 
-open class WarpError:NSError {
-    public init(code:WarpDomainCode) {
+open class WarpError: NSError {
+    public init(code: WarpDomainCode) {
         var string: String = ""
         
         switch code {
@@ -21,6 +21,7 @@ open class WarpError:NSError {
         case .objectDoesNotExist:
             string = "Object does not exist"
         }
+        
         super.init(domain: "WarpError", code: code.rawValue, userInfo: [NSLocalizedDescriptionKey:string])
     }
     

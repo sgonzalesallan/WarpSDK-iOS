@@ -8,6 +8,8 @@
 
 import Alamofire
 
+
+
 open class Warp {
     static var sharedInstance:Warp?
     var API_ENDPOINT: String?
@@ -25,22 +27,22 @@ open class Warp {
     
     func HEADER() -> [String : String] {
         return[
-            WarpHeader.APIKey.rawValue      : API_KEY!,
-            WarpHeader.ContentType.rawValue : WarpTools.CONTENT_TYPE,
-            WarpHeader.Session.rawValue     : WarpUser.current() == nil ? "" : WarpUser.current()!.sessionToken,
-            WarpHeader.Client.rawValue      : "ios",
-            WarpHeader.WarpVersion.rawValue : "0.0.2",
-            WarpHeader.AppVersion.rawValue  : Bundle.main.infoDictionary?["CFBundleShortVersionString"] == nil ? "0.0.0" : Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
+            WarpHeaderKeys.APIKey.rawValue      : API_KEY!,
+            WarpHeaderKeys.ContentType.rawValue : WarpTools.CONTENT_TYPE,
+            WarpHeaderKeys.Session.rawValue     : WarpUser.current() == nil ? "" : WarpUser.current()!.sessionToken,
+            WarpHeaderKeys.Client.rawValue      : "ios",
+            WarpHeaderKeys.WarpVersion.rawValue : "0.0.2",
+            WarpHeaderKeys.AppVersion.rawValue  : Bundle.main.infoDictionary?["CFBundleShortVersionString"] == nil ? "0.0.0" : Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
         ]
     }
 }
 
-public typealias WarpCompletion = (_ success: Bool, _ error: WarpError?) -> Void
+public typealias WarpResultSet = (Bool, WarpError?)
 
 protocol WarpObjectProtocol {
-    var param: [String: AnyObject] { get set }
+    var param: [String: Any] { get set }
     var className: String { get set }
-    var objects: [String: AnyObject] { get }
+    var objects: [String: Any] { get }
     
     var _objectId: Int { get set }
     var objectId: Int { get }
@@ -56,23 +58,23 @@ protocol WarpObjectProtocol {
     
     init(className: String)
     
-    func setObject(_ value: AnyObject, forKey: String) -> WarpObject
+    func set(object value: Any, forKey: String) -> WarpObject
     
-    func objectForKey(_ key: String) -> AnyObject?
+    func get(object forKey: String) -> Any?
     
     func destroy()
     
-    func destroy(_ completion: @escaping (_ success: Bool, _ error: WarpError?) -> Void)
+    func destroy(_ completion: @escaping (_ result: WarpResultSet) -> Void)
     
     func save()
     
-    func save(_ completion: @escaping (_ success: Bool, _ error: WarpError?) -> Void)
+    func save(_ completion: @escaping (_ result: WarpResultSet) -> Void)
 }
 
 protocol WarpUserProtocol {
-    var param: [String: AnyObject] { get set }
+    var param: [String: Any] { get set }
     var className: String { get set }
-    var objects: [String: AnyObject] { get }
+    var objects: [String: Any] { get }
     
     var _objectId: Int { get set }
     var objectId: Int { get }
@@ -87,12 +89,12 @@ protocol WarpUserProtocol {
     
     init()
     
-    func setObject(_ value: AnyObject, forKey: String) -> WarpUser
+    func set(object value: Any, forKey: String) -> WarpUser
     
-    func objectForKey(_ key: String) -> AnyObject?
+    func get(object forKey: String) -> Any?
     
     func save()
-    func save(_ completion: @escaping (_ success: Bool, _ error: WarpError?) -> Void)
+    func save(_ completion: @escaping (_ result: WarpResultSet) -> Void)
     
     
     var _username: String { get set }
@@ -105,32 +107,37 @@ protocol WarpUserProtocol {
     func setUsername(_ username: String) -> WarpUser
     func setPassword(_ password: String) -> WarpUser
     
-    func login(_ username: String, password: String, completion: @escaping (_ success: Bool, _ error: WarpError?) -> Void)
-    func signUp(_ completion: @escaping (_ success: Bool, _ error: WarpError?) -> Void)
-    func logout(_ completion: @escaping (_ success: Bool, _ error: WarpError?) -> Void)
+    func login(_ username: String, password: String, completion: @escaping (_ result: WarpResultSet) -> Void)
+    func signUp(_ completion: @escaping (_ result: WarpResultSet) -> Void)
+    func logout(_ completion: @escaping (_ result: WarpResultSet) -> Void)
     
     static func current() -> WarpUser?
     static func deleteCurrent()
     func setCurrentUser()
 }
 
-protocol WarpModelProtocol {
-    func map() -> [String: AnyObject]
+public protocol WarpModelProtocol {
+    var className: String { get }
+    
+    func map() -> [String: Any]
+    
     static func endPoint() -> String
+    
     static func endPoint(_ id: Int) -> String
 }
 
 public struct APIResult<T> {
     public var hasFailed: Bool = true
     public var message: String = ""
-    public var error:NSError?
-    public var result:T?
+    public var error: Error?
+    public var result: T?
+    
     
     public var isSuccess: Bool {
         return !hasFailed
     }
     
-    public init(hasFailed: Bool, message: String?, result:T){
+    public init(hasFailed: Bool, message: String?, result: T){
         self.hasFailed = hasFailed
         self.message = message ?? ""
         self.result = result
@@ -141,7 +148,7 @@ public struct APIResult<T> {
         self.message = message ?? ""
     }
     
-    public init(hasFailed: Bool, message: String?, error:NSError?){
+    public init(hasFailed: Bool, message: String?, error: Error?){
         self.hasFailed = hasFailed
         self.message = message ?? ""
         self.error = error

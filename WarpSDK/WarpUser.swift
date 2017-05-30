@@ -9,7 +9,7 @@
 import Foundation
 
 public class WarpUser: WarpUserProtocol {
-    internal var param: [String: AnyObject] = [:] {
+    internal var param: [String: Any] = [:] {
         didSet {
             for (key, value) in param {
                 switch key {
@@ -30,7 +30,7 @@ public class WarpUser: WarpUserProtocol {
     
     internal var className: String = ""
     
-    public var objects: [String: AnyObject] {
+    public var objects: [String: Any] {
         return param
     }
     
@@ -75,35 +75,32 @@ public class WarpUser: WarpUserProtocol {
         return WarpUser()
     }
     
-    func setValues(_ JSON: Dictionary<String,AnyObject>) {
+    func setValues(_ JSON: [String: Any]) {
         self.param = JSON
     }
     
-    public func setObject(_ value: AnyObject, forKey key: String) -> WarpUser {
-        switch key {
-        case "created_at":
-            return self
-        case "updated_at":
-            return self
-        case "id":
+    public func get(object forKey: String) -> Any? {
+        return self.param[forKey]
+    }
+    
+    public func set(object value: Any, forKey: String) -> WarpUser {
+        switch forKey {
+        case "created_at", "updated_at", "id":
             return self
         default:
             if value is WarpObject {
-                self.param[key] = WarpPointer.map(warpObject: value as! WarpObject) as AnyObject?
+                self.param[forKey] = WarpPointer.map(warpObject: value as! WarpObject) as Any?
                 return self
             }
             
             if value is WarpUser {
-                self.param[key] = WarpPointer.map(warpUser: value as! WarpUser) as AnyObject?
+                self.param[forKey] = WarpPointer.map(warpUser: value as! WarpUser) as Any?
                 return self
             }
-            self.param[key] = value
+            
+            self.param[forKey] = value
             return self
         }
-    }
-    
-    public func objectForKey(_ key: String) -> AnyObject? {
-        return self.param[key]
     }
     
     public func save() {
@@ -120,7 +117,7 @@ public class WarpUser: WarpUserProtocol {
             let _ = WarpAPI.put(warp!.API_ENDPOINT! + "users/\(objectId)", parameters: self.objects, headers: warp!.HEADER()) { (warpResult) in
                 switch warpResult {
                 case .success(let JSON):
-                    let warpResponse = WarpResponse(JSON: JSON as AnyObject, result: Dictionary<String,AnyObject>.self)
+                    let warpResponse = WarpResponse(json: JSON, result: [String: Any].self)
                     switch warpResponse.statusType {
                     case .success:
                         self.setValues(warpResponse.result!)
@@ -136,7 +133,7 @@ public class WarpUser: WarpUserProtocol {
             let _ = WarpAPI.post(warp!.API_ENDPOINT! + "users", parameters: self.objects, headers: warp!.HEADER()) { (warpResult) in
                 switch warpResult {
                 case .success(let JSON):
-                    let warpResponse = WarpResponse(JSON: JSON as AnyObject, result: Dictionary<String,AnyObject>.self)
+                    let warpResponse = WarpResponse(json: JSON, result: [String: Any].self)
                     switch warpResponse.statusType {
                     case .success:
                         self.setValues(warpResponse.result!)
@@ -172,7 +169,7 @@ public class WarpUser: WarpUserProtocol {
         let _ = WarpAPI.post(warp!.API_ENDPOINT! + "login", parameters: ["username":username,"password":password], headers: warp!.HEADER()) { (warpResult) in
             switch warpResult {
             case .success(let JSON):
-                let warpResponse = WarpResponse(JSON: JSON as AnyObject, result: Dictionary<String,AnyObject>.self)
+                let warpResponse = WarpResponse(json: JSON, result: [String: Any].self)
                 switch warpResponse.statusType {
                 case .success:
                     warpResponse.result!["username"] = username as AnyObject?
@@ -198,7 +195,7 @@ public class WarpUser: WarpUserProtocol {
         let _ = WarpAPI.post(warp!.API_ENDPOINT! + "users", parameters: self.objects, headers: warp!.HEADER()) { (warpResult) in
             switch warpResult {
             case .success(let JSON):
-                let warpResponse = WarpResponse(JSON: JSON as AnyObject, result: Dictionary<String,AnyObject>.self)
+                let warpResponse = WarpResponse(json: JSON, result: [String: Any].self)
                 switch warpResponse.statusType {
                 case .success:
                     self.login(self.username, password: self.password, completion: { (success, error) in
@@ -222,7 +219,7 @@ public class WarpUser: WarpUserProtocol {
         let _ = WarpAPI.get(warp!.API_ENDPOINT! + "logout", parameters: nil, headers: warp!.HEADER()) { (warpResult) in
             switch warpResult {
             case .success(let JSON):
-                let warpResponse = WarpResponse(JSON: JSON as AnyObject, result: Dictionary<String,AnyObject>.self)
+                let warpResponse = WarpResponse(json: JSON, result: [String: Any].self)
                 switch warpResponse.statusType {
                 case .success:
                     WarpUser.deleteCurrent()
@@ -241,6 +238,7 @@ public class WarpUser: WarpUserProtocol {
         for key in self.objects.keys {
             strings.append(key)
         }
+        
         UserDefaults.standard.set(strings, forKey: "swrxCurrentUserKeys_rbBEAFVAWFBVWW")
         for (key, value) in self.objects {
             UserDefaults.standard.set(value, forKey: "swrxCurrentUser\(key)_9gehrpnvr2pv3r")
@@ -248,13 +246,14 @@ public class WarpUser: WarpUserProtocol {
     }
     
     public static func current() -> WarpUser? {
-        let user:WarpUser = WarpUser()
-        let keys:[String] = UserDefaults.standard.array(forKey: "swrxCurrentUserKeys_rbBEAFVAWFBVWW") as! [String]
+        let user: WarpUser = WarpUser()
+        
+        let keys: [String] = UserDefaults.standard.array(forKey: "swrxCurrentUserKeys_rbBEAFVAWFBVWW") as! [String]
         if keys.count == 0 {
             return nil
         }
         for key in keys {
-            _ = user.setObject(UserDefaults.standard.object(forKey: "swrxCurrentUser\(key)_9gehrpnvr2pv3r")! as AnyObject, forKey: key)
+            _ = user.set(object: UserDefaults.standard.object(forKey: "swrxCurrentUser\(key)_9gehrpnvr2pv3r")! as Any, forKey: key)
         }
         return user
     }

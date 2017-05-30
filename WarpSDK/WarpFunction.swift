@@ -12,7 +12,7 @@ open class WarpFunction {
     fileprivate var functionName: String = ""
     fileprivate init () { }
     
-    open static func run(_ functionName: String, parameters: [String: AnyObject]?, completion:@escaping (_ result: AnyObject?, _ error: WarpError?) -> Void) {
+    open static func run(_ functionName: String, parameters: [String: Any]?, completion: @escaping (_ result: AnyObject?, _ error: WarpError?) -> Void) {
         let warp = Warp.sharedInstance
         guard warp != nil else {
             completion(nil, WarpError(code: .serverNotInitialized))
@@ -21,7 +21,7 @@ open class WarpFunction {
         let _ = WarpAPI.post(warp!.API_ENDPOINT! + "functions/" + functionName, parameters: parameters, headers: warp!.HEADER()) { (warpResult) in
             switch warpResult {
             case .success(let JSON):
-                let warpResponse = WarpResponse(JSON: JSON as AnyObject, result: AnyObject.self)
+                let warpResponse = WarpResponse(json: JSON, result: AnyObject.self)
                 switch warpResponse.statusType {
                 case .success:
                     completion(warpResponse.result, nil)

@@ -7,34 +7,40 @@
 //
 
 import EVReflection
+import SwiftyJSON
+
+public typealias WarpJSON = JSON
 
 open class WarpResponse<T>: EVObject {
     open var message: String = ""
-    open var result:T?
+    open var result: T?
     open var status: Int = 0
-    open var statusType:WarpResponseCode = .other
+    open var statusType: WarpResponseCode = .other
+    open var originalData: WarpJSON?
     
-    public init(setMessage message: String, setResult result:T?, setStatus status: Int){
-        self.message = message;
+    public init(message: String, result: T?, status: Int){
+        self.message = message
         self.result = result
         self.status = status
     }
     
-    required public  init(){
+    required public init(){
         super.init()
     }
     
-    public init(JSON: AnyObject, result: T.Type) {
-        self.message = JSON["message"] as! String
-        self.result = JSON["result"] as? T
-        self.status = JSON["status"] as! Int
+    public init(json: WarpJSON, result: T.Type) {
+        self.originalData = json
+        self.message = json["message"].string!
+        self.result = json["result"].rawValue as? T
+        self.status = json["status"].int!
         self.statusType = WarpResponseCode(int: status)
     }
     
-    public init(JSON: AnyObject) {
-        self.message = JSON["message"] as! String
+    public init(json: WarpJSON) {
+        self.originalData = json
+        self.message = json["message"].string!
         self.result = nil
-        self.status = JSON["status"] as! Int
+        self.status = json["status"].int!
         self.statusType = WarpResponseCode(int: status)
     }
 }
@@ -55,6 +61,24 @@ public enum WarpResponseCode: Int {
     case modelNotFound = 110
     case functionNotFound = 111
     case other
+    
+    public static var allErrors: [WarpResponseCode] {
+        return [
+            missingConfiguration,
+            internalServerError,
+            queryError,
+            invalidCredentials,
+            invalidSessionToken,
+            invalidObjectKey,
+            invalidPointer,
+            forbiddenOperation,
+            usernameTaken,
+            emailTaken,
+            invalidAPIKey,
+            modelNotFound,
+            functionNotFound
+        ]
+    }
     
     public init(int: Int) {
         switch int {
