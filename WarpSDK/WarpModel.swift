@@ -17,7 +17,7 @@ open class WarpModel: EVObject, WarpModelProtocol {
         super.init()
     }
     
-    override open func setValue(_ value: Any?, forKey key: String) {
+    override open func setValue(_ value: Any?, forUndefinedKey key: String) {
         switch key {
         case "created_at":
             self.createdAt = value as! String
