@@ -141,7 +141,7 @@
 				A655FC951DD19E66003F00E1 /* WarpTools.swift */,
 				A655FC961DD19E66003F00E1 /* WarpErrors.swift */,
 				A655FC991DD19E66003F00E1 /* WarpModel.swift */,
-				A655FCA91DD1AE9C003F00E1 /* For Future Updates */,
+				A655FC981DD19E66003F00E1 /* WarpPointer.swift */,
 				A655FC651DD19D2E003F00E1 /* WarpSDK.h */,
 				A655FC661DD19D2E003F00E1 /* Info.plist */,
 				A6CD16B11E4AC206006CDCD9 /* Extensions.swift */,
@@ -167,14 +167,6 @@
 				3C3B194048087A1FD857354E /* Pods_WarpSDKTests.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		A655FCA91DD1AE9C003F00E1 /* For Future Updates */ = {
-			isa = PBXGroup;
-			children = (
-				A655FC981DD19E66003F00E1 /* WarpPointer.swift */,
-			);
-			name = "For Future Updates";
 			sourceTree = "<group>";
 		};
 		E22A2E976019C288C5A5DCA0 /* Pods */ = {
@@ -255,7 +247,7 @@
 				TargetAttributes = {
 					A655FC611DD19D2E003F00E1 = {
 						CreatedOnToolsVersion = 8.0;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 					A655FC6A1DD19D2F003F00E1 = {
