@@ -7,32 +7,50 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		020DCA04EE0D82C362EC7D503037912A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
-		171F9524FCCAED4A31616FC7B75955FD /* EVReflectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508C4713D67E61D197CE62A2A5121BD4 /* EVReflectable.swift */; };
-		1D3CD3B9B34DCC1446FE686EC34192ED /* Pods-WarpSDKTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E15378CBBD22A8B24C55CD02EE9F2707 /* Pods-WarpSDKTests-dummy.m */; };
-		2418BC6C81421C2EA3830A182C7285D6 /* Pods-WarpSDK-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E7FB28C539E465F65C6C95357D40CB0D /* Pods-WarpSDK-dummy.m */; };
-		2E10D0C040A90518DEC0E82B662BCB60 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
+		0FCCF2B8FB66DB79A710FFED463932CF /* Pods-WarpSDKTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E15378CBBD22A8B24C55CD02EE9F2707 /* Pods-WarpSDKTests-dummy.m */; };
+		171F9524FCCAED4A31616FC7B75955FD /* EVReflectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B157B980F2DA3403C1FCF911C1E8406 /* EVReflectable.swift */; };
 		301EB48846341A23AA1AC016B4CE098B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
-		808591AEAB825431045E208728E4095A /* Pods-WarpSDKTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 99719FB0D9470B0AC2F40801A42BAC9F /* Pods-WarpSDKTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		80A47DE68840853EC42EF437C852BC79 /* EVReflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825507AA0419AFFEB6FE6E1A66CC811D /* EVReflection.swift */; };
-		8DD1B22639B1F9872A87985933594EC4 /* EVReflection-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C8FD2B0401606D5A59080FF8ED4BC38C /* EVReflection-dummy.m */; };
-		9D233F839F5156AE6EF7C162D64FB521 /* EVReflection-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BBB47D4BF93104D299F232B389D96344 /* EVReflection-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B6815E0CB5845EE4B26F9D33AED8FC70 /* EVObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC475A9DA7DEE73547119FC0894F98B /* EVObject.swift */; };
-		DCCAF7B6B69DB6D77DD2F72738F8CB4A /* EVWorkaroundHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CC383B411D81AC4642D4E8FBD9130 /* EVWorkaroundHelpers.swift */; };
-		E0DD75E4A2EB46AC32597050D4FD2F4A /* Pods-WarpSDK-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 520CCD3C4A9E2D612885ED8B70857E5C /* Pods-WarpSDK-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E517AF9CA32ED75A9C8D655124617479 /* EVDictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782037E66992813E668AAD7FCDABCBDE /* EVDictionaryExtension.swift */; };
-		FB48B8C4CE5A21A96CE4197F9A261AA3 /* EVArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF527A3A73386F9F0C8D492E4ECD6211 /* EVArrayExtension.swift */; };
+		39AE2145F1C6C13DCAE170FABD178F3B /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B65D9BD881F7951305882D9CDA4A94 /* SwiftyJSON.swift */; };
+		39B7D463F537D478A9359DEE3CB2BBF3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
+		80A47DE68840853EC42EF437C852BC79 /* EVReflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2846224547EA322737FF58E28691B618 /* EVReflection.swift */; };
+		8DD1B22639B1F9872A87985933594EC4 /* EVReflection-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 115A2D9DA821D7004C0A3557F3A87FD1 /* EVReflection-dummy.m */; };
+		94D03BA830F2A623CCEDC526AC1EFB29 /* SwiftyJSON-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B0434BD697C521C7ADE234129DDBA5B7 /* SwiftyJSON-dummy.m */; };
+		9D233F839F5156AE6EF7C162D64FB521 /* EVReflection-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 759EC97D556BFC7FF8DD3FD1D70B89A7 /* EVReflection-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AC7BC04D577B11C6B5AFDC0893E4B10B /* Pods-WarpSDK-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E7FB28C539E465F65C6C95357D40CB0D /* Pods-WarpSDK-dummy.m */; };
+		B0CCFF817B295E223E3B614A30E64388 /* Pods-WarpSDK-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 520CCD3C4A9E2D612885ED8B70857E5C /* Pods-WarpSDK-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B6815E0CB5845EE4B26F9D33AED8FC70 /* EVObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B12DF46F7DA2A3446B12A40146EC05 /* EVObject.swift */; };
+		CC4AB3D5F1B14763E003A371720CF5BE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
+		D5ADFB01E4D9994C092B60864696397C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
+		DCCAF7B6B69DB6D77DD2F72738F8CB4A /* EVWorkaroundHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0733C91E34228411D8027EC1F8C39E3 /* EVWorkaroundHelpers.swift */; };
+		E109BB7F40A5F1BA9FF6B4A9D0014F50 /* SwiftyJSON-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B5FE29263BE2C7CFA575C7F5F52467B5 /* SwiftyJSON-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E517AF9CA32ED75A9C8D655124617479 /* EVDictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E516B8EFB86846CB435F0BA1DDA2488 /* EVDictionaryExtension.swift */; };
+		FB48B8C4CE5A21A96CE4197F9A261AA3 /* EVArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54447ED3791DA969E61B244FE515B1A2 /* EVArrayExtension.swift */; };
+		FC93F2F8E5463EE33617D09C0D6004A4 /* Pods-WarpSDKTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 99719FB0D9470B0AC2F40801A42BAC9F /* Pods-WarpSDKTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		AFEBD1FE44000BC6F957F3560A247EDC /* PBXContainerItemProxy */ = {
+		3B8A55F2878FFFE513BED0D080C8A4CE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 3A66455BB54C60581ED2154CB2279474;
 			remoteInfo = EVReflection;
 		};
-		B4EFB1EF2FD638B75555696CA04423A2 /* PBXContainerItemProxy */ = {
+		E63646DFBFE8C3C55BEEC7C0FCD52A1C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 78BEB4B3E79C513DA42A0E3323E97327;
+			remoteInfo = SwiftyJSON;
+		};
+		FD05DE97A23CAF2243BA467EB0C267BC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 78BEB4B3E79C513DA42A0E3323E97327;
+			remoteInfo = SwiftyJSON;
+		};
+		FEB664C0D94B001F263C508AB3E52639 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
@@ -44,43 +62,59 @@
 /* Begin PBXFileReference section */
 		02A25015BFB0CAC401A0A3E7D7E1BD1D /* Pods-WarpSDKTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-WarpSDKTests-resources.sh"; sourceTree = "<group>"; };
 		02CEF504D730AB30D069590EBBE6AB1A /* Pods-WarpSDKTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-WarpSDKTests.modulemap"; sourceTree = "<group>"; };
+		056B845BE2464443609FD609FF101EAD /* Pods_WarpSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_WarpSDK.framework; path = "Pods-WarpSDK.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0657021BF903ED013E17685D2E13C85D /* EVReflection.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = EVReflection.modulemap; sourceTree = "<group>"; };
+		0FA8F88C58B27591D0F504D90F043243 /* Pods_WarpSDKTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_WarpSDKTests.framework; path = "Pods-WarpSDKTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		115A2D9DA821D7004C0A3557F3A87FD1 /* EVReflection-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "EVReflection-dummy.m"; sourceTree = "<group>"; };
+		19FBB200684B4BE87AD202F35D7B457C /* EVReflection.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = EVReflection.xcconfig; sourceTree = "<group>"; };
 		1AB232D48D8D4E87E0E01F58C4AFAFE8 /* Pods-WarpSDK-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-WarpSDK-resources.sh"; sourceTree = "<group>"; };
-		1C28F9766B9A9C59CAE1EF93E7A7F68F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		20466B38677D633586523B57D4C01493 /* Pods-WarpSDKTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-WarpSDKTests-acknowledgements.plist"; sourceTree = "<group>"; };
-		23F0A9001BE4E9F76AED8A52CBEEB08B /* EVReflection.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = EVReflection.framework; path = EVReflection.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2846224547EA322737FF58E28691B618 /* EVReflection.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EVReflection.swift; path = Source/EVReflection.swift; sourceTree = "<group>"; };
 		2DBD3A471C64C32416AA7D0525C46049 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4CC475A9DA7DEE73547119FC0894F98B /* EVObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EVObject.swift; path = Source/EVObject.swift; sourceTree = "<group>"; };
-		508C4713D67E61D197CE62A2A5121BD4 /* EVReflectable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EVReflectable.swift; path = Source/EVReflectable.swift; sourceTree = "<group>"; };
+		39B65D9BD881F7951305882D9CDA4A94 /* SwiftyJSON.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = Source/SwiftyJSON.swift; sourceTree = "<group>"; };
+		4552C552871034429C6A3C200BD6BD18 /* SwiftyJSON.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = SwiftyJSON.modulemap; sourceTree = "<group>"; };
 		520CCD3C4A9E2D612885ED8B70857E5C /* Pods-WarpSDK-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-WarpSDK-umbrella.h"; sourceTree = "<group>"; };
 		521E1BAA72FC878207D3B285F6262AF5 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5B47C4DF988DFF8284DC4C1D7D833F9A /* Pods_WarpSDKTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_WarpSDKTests.framework; path = "Pods-WarpSDKTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6E2FD88D0A26198AE593417B40CB4BA8 /* EVReflection-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EVReflection-prefix.pch"; sourceTree = "<group>"; };
+		54447ED3791DA969E61B244FE515B1A2 /* EVArrayExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EVArrayExtension.swift; path = Source/EVArrayExtension.swift; sourceTree = "<group>"; };
+		6DC0A429B62749CCCA39038B553118CC /* SwiftyJSON.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftyJSON.xcconfig; sourceTree = "<group>"; };
+		6F9EDCA5DE61A366D1FF2976A5E0E626 /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SwiftyJSON.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		73E1AEE6596A1BBEB3D724E06C3E9690 /* Pods-WarpSDKTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-WarpSDKTests.release.xcconfig"; sourceTree = "<group>"; };
-		74DA7649052566A81F9B9964275F7B47 /* EVReflection.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = EVReflection.xcconfig; sourceTree = "<group>"; };
-		782037E66992813E668AAD7FCDABCBDE /* EVDictionaryExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EVDictionaryExtension.swift; path = Source/EVDictionaryExtension.swift; sourceTree = "<group>"; };
-		825507AA0419AFFEB6FE6E1A66CC811D /* EVReflection.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EVReflection.swift; path = Source/EVReflection.swift; sourceTree = "<group>"; };
+		759EC97D556BFC7FF8DD3FD1D70B89A7 /* EVReflection-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EVReflection-umbrella.h"; sourceTree = "<group>"; };
 		83C49EC250860002DF4A11E8EA6472FF /* Pods-WarpSDK-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-WarpSDK-acknowledgements.plist"; sourceTree = "<group>"; };
-		8A9CC383B411D81AC4642D4E8FBD9130 /* EVWorkaroundHelpers.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EVWorkaroundHelpers.swift; path = Source/EVWorkaroundHelpers.swift; sourceTree = "<group>"; };
+		8757E293D12224E7C076C750B1D0B33C /* SwiftyJSON-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftyJSON-prefix.pch"; sourceTree = "<group>"; };
+		8B157B980F2DA3403C1FCF911C1E8406 /* EVReflectable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EVReflectable.swift; path = Source/EVReflectable.swift; sourceTree = "<group>"; };
+		8E516B8EFB86846CB435F0BA1DDA2488 /* EVDictionaryExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EVDictionaryExtension.swift; path = Source/EVDictionaryExtension.swift; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		98638F07307008A68246884F58B06873 /* EVReflection-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EVReflection-prefix.pch"; sourceTree = "<group>"; };
 		99719FB0D9470B0AC2F40801A42BAC9F /* Pods-WarpSDKTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-WarpSDKTests-umbrella.h"; sourceTree = "<group>"; };
 		9CF3C758E9FCC6484320B9046DDFB187 /* Pods-WarpSDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-WarpSDK.release.xcconfig"; sourceTree = "<group>"; };
 		9EDDDB22B4CDD4F2C5FF90C6F1FE5C00 /* Pods-WarpSDKTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-WarpSDKTests.debug.xcconfig"; sourceTree = "<group>"; };
-		B2E76E325B35F2C9CC98530C8981F300 /* Pods_WarpSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_WarpSDK.framework; path = "Pods-WarpSDK.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0733C91E34228411D8027EC1F8C39E3 /* EVWorkaroundHelpers.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EVWorkaroundHelpers.swift; path = Source/EVWorkaroundHelpers.swift; sourceTree = "<group>"; };
+		B0434BD697C521C7ADE234129DDBA5B7 /* SwiftyJSON-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwiftyJSON-dummy.m"; sourceTree = "<group>"; };
+		B2B12DF46F7DA2A3446B12A40146EC05 /* EVObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EVObject.swift; path = Source/EVObject.swift; sourceTree = "<group>"; };
+		B5FE29263BE2C7CFA575C7F5F52467B5 /* SwiftyJSON-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftyJSON-umbrella.h"; sourceTree = "<group>"; };
 		B89904C4A65DC5CC4FE789B6B4E52453 /* Pods-WarpSDKTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-WarpSDKTests-frameworks.sh"; sourceTree = "<group>"; };
-		BBB47D4BF93104D299F232B389D96344 /* EVReflection-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EVReflection-umbrella.h"; sourceTree = "<group>"; };
-		C8FD2B0401606D5A59080FF8ED4BC38C /* EVReflection-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "EVReflection-dummy.m"; sourceTree = "<group>"; };
 		CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		D6886FDA3DC50212CD702283CF50CC11 /* Pods-WarpSDKTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-WarpSDKTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		D87038E93AF2BC62E9B7900C51DC2A1F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA100713077A9AAA531DED4DB08229F0 /* Pods-WarpSDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-WarpSDK.debug.xcconfig"; sourceTree = "<group>"; };
 		E02B17A66062BF2DF539FCC36D129B5E /* Pods-WarpSDK.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-WarpSDK.modulemap"; sourceTree = "<group>"; };
 		E15378CBBD22A8B24C55CD02EE9F2707 /* Pods-WarpSDKTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-WarpSDKTests-dummy.m"; sourceTree = "<group>"; };
+		E5907642EE4A23CFDDE874602FF3E996 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E7FB28C539E465F65C6C95357D40CB0D /* Pods-WarpSDK-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-WarpSDK-dummy.m"; sourceTree = "<group>"; };
-		EF527A3A73386F9F0C8D492E4ECD6211 /* EVArrayExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EVArrayExtension.swift; path = Source/EVArrayExtension.swift; sourceTree = "<group>"; };
+		ED982F8BACD8E34508403EF601998D77 /* EVReflection.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = EVReflection.framework; path = EVReflection.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2286055DFB9AD5887F784B9354316EE /* Pods-WarpSDK-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-WarpSDK-acknowledgements.markdown"; sourceTree = "<group>"; };
-		F60EF1DA3A97028CA81F7893F4DCAEFC /* EVReflection.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = EVReflection.modulemap; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		1EA567A102B18B83C31A9C996310BB81 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5ADFB01E4D9994C092B60864696397C /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		247A7FF69938D457D9BD148BBE554A61 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -89,54 +123,48 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3FE86098A08A520A12E2F84F041A8C04 /* Frameworks */ = {
+		8F2CD6B2CB28A5FE8C13FFD2356F6530 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				020DCA04EE0D82C362EC7D503037912A /* Foundation.framework in Frameworks */,
+				CC4AB3D5F1B14763E003A371720CF5BE /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A198466608B6E56FC8591A9D47D98FB1 /* Frameworks */ = {
+		F9DC5F57E122976B0A96FAC1F2AA3D23 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2E10D0C040A90518DEC0E82B662BCB60 /* Foundation.framework in Frameworks */,
+				39B7D463F537D478A9359DEE3CB2BBF3 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2224286132193224717815AA78E721A5 /* Products */ = {
+		394EA73B0F2076CC91EFABCF80F04842 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				23F0A9001BE4E9F76AED8A52CBEEB08B /* EVReflection.framework */,
-				B2E76E325B35F2C9CC98530C8981F300 /* Pods_WarpSDK.framework */,
-				5B47C4DF988DFF8284DC4C1D7D833F9A /* Pods_WarpSDKTests.framework */,
+				D87038E93AF2BC62E9B7900C51DC2A1F /* Info.plist */,
+				4552C552871034429C6A3C200BD6BD18 /* SwiftyJSON.modulemap */,
+				6DC0A429B62749CCCA39038B553118CC /* SwiftyJSON.xcconfig */,
+				B0434BD697C521C7ADE234129DDBA5B7 /* SwiftyJSON-dummy.m */,
+				8757E293D12224E7C076C750B1D0B33C /* SwiftyJSON-prefix.pch */,
+				B5FE29263BE2C7CFA575C7F5F52467B5 /* SwiftyJSON-umbrella.h */,
 			);
-			name = Products;
+			name = "Support Files";
+			path = "../Target Support Files/SwiftyJSON";
 			sourceTree = "<group>";
 		};
-		495F1DC0124FBFE57C839F4683B021C6 /* EVReflection */ = {
+		6AD36D3D477DBC69CE5CCCBEFADB08C3 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				6605B86C4BC9EB4EEE1406FBFFD9FA51 /* Core */,
-				C020AB5C49D4772F10FB1A5DA1E1A947 /* Support Files */,
-			);
-			name = EVReflection;
-			path = EVReflection;
-			sourceTree = "<group>";
-		};
-		6605B86C4BC9EB4EEE1406FBFFD9FA51 /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				EF527A3A73386F9F0C8D492E4ECD6211 /* EVArrayExtension.swift */,
-				782037E66992813E668AAD7FCDABCBDE /* EVDictionaryExtension.swift */,
-				4CC475A9DA7DEE73547119FC0894F98B /* EVObject.swift */,
-				508C4713D67E61D197CE62A2A5121BD4 /* EVReflectable.swift */,
-				825507AA0419AFFEB6FE6E1A66CC811D /* EVReflection.swift */,
-				8A9CC383B411D81AC4642D4E8FBD9130 /* EVWorkaroundHelpers.swift */,
+				54447ED3791DA969E61B244FE515B1A2 /* EVArrayExtension.swift */,
+				8E516B8EFB86846CB435F0BA1DDA2488 /* EVDictionaryExtension.swift */,
+				B2B12DF46F7DA2A3446B12A40146EC05 /* EVObject.swift */,
+				8B157B980F2DA3403C1FCF911C1E8406 /* EVReflectable.swift */,
+				2846224547EA322737FF58E28691B618 /* EVReflection.swift */,
+				A0733C91E34228411D8027EC1F8C39E3 /* EVWorkaroundHelpers.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -154,8 +182,8 @@
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				CF251A3E683FF9995A4523384DCA9040 /* Pods */,
-				2224286132193224717815AA78E721A5 /* Products */,
+				E0B282BF3FA2D1C9DC609B85320E1E2D /* Pods */,
+				F804E2429023AC39BF67133B9C568759 /* Products */,
 				E3F9AF42E22C1B819161F8C06EBCCB3A /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
@@ -178,6 +206,16 @@
 			path = "Target Support Files/Pods-WarpSDKTests";
 			sourceTree = "<group>";
 		};
+		8F1E89F1BB8CF4EACA36D0EEEEE61E07 /* EVReflection */ = {
+			isa = PBXGroup;
+			children = (
+				6AD36D3D477DBC69CE5CCCBEFADB08C3 /* Core */,
+				F8C0A0848E90E95A5E9B0A195448DEEA /* Support Files */,
+			);
+			name = EVReflection;
+			path = EVReflection;
+			sourceTree = "<group>";
+		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -186,26 +224,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C020AB5C49D4772F10FB1A5DA1E1A947 /* Support Files */ = {
+		BD16D028C04D70EE924E2B5140DB221A /* SwiftyJSON */ = {
 			isa = PBXGroup;
 			children = (
-				F60EF1DA3A97028CA81F7893F4DCAEFC /* EVReflection.modulemap */,
-				74DA7649052566A81F9B9964275F7B47 /* EVReflection.xcconfig */,
-				C8FD2B0401606D5A59080FF8ED4BC38C /* EVReflection-dummy.m */,
-				6E2FD88D0A26198AE593417B40CB4BA8 /* EVReflection-prefix.pch */,
-				BBB47D4BF93104D299F232B389D96344 /* EVReflection-umbrella.h */,
-				1C28F9766B9A9C59CAE1EF93E7A7F68F /* Info.plist */,
+				39B65D9BD881F7951305882D9CDA4A94 /* SwiftyJSON.swift */,
+				394EA73B0F2076CC91EFABCF80F04842 /* Support Files */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/EVReflection";
-			sourceTree = "<group>";
-		};
-		CF251A3E683FF9995A4523384DCA9040 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				495F1DC0124FBFE57C839F4683B021C6 /* EVReflection */,
-			);
-			name = Pods;
+			name = SwiftyJSON;
+			path = SwiftyJSON;
 			sourceTree = "<group>";
 		};
 		D2DB3AC89B06505EAA84DFCFC31E592B /* Pods-WarpSDK */ = {
@@ -225,6 +251,15 @@
 			path = "Target Support Files/Pods-WarpSDK";
 			sourceTree = "<group>";
 		};
+		E0B282BF3FA2D1C9DC609B85320E1E2D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8F1E89F1BB8CF4EACA36D0EEEEE61E07 /* EVReflection */,
+				BD16D028C04D70EE924E2B5140DB221A /* SwiftyJSON */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		E3F9AF42E22C1B819161F8C06EBCCB3A /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -232,6 +267,31 @@
 				83978A583B744E0B1722164AF046D540 /* Pods-WarpSDKTests */,
 			);
 			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		F804E2429023AC39BF67133B9C568759 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ED982F8BACD8E34508403EF601998D77 /* EVReflection.framework */,
+				056B845BE2464443609FD609FF101EAD /* Pods_WarpSDK.framework */,
+				0FA8F88C58B27591D0F504D90F043243 /* Pods_WarpSDKTests.framework */,
+				6F9EDCA5DE61A366D1FF2976A5E0E626 /* SwiftyJSON.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F8C0A0848E90E95A5E9B0A195448DEEA /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				0657021BF903ED013E17685D2E13C85D /* EVReflection.modulemap */,
+				19FBB200684B4BE87AD202F35D7B457C /* EVReflection.xcconfig */,
+				115A2D9DA821D7004C0A3557F3A87FD1 /* EVReflection-dummy.m */,
+				98638F07307008A68246884F58B06873 /* EVReflection-prefix.pch */,
+				759EC97D556BFC7FF8DD3FD1D70B89A7 /* EVReflection-umbrella.h */,
+				E5907642EE4A23CFDDE874602FF3E996 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/EVReflection";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -245,43 +305,33 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2A95F66AED7EE8B116FC76DBE4846E93 /* Headers */ = {
+		65082937638FD34411CEAF95D70CAB2D /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E0DD75E4A2EB46AC32597050D4FD2F4A /* Pods-WarpSDK-umbrella.h in Headers */,
+				E109BB7F40A5F1BA9FF6B4A9D0014F50 /* SwiftyJSON-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DC8531655EE212E32279B03108DFDC59 /* Headers */ = {
+		80A220D3FA0E06FFBE0862B9B33982AF /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				808591AEAB825431045E208728E4095A /* Pods-WarpSDKTests-umbrella.h in Headers */,
+				B0CCFF817B295E223E3B614A30E64388 /* Pods-WarpSDK-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C523BFC577B85DB7646767CF798649D6 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC93F2F8E5463EE33617D09C0D6004A4 /* Pods-WarpSDKTests-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		0E5657F97807B1FD4FE25AF8BD05854C /* Pods-WarpSDKTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D30266C215479527DA9BF2E6A52191AB /* Build configuration list for PBXNativeTarget "Pods-WarpSDKTests" */;
-			buildPhases = (
-				C8B1E561F174141D6FD3B5FBCE841846 /* Sources */,
-				3FE86098A08A520A12E2F84F041A8C04 /* Frameworks */,
-				DC8531655EE212E32279B03108DFDC59 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				90150251146F9D9CD14D1FA6D2792214 /* PBXTargetDependency */,
-			);
-			name = "Pods-WarpSDKTests";
-			productName = "Pods-WarpSDKTests";
-			productReference = 5B47C4DF988DFF8284DC4C1D7D833F9A /* Pods_WarpSDKTests.framework */;
-			productType = "com.apple.product-type.framework";
-		};
 		3A66455BB54C60581ED2154CB2279474 /* EVReflection */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 46CF92244EA474C24D27FDB7BEA7AFE5 /* Build configuration list for PBXNativeTarget "EVReflection" */;
@@ -296,25 +346,62 @@
 			);
 			name = EVReflection;
 			productName = EVReflection;
-			productReference = 23F0A9001BE4E9F76AED8A52CBEEB08B /* EVReflection.framework */;
+			productReference = ED982F8BACD8E34508403EF601998D77 /* EVReflection.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		9241756822B35BA5B5E5578A8E2BF674 /* Pods-WarpSDK */ = {
+		5D63EBAAB4632D1ABA9208D7C438A82E /* Pods-WarpSDK */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FB644BB9237567D235D5A8325CA65475 /* Build configuration list for PBXNativeTarget "Pods-WarpSDK" */;
+			buildConfigurationList = 6D1D47B424405B98EDE2BD67C788F8E9 /* Build configuration list for PBXNativeTarget "Pods-WarpSDK" */;
 			buildPhases = (
-				6AB5A36B739CA3A795E572B4051A041D /* Sources */,
-				A198466608B6E56FC8591A9D47D98FB1 /* Frameworks */,
-				2A95F66AED7EE8B116FC76DBE4846E93 /* Headers */,
+				7C70800A5F78E86C64C4D3B5E400508D /* Sources */,
+				F9DC5F57E122976B0A96FAC1F2AA3D23 /* Frameworks */,
+				80A220D3FA0E06FFBE0862B9B33982AF /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				5046FD8721E75D0937790FC23D206C55 /* PBXTargetDependency */,
+				74FC440034F329D0CF96742979C77CEF /* PBXTargetDependency */,
+				B5FA4DE614665A5E15E40EB111ECCCE3 /* PBXTargetDependency */,
 			);
 			name = "Pods-WarpSDK";
 			productName = "Pods-WarpSDK";
-			productReference = B2E76E325B35F2C9CC98530C8981F300 /* Pods_WarpSDK.framework */;
+			productReference = 056B845BE2464443609FD609FF101EAD /* Pods_WarpSDK.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		78BEB4B3E79C513DA42A0E3323E97327 /* SwiftyJSON */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C55D36D14E8B5AE0D12118F32DAE4AF8 /* Build configuration list for PBXNativeTarget "SwiftyJSON" */;
+			buildPhases = (
+				D1B621D84F76F75D5DD3B70A291ACA4A /* Sources */,
+				8F2CD6B2CB28A5FE8C13FFD2356F6530 /* Frameworks */,
+				65082937638FD34411CEAF95D70CAB2D /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwiftyJSON;
+			productName = SwiftyJSON;
+			productReference = 6F9EDCA5DE61A366D1FF2976A5E0E626 /* SwiftyJSON.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		C3B61581EF233C4B4CCA898A09A492D7 /* Pods-WarpSDKTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4164C180CD5636E31BBD61E407C0AF82 /* Build configuration list for PBXNativeTarget "Pods-WarpSDKTests" */;
+			buildPhases = (
+				9B68E75A8075C6A73471B48A67FD9DCB /* Sources */,
+				1EA567A102B18B83C31A9C996310BB81 /* Frameworks */,
+				C523BFC577B85DB7646767CF798649D6 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6BE1D3648AE5165A9287A7DDF503EC68 /* PBXTargetDependency */,
+				53797332A7310C72D0D8AF517D511EB4 /* PBXTargetDependency */,
+			);
+			name = "Pods-WarpSDKTests";
+			productName = "Pods-WarpSDKTests";
+			productReference = 0FA8F88C58B27591D0F504D90F043243 /* Pods_WarpSDKTests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -334,23 +421,24 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = 2224286132193224717815AA78E721A5 /* Products */;
+			productRefGroup = F804E2429023AC39BF67133B9C568759 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				3A66455BB54C60581ED2154CB2279474 /* EVReflection */,
-				9241756822B35BA5B5E5578A8E2BF674 /* Pods-WarpSDK */,
-				0E5657F97807B1FD4FE25AF8BD05854C /* Pods-WarpSDKTests */,
+				5D63EBAAB4632D1ABA9208D7C438A82E /* Pods-WarpSDK */,
+				C3B61581EF233C4B4CCA898A09A492D7 /* Pods-WarpSDKTests */,
+				78BEB4B3E79C513DA42A0E3323E97327 /* SwiftyJSON */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		6AB5A36B739CA3A795E572B4051A041D /* Sources */ = {
+		7C70800A5F78E86C64C4D3B5E400508D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2418BC6C81421C2EA3830A182C7285D6 /* Pods-WarpSDK-dummy.m in Sources */,
+				AC7BC04D577B11C6B5AFDC0893E4B10B /* Pods-WarpSDK-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,28 +456,49 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C8B1E561F174141D6FD3B5FBCE841846 /* Sources */ = {
+		9B68E75A8075C6A73471B48A67FD9DCB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D3CD3B9B34DCC1446FE686EC34192ED /* Pods-WarpSDKTests-dummy.m in Sources */,
+				0FCCF2B8FB66DB79A710FFED463932CF /* Pods-WarpSDKTests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D1B621D84F76F75D5DD3B70A291ACA4A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94D03BA830F2A623CCEDC526AC1EFB29 /* SwiftyJSON-dummy.m in Sources */,
+				39AE2145F1C6C13DCAE170FABD178F3B /* SwiftyJSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		5046FD8721E75D0937790FC23D206C55 /* PBXTargetDependency */ = {
+		53797332A7310C72D0D8AF517D511EB4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = EVReflection;
-			target = 3A66455BB54C60581ED2154CB2279474 /* EVReflection */;
-			targetProxy = AFEBD1FE44000BC6F957F3560A247EDC /* PBXContainerItemProxy */;
+			name = SwiftyJSON;
+			target = 78BEB4B3E79C513DA42A0E3323E97327 /* SwiftyJSON */;
+			targetProxy = FD05DE97A23CAF2243BA467EB0C267BC /* PBXContainerItemProxy */;
 		};
-		90150251146F9D9CD14D1FA6D2792214 /* PBXTargetDependency */ = {
+		6BE1D3648AE5165A9287A7DDF503EC68 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = EVReflection;
 			target = 3A66455BB54C60581ED2154CB2279474 /* EVReflection */;
-			targetProxy = B4EFB1EF2FD638B75555696CA04423A2 /* PBXContainerItemProxy */;
+			targetProxy = FEB664C0D94B001F263C508AB3E52639 /* PBXContainerItemProxy */;
+		};
+		74FC440034F329D0CF96742979C77CEF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = EVReflection;
+			target = 3A66455BB54C60581ED2154CB2279474 /* EVReflection */;
+			targetProxy = 3B8A55F2878FFFE513BED0D080C8A4CE /* PBXContainerItemProxy */;
+		};
+		B5FA4DE614665A5E15E40EB111ECCCE3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SwiftyJSON;
+			target = 78BEB4B3E79C513DA42A0E3323E97327 /* SwiftyJSON */;
+			targetProxy = E63646DFBFE8C3C55BEEC7C0FCD52A1C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -440,7 +549,7 @@
 		};
 		0B78D6CAF1A27F9A0F0672D64AED19FC /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 74DA7649052566A81F9B9964275F7B47 /* EVReflection.xcconfig */;
+			baseConfigurationReference = 19FBB200684B4BE87AD202F35D7B457C /* EVReflection.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -470,77 +579,6 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
-		};
-		2B91611B026C74AE720D2F53BDB8D6B0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = DA100713077A9AAA531DED4DB08229F0 /* Pods-WarpSDK.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-WarpSDK/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-WarpSDK/Pods-WarpSDK.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_WarpSDK;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		3D9DC1DCEDE58699B6D8FC8C9A8B4DB0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 73E1AEE6596A1BBEB3D724E06C3E9690 /* Pods-WarpSDKTests.release.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-WarpSDKTests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-WarpSDKTests/Pods-WarpSDKTests.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_WarpSDKTests;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
 		};
 		44CDBB6D11DE06DB64D6268622BDC47E /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -582,7 +620,145 @@
 			};
 			name = Release;
 		};
-		939874C04F46125A47B60FF7D6607C25 /* Debug */ = {
+		5F060D4B8629623EA4DCD0F677A1F5FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6DC0A429B62749CCCA39038B553118CC /* SwiftyJSON.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/SwiftyJSON/SwiftyJSON-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SwiftyJSON/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SwiftyJSON/SwiftyJSON.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = SwiftyJSON;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		64904EB3242A97D1E9A583946ED28FE7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9CF3C758E9FCC6484320B9046DDFB187 /* Pods-WarpSDK.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-WarpSDK/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-WarpSDK/Pods-WarpSDK.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_WarpSDK;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		6787B837D76CEE6E77EEF3FA8C0B46FD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 73E1AEE6596A1BBEB3D724E06C3E9690 /* Pods-WarpSDKTests.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-WarpSDKTests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-WarpSDKTests/Pods-WarpSDKTests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_WarpSDKTests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		678D333A537A2293410419CEC2E2E3DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DA100713077A9AAA531DED4DB08229F0 /* Pods-WarpSDK.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-WarpSDK/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-WarpSDK/Pods-WarpSDK.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_WarpSDK;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		9BA7479EF3E646EBD75A9AE80251156D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9EDDDB22B4CDD4F2C5FF90C6F1FE5C00 /* Pods-WarpSDKTests.debug.xcconfig */;
 			buildSettings = {
@@ -618,44 +794,42 @@
 			};
 			name = Debug;
 		};
-		9CC658D6802AD50BDB40A8685476A725 /* Release */ = {
+		D9898E9DDCDE8CA9547E439C4F25D389 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9CF3C758E9FCC6484320B9046DDFB187 /* Pods-WarpSDK.release.xcconfig */;
+			baseConfigurationReference = 6DC0A429B62749CCCA39038B553118CC /* SwiftyJSON.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-WarpSDK/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/SwiftyJSON/SwiftyJSON-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SwiftyJSON/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-WarpSDK/Pods-WarpSDK.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_WarpSDK;
+				MODULEMAP_FILE = "Target Support Files/SwiftyJSON/SwiftyJSON.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = SwiftyJSON;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
+			name = Debug;
 		};
 		F3873CE062BA8100B5E776EC235436BB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 74DA7649052566A81F9B9964275F7B47 /* EVReflection.xcconfig */;
+			baseConfigurationReference = 19FBB200684B4BE87AD202F35D7B457C /* EVReflection.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -697,6 +871,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		4164C180CD5636E31BBD61E407C0AF82 /* Build configuration list for PBXNativeTarget "Pods-WarpSDKTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9BA7479EF3E646EBD75A9AE80251156D /* Debug */,
+				6787B837D76CEE6E77EEF3FA8C0B46FD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		46CF92244EA474C24D27FDB7BEA7AFE5 /* Build configuration list for PBXNativeTarget "EVReflection" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -706,20 +889,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D30266C215479527DA9BF2E6A52191AB /* Build configuration list for PBXNativeTarget "Pods-WarpSDKTests" */ = {
+		6D1D47B424405B98EDE2BD67C788F8E9 /* Build configuration list for PBXNativeTarget "Pods-WarpSDK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				939874C04F46125A47B60FF7D6607C25 /* Debug */,
-				3D9DC1DCEDE58699B6D8FC8C9A8B4DB0 /* Release */,
+				678D333A537A2293410419CEC2E2E3DB /* Debug */,
+				64904EB3242A97D1E9A583946ED28FE7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FB644BB9237567D235D5A8325CA65475 /* Build configuration list for PBXNativeTarget "Pods-WarpSDK" */ = {
+		C55D36D14E8B5AE0D12118F32DAE4AF8 /* Build configuration list for PBXNativeTarget "SwiftyJSON" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2B91611B026C74AE720D2F53BDB8D6B0 /* Debug */,
-				9CC658D6802AD50BDB40A8685476A725 /* Release */,
+				D9898E9DDCDE8CA9547E439C4F25D389 /* Debug */,
+				5F060D4B8629623EA4DCD0F677A1F5FB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

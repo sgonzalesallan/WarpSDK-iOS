@@ -2,13 +2,16 @@ PODS:
   - EVReflection (4.3.3):
     - EVReflection/Core (= 4.3.3)
   - EVReflection/Core (4.3.3)
+  - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
   - EVReflection
+  - SwiftyJSON
 
 SPEC CHECKSUMS:
   EVReflection: 037e7e8ae35e524f0210a5c13447e60d0723d565
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 526f1e31bfe786f016788e26501b06e0951ded96
+PODFILE CHECKSUM: d31cb64c4004b861b11efbd3d68991701f712e74
 
 COCOAPODS: 1.2.0

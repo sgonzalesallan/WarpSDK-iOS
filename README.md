@@ -413,7 +413,7 @@ user.logout { (success, error) in
 To run Warp [Functions](http://github.com/dividedbyzeroco/warp-server#functions) from the API, you may use Warp Functions:
 
 ```Swift
-// WarpFunction.run(functionName: String, parameters: [String: AnyObject]?, completion: { (result, error) in })
+// WarpFunction.run(functionName: String, parameters: [String: Any]?, completion: { (result, error) in })
 
 WarpFunction.run("get-votes", parameters: ["from":"2016-08-14", "to":"2016-08-15"]) { (result, error) in
     if error == nil {

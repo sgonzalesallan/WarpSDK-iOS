@@ -5,6 +5,7 @@ target 'WarpSDK' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
   pod ‘EVReflection’
+  pod ‘SwiftyJSON‘
   # Pods for WarpSDK
 
   target 'WarpSDKTests' do
