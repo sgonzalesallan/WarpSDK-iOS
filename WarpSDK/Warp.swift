@@ -37,9 +37,9 @@ open class Warp {
     }
 }
 
-public typealias WarpResultSet = (Bool, WarpError?)
+public typealias WarpResultBlock = (Bool, WarpError?) -> Void
 
-protocol WarpObjectProtocol {
+protocol WarpBasicObjects {
     var param: [String: Any] { get set }
     var className: String { get set }
     var objects: [String: Any] { get }
@@ -52,50 +52,36 @@ protocol WarpObjectProtocol {
     
     var _updatedAt: String { get set }
     var updatedAt: String { get }
-    
+}
+
+protocol CanGet {
+    func get(object forKey: String) -> Any?
+}
+
+protocol CanSet {
+    func set(object value: Any, forKey: String) -> Self
+}
+
+protocol CanSave {
+    func save()
+    func save(_ completion: @escaping WarpResultBlock)
+}
+
+protocol WarpObjectProtocol: WarpBasicObjects, CanGet, CanSet, CanSave {
     static func createWithoutData(id: Int, className: String) -> WarpObject
     static func createWithoutData(id: Int) -> WarpObject
     
     init(className: String)
     
-    func set(object value: Any, forKey: String) -> WarpObject
-    
-    func get(object forKey: String) -> Any?
-    
     func destroy()
     
-    func destroy(_ completion: @escaping (_ result: WarpResultSet) -> Void)
-    
-    func save()
-    
-    func save(_ completion: @escaping (_ result: WarpResultSet) -> Void)
+    func destroy(_ completion: @escaping WarpResultBlock)
 }
 
-protocol WarpUserProtocol {
-    var param: [String: Any] { get set }
-    var className: String { get set }
-    var objects: [String: Any] { get }
-    
-    var _objectId: Int { get set }
-    var objectId: Int { get }
-    
-    var _createdAt: String { get set }
-    var createdAt: String { get }
-    
-    var _updatedAt: String { get set }
-    var updatedAt: String { get }
-    
+protocol WarpUserProtocol: WarpBasicObjects, CanGet, CanSet, CanSave {
     static func createWithoutData(id: Int) -> WarpUser
     
     init()
-    
-    func set(object value: Any, forKey: String) -> WarpUser
-    
-    func get(object forKey: String) -> Any?
-    
-    func save()
-    func save(_ completion: @escaping (_ result: WarpResultSet) -> Void)
-    
     
     var _username: String { get set }
     var username: String { get }
@@ -107,9 +93,9 @@ protocol WarpUserProtocol {
     func setUsername(_ username: String) -> WarpUser
     func setPassword(_ password: String) -> WarpUser
     
-    func login(_ username: String, password: String, completion: @escaping (_ result: WarpResultSet) -> Void)
-    func signUp(_ completion: @escaping (_ result: WarpResultSet) -> Void)
-    func logout(_ completion: @escaping (_ result: WarpResultSet) -> Void)
+    func login(_ username: String, password: String, completion: @escaping WarpResultBlock)
+    func signUp(_ completion: @escaping WarpResultBlock)
+    func logout(_ completion: @escaping WarpResultBlock)
     
     static func current() -> WarpUser?
     static func deleteCurrent()
