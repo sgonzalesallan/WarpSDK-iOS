@@ -88,19 +88,26 @@ extension Warp {
 
 public typealias WarpResultBlock = (Bool, WarpError?) -> Void
 
-protocol WarpBasicObjects {
+protocol WarpObjectInterface {
     var param: [String: Any] { get set }
     var className: String { get set }
-    var objects: [String: Any] { get }
+    
     
     var _objectId: Int { get set }
-    var objectId: Int { get }
     
     var _createdAt: String { get set }
-    var createdAt: String { get }
     
     var _updatedAt: String { get set }
-    var updatedAt: String { get }
+}
+
+extension WarpObjectInterface {
+    var objectId: Int { return _objectId }
+    
+    var createdAt: String { return _createdAt }
+    
+    var updatedAt: String { return _updatedAt }
+    
+    var objects: [String: Any] { return param }
 }
 
 protocol CanGet {
@@ -116,50 +123,18 @@ protocol CanSave {
     func save(_ completion: @escaping WarpResultBlock)
 }
 
-protocol WarpObjectProtocol: WarpBasicObjects, CanGet, CanSet, CanSave {
+protocol CanDestroy {
+    func destroy()
+    func destroy(_ completion: @escaping WarpResultBlock)
+}
+
+protocol WarpObjectProtocol: WarpObjectInterface, CanGet, CanSet, CanSave, CanDestroy {
     static func createWithoutData(id: Int, className: String) -> WarpObject
     static func createWithoutData(id: Int) -> WarpObject
     
     init(className: String)
-    
-    func destroy()
-    
-    func destroy(_ completion: @escaping WarpResultBlock)
 }
 
-protocol WarpUserProtocol: WarpBasicObjects, CanGet, CanSet, CanSave {
-    static func createWithoutData(id: Int) -> WarpUser
-    
-    init()
-    
-    var _username: String { get set }
-    var username: String { get }
-    var _password: String { get set }
-    var password: String { get }
-    var _sessionToken: String { get set }
-    var sessionToken: String { get }
-    
-    func setUsername(_ username: String) -> WarpUser
-    func setPassword(_ password: String) -> WarpUser
-    
-    func login(_ username: String, password: String, completion: @escaping WarpResultBlock)
-    func signUp(_ completion: @escaping WarpResultBlock)
-    func logout(_ completion: @escaping WarpResultBlock)
-    
-    static func current() -> WarpUser?
-    static func deleteCurrent()
-    func setCurrentUser()
-}
-
-public protocol WarpModelProtocol {
-    var className: String { get }
-    
-    func map() -> [String: Any]
-    
-    static func endPoint() -> String
-    
-    static func endPoint(_ id: Int) -> String
-}
 
 public struct APIResult<T> {
     public var hasFailed: Bool = true

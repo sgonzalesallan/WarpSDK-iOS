@@ -8,6 +8,16 @@
 
 import EVReflection
 
+public protocol WarpModelProtocol {
+    var className: String { get }
+    
+    func map() -> [String: Any]
+    
+    static func endPoint() -> String
+    
+    static func endPoint(_ id: Int) -> String
+}
+
 open class WarpModel: EVObject, WarpModelProtocol {
     open var id: Int = 0
     open var createdAt: String = ""
@@ -39,10 +49,7 @@ open class WarpModel: EVObject, WarpModelProtocol {
             WarpTools.showLog(value, key: key, model: "WarpModel_BaseObject")
         }
     }
-    
-}
 
-public extension WarpModel {
     public class func endPoint() -> String {
         return ""
     }
