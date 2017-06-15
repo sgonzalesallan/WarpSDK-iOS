@@ -12,8 +12,6 @@
 		A655FC6C1DD19D2F003F00E1 /* WarpSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A655FC621DD19D2E003F00E1 /* WarpSDK.framework */; };
 		A655FC711DD19D2F003F00E1 /* WarpSDKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A655FC701DD19D2F003F00E1 /* WarpSDKTests.swift */; };
 		A655FC731DD19D2F003F00E1 /* WarpSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = A655FC651DD19D2E003F00E1 /* WarpSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A655FC7E1DD19D6A003F00E1 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = A655FC7C1DD19D6A003F00E1 /* Cartfile */; };
-		A655FC7F1DD19D6A003F00E1 /* Cartfile.private in Resources */ = {isa = PBXBuildFile; fileRef = A655FC7D1DD19D6A003F00E1 /* Cartfile.private */; };
 		A655FC811DD19DAD003F00E1 /* WarpSDK.podspec in Resources */ = {isa = PBXBuildFile; fileRef = A655FC801DD19DAD003F00E1 /* WarpSDK.podspec */; };
 		A655FC8C1DD19E49003F00E1 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = A655FC8A1DD19E49003F00E1 /* LICENSE */; };
 		A655FC8D1DD19E49003F00E1 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = A655FC8B1DD19E49003F00E1 /* README.md */; };
@@ -54,8 +52,6 @@
 		A655FC6B1DD19D2F003F00E1 /* WarpSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WarpSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A655FC701DD19D2F003F00E1 /* WarpSDKTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarpSDKTests.swift; sourceTree = "<group>"; };
 		A655FC721DD19D2F003F00E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A655FC7C1DD19D6A003F00E1 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
-		A655FC7D1DD19D6A003F00E1 /* Cartfile.private */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile.private; sourceTree = "<group>"; };
 		A655FC801DD19DAD003F00E1 /* WarpSDK.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = WarpSDK.podspec; sourceTree = "<group>"; };
 		A655FC8A1DD19E49003F00E1 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		A655FC8B1DD19E49003F00E1 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -105,8 +101,6 @@
 		A655FC581DD19D2E003F00E1 = {
 			isa = PBXGroup;
 			children = (
-				A655FC7C1DD19D6A003F00E1 /* Cartfile */,
-				A655FC7D1DD19D6A003F00E1 /* Cartfile.private */,
 				A655FC801DD19DAD003F00E1 /* WarpSDK.podspec */,
 				A655FC8A1DD19E49003F00E1 /* LICENSE */,
 				A655FC8B1DD19E49003F00E1 /* README.md */,
@@ -204,6 +198,7 @@
 				A655FC5F1DD19D2E003F00E1 /* Headers */,
 				A655FC601DD19D2E003F00E1 /* Resources */,
 				EE9089F88CD3B0B5D19809BC /* [CP] Copy Pods Resources */,
+				A62A8D061EF2234800512DB0 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -280,10 +275,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A655FC7E1DD19D6A003F00E1 /* Cartfile in Resources */,
 				A655FC811DD19DAD003F00E1 /* WarpSDK.podspec in Resources */,
 				A655FC8C1DD19E49003F00E1 /* LICENSE in Resources */,
-				A655FC7F1DD19D6A003F00E1 /* Cartfile.private in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +334,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WarpSDKTests/Pods-WarpSDKTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		A62A8D061EF2234800512DB0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "";
 		};
 		AFE0931BF693D7A1779A995E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
