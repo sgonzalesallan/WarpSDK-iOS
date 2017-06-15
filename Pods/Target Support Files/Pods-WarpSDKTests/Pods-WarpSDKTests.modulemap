@@ -1,6 +1,0 @@
-framework module Pods_WarpSDKTests {
-  umbrella header "Pods-WarpSDKTests-umbrella.h"
-
-  export *
-  module * { export * }
-}
