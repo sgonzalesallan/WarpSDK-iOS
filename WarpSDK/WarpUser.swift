@@ -59,6 +59,11 @@ public class WarpUser: WarpUserProtocol {
         return _password
     }
     
+    internal var _email: String = ""
+    public var email: String {
+        return _email
+    }
+    
     internal var _sessionToken: String = ""
     public var sessionToken: String {
         return _sessionToken
@@ -78,7 +83,9 @@ public class WarpUser: WarpUserProtocol {
         self.param = JSON
     }
     
-    
+    public static func query() -> WarpUserQuery {
+        return WarpUserQuery()
+    }
     
     public func setUsername(_ username: String) -> WarpUser {
         _username = username
