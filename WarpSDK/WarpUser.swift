@@ -8,8 +8,8 @@
 
 import Foundation
 
-public class WarpUser: WarpUserProtocol {
-    internal var param: [String: Any] = [:] {
+public class WarpUser: WarpObject {
+    internal override var param: [String: Any] {
         didSet {
             for (key, value) in param {
                 switch key {
@@ -28,59 +28,48 @@ public class WarpUser: WarpUserProtocol {
         }
     }
     
-    internal var className: String = ""
-    
-    public var objects: [String: Any] {
-        return param
-    }
-    
-    internal var _objectId: Int = 0
-    public var objectId: Int {
-        return _objectId
-    }
-    
-    internal var _createdAt: String = ""
-    public var createdAt: String {
-        return _createdAt
-    }
-    
-    internal var _updatedAt: String = ""
-    public var updatedAt: String {
-        return _updatedAt
-    }
-    
     internal var _username: String = ""
-    public var username: String {
-        return _username
-    }
-    
     internal var _password: String = ""
-    public var password: String {
-        return _password
-    }
-    
     internal var _email: String = ""
-    public var email: String {
-        return _email
-    }
-    
     internal var _sessionToken: String = ""
-    public var sessionToken: String {
-        return _sessionToken
+    
+    public var username: String { return _username }
+    public var password: String { return _password }
+    public var email: String { return _email }
+    public var sessionToken: String { return _sessionToken }
+    
+    public override func set(object value: Any, forKey: String) -> Self {
+        switch forKey {
+        case "created_at", "updated_at", "id", "session_token":
+            fatalError("This action is not permitted")
+        default:
+            if value is WarpObject {
+                self.param[forKey] = WarpPointer.map(warpObject: value as! WarpObject) as Any?
+                return self
+            }
+            
+            if value is WarpUser {
+                self.param[forKey] = WarpPointer.map(warpUser: value as! WarpUser) as Any?
+                return self
+            }
+            
+            self.param[forKey] = value
+            return self
+        }
     }
 
     required public init() {
-        self.className = "user"
+        super.init(className: "user")
     }
     
-    public class func createWithoutData(id: Int) -> WarpUser {
+    public required init(className: String) {
+        fatalError("init(className:) cannot be userd for WarpUser class, use `WarpUser()` instead")
+    }
+    
+    public override class func createWithoutData(id: Int) -> WarpUser {
         let user = WarpUser()
         user.param["id"] = id as AnyObject?
         return WarpUser()
-    }
-    
-    func setValues(_ JSON: [String: Any]) {
-        self.param = JSON
     }
     
     public static func query() -> WarpUserQuery {
@@ -98,79 +87,8 @@ public class WarpUser: WarpUserProtocol {
         param["password"] = password as AnyObject?
         return self
     }
-}
-
-
-// MARK: - Getter and Setter Functions
-public extension WarpUser {
-    public func get(object forKey: String) -> Any? {
-        return self.param[forKey]
-    }
     
-    public func set(object value: Any, forKey: String) -> Self {
-        switch forKey {
-        case "created_at", "updated_at", "id":
-            fatalError("This action is not permitted")
-        default:
-            if value is WarpObject {
-                self.param[forKey] = WarpPointer.map(warpObject: value as! WarpObject) as Any?
-                return self
-            }
-            
-            if value is WarpUser {
-                self.param[forKey] = WarpPointer.map(warpUser: value as! WarpUser) as Any?
-                return self
-            }
-            
-            self.param[forKey] = value
-            return self
-        }
-    }
-}
-
-// MARK: - Persistence
-public extension WarpUser {
-    internal func setCurrentUser() {
-        var strings:[String] = []
-        for key in self.objects.keys {
-            strings.append(key)
-        }
-        
-        UserDefaults.standard.set(strings, forKey: "swrxCurrentUserKeys_rbBEAFVAWFBVWW")
-        for (key, value) in self.objects {
-            UserDefaults.standard.set(value, forKey: "swrxCurrentUser\(key)_9gehrpnvr2pv3r")
-        }
-    }
-    
-    public static func current() -> WarpUser? {
-        let user: WarpUser = WarpUser()
-        
-        let keys: [String] = UserDefaults.standard.array(forKey: "swrxCurrentUserKeys_rbBEAFVAWFBVWW") as! [String]
-        if keys.count == 0 {
-            return nil
-        }
-        for key in keys {
-            _ = user.set(object: UserDefaults.standard.object(forKey: "swrxCurrentUser\(key)_9gehrpnvr2pv3r")! as Any, forKey: key)
-        }
-        return user
-    }
-    
-    public static func deleteCurrent() {
-        UserDefaults.standard.set([], forKey: "swrxCurrentUserKeys_rbBEAFVAWFBVWW")
-        let keys: [String] = UserDefaults.standard.array(forKey: "swrxCurrentUserKeys_rbBEAFVAWFBVWW") as! [String]
-        for key in keys {
-            UserDefaults.standard.set("", forKey: "swrxCurrentUser\(key)_9gehrpnvr2pv3r")
-        }
-    }
-}
-
-// MARK: - API Calls
-public extension WarpUser {
-    public func save() {
-        save { (success, error) in }
-    }
-    
-    public func save(_ completion: @escaping WarpResultBlock) {
+    public override func save(_ completion: @escaping WarpResultBlock) {
         guard let warp = Warp.shared else {
             fatalError("WarpServer is not yet initialized")
         }
@@ -273,6 +191,42 @@ public extension WarpUser {
             case .failure(let error):
                 completion(false, error)
             }
+        }
+    }
+}
+
+// MARK: - Persistence
+extension WarpUser {
+    internal func setCurrentUser() {
+        var strings: [String] = []
+        for key in self.objects.keys {
+            strings.append(key)
+        }
+        
+        UserDefaults.standard.set(strings, forKey: "swrxCurrentUserKeys_rbBEAFVAWFBVWW")
+        for (key, value) in self.objects {
+            UserDefaults.standard.set(value, forKey: "swrxCurrentUser\(key)_9gehrpnvr2pv3r")
+        }
+    }
+    
+    public static func current() -> WarpUser? {
+        let user: WarpUser = WarpUser()
+        
+        let keys: [String] = UserDefaults.standard.array(forKey: "swrxCurrentUserKeys_rbBEAFVAWFBVWW") as! [String]
+        if keys.count == 0 {
+            return nil
+        }
+        for key in keys {
+            _ = user.set(object: UserDefaults.standard.object(forKey: "swrxCurrentUser\(key)_9gehrpnvr2pv3r")! as Any, forKey: key)
+        }
+        return user
+    }
+    
+    public static func deleteCurrent() {
+        UserDefaults.standard.set([], forKey: "swrxCurrentUserKeys_rbBEAFVAWFBVWW")
+        let keys: [String] = UserDefaults.standard.array(forKey: "swrxCurrentUserKeys_rbBEAFVAWFBVWW") as! [String]
+        for key in keys {
+            UserDefaults.standard.set("", forKey: "swrxCurrentUser\(key)_9gehrpnvr2pv3r")
         }
     }
 }

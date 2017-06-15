@@ -78,22 +78,19 @@ public class WarpObject: WarpObjectProtocol {
         }
         self._updatedAt = updatedAt
     }
-}
-
-// MARK: - Getter and Setter functions
-public extension WarpObject {
+    
     public func set(object value: Any, forKey: String) -> Self {
         switch forKey {
         case "created_at", "updated_at", "id":
             fatalError("This action is not permitted")
         default:
             if value is WarpObject {
-                self.param[forKey] = WarpPointer.map(warpObject: value as! WarpObject) as AnyObject?
+                self.param[forKey] = WarpPointer.map(warpObject: value as! WarpObject)
                 return self
             }
             
             if value is WarpUser {
-                self.param[forKey] = WarpPointer.map(warpUser: value as! WarpUser) as AnyObject?
+                self.param[forKey] = WarpPointer.map(warpUser: value as! WarpUser)
                 return self
             }
             
@@ -106,10 +103,7 @@ public extension WarpObject {
     public func get(object forKey: String) -> Any? {
         return self.param[forKey]
     }
-}
-
-// MARK: - API Calls
-public extension WarpObject {
+    
     public func destroy() {
         destroy { (success, error) in
          
