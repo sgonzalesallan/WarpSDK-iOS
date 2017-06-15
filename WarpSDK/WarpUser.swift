@@ -71,7 +71,6 @@ public class WarpUser: WarpUserProtocol {
     public class func createWithoutData(id: Int) -> WarpUser {
         let user = WarpUser()
         user.param["id"] = id as AnyObject?
-        user._objectId = id
         return WarpUser()
     }
     
@@ -79,6 +78,24 @@ public class WarpUser: WarpUserProtocol {
         self.param = JSON
     }
     
+    
+    
+    public func setUsername(_ username: String) -> WarpUser {
+        _username = username
+        param["username"] = username as AnyObject?
+        return self
+    }
+    
+    public func setPassword(_ password: String) -> WarpUser {
+        _password = password
+        param["password"] = password as AnyObject?
+        return self
+    }
+}
+
+
+// MARK: - Getter and Setter Functions
+public extension WarpUser {
     public func get(object forKey: String) -> Any? {
         return self.param[forKey]
     }
@@ -102,7 +119,46 @@ public class WarpUser: WarpUserProtocol {
             return self
         }
     }
+}
+
+// MARK: - Persistence
+public extension WarpUser {
+    internal func setCurrentUser() {
+        var strings:[String] = []
+        for key in self.objects.keys {
+            strings.append(key)
+        }
+        
+        UserDefaults.standard.set(strings, forKey: "swrxCurrentUserKeys_rbBEAFVAWFBVWW")
+        for (key, value) in self.objects {
+            UserDefaults.standard.set(value, forKey: "swrxCurrentUser\(key)_9gehrpnvr2pv3r")
+        }
+    }
     
+    public static func current() -> WarpUser? {
+        let user: WarpUser = WarpUser()
+        
+        let keys: [String] = UserDefaults.standard.array(forKey: "swrxCurrentUserKeys_rbBEAFVAWFBVWW") as! [String]
+        if keys.count == 0 {
+            return nil
+        }
+        for key in keys {
+            _ = user.set(object: UserDefaults.standard.object(forKey: "swrxCurrentUser\(key)_9gehrpnvr2pv3r")! as Any, forKey: key)
+        }
+        return user
+    }
+    
+    public static func deleteCurrent() {
+        UserDefaults.standard.set([], forKey: "swrxCurrentUserKeys_rbBEAFVAWFBVWW")
+        let keys: [String] = UserDefaults.standard.array(forKey: "swrxCurrentUserKeys_rbBEAFVAWFBVWW") as! [String]
+        for key in keys {
+            UserDefaults.standard.set("", forKey: "swrxCurrentUser\(key)_9gehrpnvr2pv3r")
+        }
+    }
+}
+
+// MARK: - API Calls
+public extension WarpUser {
     public func save() {
         save { (success, error) in }
     }
@@ -144,18 +200,6 @@ public class WarpUser: WarpUserProtocol {
                 }
             }
         }
-    }
-    
-    public func setUsername(_ username: String) -> WarpUser {
-        _username = username
-        param["username"] = username as AnyObject?
-        return self
-    }
-    
-    public func setPassword(_ password: String) -> WarpUser {
-        _password = password
-        param["password"] = password as AnyObject?
-        return self
     }
     
     public func login(_ username: String, password: String, completion: @escaping (_ success: Bool, _ error: WarpError?) -> Void) {
@@ -223,39 +267,5 @@ public class WarpUser: WarpUserProtocol {
                 completion(false, error)
             }
         }
-    }
-    
-    internal func setCurrentUser() {
-        var strings:[String] = []
-        for key in self.objects.keys {
-            strings.append(key)
-        }
-        
-        UserDefaults.standard.set(strings, forKey: "swrxCurrentUserKeys_rbBEAFVAWFBVWW")
-        for (key, value) in self.objects {
-            UserDefaults.standard.set(value, forKey: "swrxCurrentUser\(key)_9gehrpnvr2pv3r")
-        }
-    }
-    
-    public static func current() -> WarpUser? {
-        let user: WarpUser = WarpUser()
-        
-        let keys: [String] = UserDefaults.standard.array(forKey: "swrxCurrentUserKeys_rbBEAFVAWFBVWW") as! [String]
-        if keys.count == 0 {
-            return nil
-        }
-        for key in keys {
-            _ = user.set(object: UserDefaults.standard.object(forKey: "swrxCurrentUser\(key)_9gehrpnvr2pv3r")! as Any, forKey: key)
-        }
-        return user
-    }
-    
-    public static func deleteCurrent() {
-        UserDefaults.standard.set([], forKey: "swrxCurrentUserKeys_rbBEAFVAWFBVWW")
-        let keys:[String] = UserDefaults.standard.array(forKey: "swrxCurrentUserKeys_rbBEAFVAWFBVWW") as! [String]
-        for key in keys {
-            UserDefaults.standard.set("", forKey: "swrxCurrentUser\(key)_9gehrpnvr2pv3r")
-        }
-        
     }
 }

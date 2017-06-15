@@ -19,13 +19,14 @@ public class WarpObject: WarpObjectProtocol {
                     _createdAt = value as! String
                 case "updated_at":
                     _updatedAt = value as! String
-                default:
-                    break
+                default: break
                 }
             }
         }
     }
+    
     internal var className: String = ""
+    
     public var objects: [String: Any] {
         return param
     }
@@ -99,14 +100,16 @@ public extension WarpObject {
             self.param[forKey] = value
             return self
         }
-
+        
     }
     
     public func get(object forKey: String) -> Any? {
         return self.param[forKey]
     }
-    
-    
+}
+
+// MARK: - API Calls
+public extension WarpObject {
     public func destroy() {
         destroy { (success, error) in
             
