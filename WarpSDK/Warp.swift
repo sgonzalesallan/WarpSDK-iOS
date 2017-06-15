@@ -11,23 +11,31 @@ import Alamofire
 
 
 open class Warp {
-    static var sharedInstance:Warp?
-    var API_ENDPOINT: String?
+    static var shared: Warp?
+    var API_ENDPOINT: String
     fileprivate var APPLICATION_VERSION: String?
-    var API_KEY: String?
+    var API_KEY: String
     
     fileprivate init(baseURL: String, apiKey: String) {
-        API_ENDPOINT = baseURL
+        
+        // TODO: Improve This
+        if baseURL.characters.last != "/" {
+            API_ENDPOINT = baseURL + "/"
+        } else {
+            API_ENDPOINT = baseURL
+        }
+        
+        
         API_KEY = apiKey
     }
     
     open static func Initialize(_ baseURL: String, apiKey: String) {
-        Warp.sharedInstance = Warp.init(baseURL: baseURL, apiKey: apiKey)
+        Warp.shared = Warp.init(baseURL: baseURL, apiKey: apiKey)
     }
     
-    func HEADER() -> [String : String] {
-        return[
-            WarpHeaderKeys.APIKey.rawValue      : API_KEY!,
+    func HEADER() -> [String: String] {
+        return [
+            WarpHeaderKeys.APIKey.rawValue      : API_KEY,
             WarpHeaderKeys.ContentType.rawValue : WarpTools.CONTENT_TYPE,
             WarpHeaderKeys.Session.rawValue     : WarpUser.current() == nil ? "" : WarpUser.current()!.sessionToken,
             WarpHeaderKeys.Client.rawValue      : "ios",
