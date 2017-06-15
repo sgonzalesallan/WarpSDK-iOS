@@ -17,6 +17,14 @@ open class WarpModel: EVObject, WarpModelProtocol {
         return ""
     }
     
+    convenience public init?(warpJSON: WarpJSON) {
+        if let data = try? warpJSON.rawData() {
+            self.init(data: data)
+        } else {
+            return nil
+        }
+    }
+    
     required public init(){
         super.init()
     }
@@ -32,15 +40,18 @@ open class WarpModel: EVObject, WarpModelProtocol {
         }
     }
     
-    open class func endPoint() -> String {
+}
+
+public extension WarpModel {
+    public class func endPoint() -> String {
         return ""
     }
     
-    open class func endPoint(_ id: Int) -> String {
+    public class func endPoint(_ id: Int) -> String {
         return ""
     }
     
-    open func map() -> [String : Any] {
-        return ["":"" as AnyObject]
+    public func map() -> [String : Any] {
+        return ["":""]
     }
 }
