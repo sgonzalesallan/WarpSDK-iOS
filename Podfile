@@ -4,14 +4,15 @@
 target 'WarpSDK' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
-  pod ‘EVReflection’
-  pod ‘SwiftyJSON‘
+  
   # Pods for WarpSDK
+  pod 'EVReflection'
+  pod 'SwiftyJSON'
+  pod 'Alamofire', '~> 4.4'
 
   target 'WarpSDKTests' do
     inherit! :search_paths
     # Pods for testing
     
   end
-
 end
