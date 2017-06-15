@@ -45,6 +45,47 @@ open class Warp {
     }
 }
 
+// MARK: - Endpoint Generator
+extension Warp {
+    func generateEndpoint(_ type: EndpointType) -> String {
+        var generatedEndpoint = API_ENDPOINT
+        
+        switch type {
+        case .classes(className: let name, id: let id):
+            generatedEndpoint += "classes/\(name)"
+            if let id = id {
+                generatedEndpoint += "/\(String(describing: id))"
+            }
+            
+        case .functions(endpoint: let endpoint):
+            generatedEndpoint += "functions/\(endpoint)"
+            
+        case .login:
+            generatedEndpoint += "login"
+            
+        case .logout:
+            generatedEndpoint += "logout"
+            
+        case .users(id: let id):
+            generatedEndpoint += "users"
+            if let id = id {
+                generatedEndpoint += "/\(String(describing: id))"
+            }
+            
+        }
+        
+        return generatedEndpoint
+    }
+    
+    enum EndpointType {
+        case classes(className: String, id: Int?)
+        case functions(endpoint: String)
+        case users(id: Int?)
+        case login
+        case logout
+    }
+}
+
 public typealias WarpResultBlock = (Bool, WarpError?) -> Void
 
 protocol WarpBasicObjects {
@@ -148,3 +189,4 @@ public struct APIResult<T> {
         self.error = error
     }
 }
+

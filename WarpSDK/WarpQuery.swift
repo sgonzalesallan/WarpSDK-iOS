@@ -24,7 +24,7 @@ public extension WarpQuery {
         guard let warp = Warp.shared else {
             fatalError("WarpServer is not yet initialized")
         }
-        let _ = WarpAPI.get(warp.API_ENDPOINT + "classes/\(className)/\(objectId)", parameters: queryBuilder.query(queryConstraints).param, headers: warp.HEADER()) { (warpResult) in
+        let _ = WarpAPI.get(warp.generateEndpoint(.classes(className: className, id: objectId)), parameters: queryBuilder.query(queryConstraints).param, headers: warp.HEADER()) { (warpResult) in
             switch warpResult {
             case .success(let JSON):
                 let warpResponse = WarpResponse(json: JSON, result: [String: Any].self)
@@ -45,7 +45,7 @@ public extension WarpQuery {
         guard let warp = Warp.shared else {
             fatalError("WarpServer is not yet initialized")
         }
-        let _ = WarpAPI.get(warp.API_ENDPOINT + "classes/\(className)", parameters: queryBuilder.query(queryConstraints).param, headers: warp.HEADER()) { (warpResult) in
+        let _ = WarpAPI.get(warp.generateEndpoint(.classes(className: className, id: nil)), parameters: queryBuilder.query(queryConstraints).param, headers: warp.HEADER()) { (warpResult) in
             switch warpResult {
             case .success(let JSON):
                 let warpResponse = WarpResponse(json: JSON, result: Array<Dictionary<String,AnyObject>>.self)
@@ -66,7 +66,7 @@ public extension WarpQuery {
         }
     }
     
-    public func first(_ completion: @escaping (_ warpObject:WarpObject?, _ error: WarpError?) -> Void) {
+    public func first(_ completion: @escaping (_ warpObject: WarpObject?, _ error: WarpError?) -> Void) {
         let _ = limit(1).find { (warpObjects, error) in
             completion(warpObjects?.first, error)
         }

@@ -112,16 +112,16 @@ public extension WarpObject {
 public extension WarpObject {
     public func destroy() {
         destroy { (success, error) in
-            
+         
         }
     }
     
-    public func destroy(_ completion: @escaping (_ success: Bool, _ error: WarpError?) -> Void) {
+    public func destroy(_ completion: @escaping WarpResultBlock) {
         guard let warp = Warp.shared else {
             fatalError("WarpServer is not yet initialized")
         }
         if objectId > 0 {
-            let _ = WarpAPI.delete(warp.API_ENDPOINT + "classes/\(className)/\(objectId)", parameters: param, headers: warp.HEADER()) { (warpResult) in
+            let _ = WarpAPI.delete(warp.generateEndpoint(.classes(className: className, id: objectId)), parameters: param, headers: warp.HEADER()) { (warpResult) in
                 switch warpResult {
                 case .success(let JSON):
                     let warpResponse = WarpResponse(json: JSON, result: [String: Any].self)
@@ -148,12 +148,12 @@ public extension WarpObject {
         }
     }
     
-    public func save(_ completion: @escaping (_ success: Bool, _ error: WarpError?) -> Void) {
+    public func save(_ completion: @escaping WarpResultBlock) {
         guard let warp = Warp.shared else {
             fatalError("WarpServer is not yet initialized")
         }
         if objectId > 0 {
-            let _ = WarpAPI.put(warp.API_ENDPOINT + "classes/\(className)/\(objectId)", parameters: param, headers: warp.HEADER()) { (warpResult) in
+            let _ = WarpAPI.put(warp.generateEndpoint(.classes(className: className, id: objectId)), parameters: param, headers: warp.HEADER()) { (warpResult) in
                 switch warpResult {
                 case .success(let JSON):
                     let warpResponse = WarpResponse(json: JSON, result: [String: Any].self)
@@ -170,7 +170,7 @@ public extension WarpObject {
                 }
             }
         } else {
-            let _ = WarpAPI.post(warp.API_ENDPOINT + "classes/\(className)", parameters: param, headers: warp.HEADER()) { (warpResult) in
+            let _ = WarpAPI.post(warp.generateEndpoint(.classes(className: className, id: nil)), parameters: param, headers: warp.HEADER()) { (warpResult) in
                 switch warpResult {
                 case .success(let JSON):
                     let warpResponse = WarpResponse(json: JSON, result: [String: Any].self)

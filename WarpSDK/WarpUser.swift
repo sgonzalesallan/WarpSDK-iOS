@@ -163,12 +163,12 @@ public extension WarpUser {
         save { (success, error) in }
     }
     
-    public func save(_ completion: @escaping (_ success: Bool, _ error: WarpError?) -> Void) {
+    public func save(_ completion: @escaping WarpResultBlock) {
         guard let warp = Warp.shared else {
             fatalError("WarpServer is not yet initialized")
         }
         if objectId > 0 {
-            let _ = WarpAPI.put(warp.API_ENDPOINT + "users/\(objectId)", parameters: self.objects, headers: warp.HEADER()) { (warpResult) in
+            let _ = WarpAPI.put(warp.generateEndpoint(.users(id: objectId)), parameters: self.objects, headers: warp.HEADER()) { (warpResult) in
                 switch warpResult {
                 case .success(let JSON):
                     let warpResponse = WarpResponse(json: JSON, result: [String: Any].self)
@@ -184,7 +184,7 @@ public extension WarpUser {
                 }
             }
         } else {
-            let _ = WarpAPI.post(warp.API_ENDPOINT + "users", parameters: self.objects, headers: warp.HEADER()) { (warpResult) in
+            let _ = WarpAPI.post(warp.generateEndpoint(.users(id: nil)), parameters: self.objects, headers: warp.HEADER()) { (warpResult) in
                 switch warpResult {
                 case .success(let JSON):
                     let warpResponse = WarpResponse(json: JSON, result: [String: Any].self)
@@ -202,11 +202,11 @@ public extension WarpUser {
         }
     }
     
-    public func login(_ username: String, password: String, completion: @escaping (_ success: Bool, _ error: WarpError?) -> Void) {
+    public func login(_ username: String, password: String, completion: @escaping WarpResultBlock) {
         guard let warp = Warp.shared else {
             fatalError("WarpServer is not yet initialized")
         }
-        let _ = WarpAPI.post(warp.API_ENDPOINT + "login", parameters: ["username":username,"password":password], headers: warp.HEADER()) { (warpResult) in
+        let _ = WarpAPI.post(warp.generateEndpoint(.login), parameters: ["username":username,"password":password], headers: warp.HEADER()) { (warpResult) in
             switch warpResult {
             case .success(let JSON):
                 let warpResponse = WarpResponse(json: JSON, result: [String: Any].self)
@@ -226,11 +226,11 @@ public extension WarpUser {
         }
     }
     
-    public func signUp(_ completion: @escaping (_ success: Bool, _ error: WarpError?) -> Void) {
+    public func signUp(_ completion: @escaping WarpResultBlock) {
         guard let warp = Warp.shared else {
             fatalError("WarpServer is not yet initialized")
         }
-        let _ = WarpAPI.post(warp.API_ENDPOINT + "users", parameters: self.objects, headers: warp.HEADER()) { (warpResult) in
+        let _ = WarpAPI.post(warp.generateEndpoint(.users(id: nil)), parameters: self.objects, headers: warp.HEADER()) { (warpResult) in
             switch warpResult {
             case .success(let JSON):
                 let warpResponse = WarpResponse(json: JSON, result: [String: Any].self)
@@ -248,11 +248,11 @@ public extension WarpUser {
         }
     }
     
-    public func logout(_ completion: @escaping (_ success: Bool, _ error: WarpError?) -> Void) {
+    public func logout(_ completion: @escaping WarpResultBlock) {
         guard let warp = Warp.shared else {
             fatalError("WarpServer is not yet initialized")
         }
-        let _ = WarpAPI.get(warp.API_ENDPOINT + "logout", parameters: nil, headers: warp.HEADER()) { (warpResult) in
+        let _ = WarpAPI.get(warp.generateEndpoint(.logout), parameters: nil, headers: warp.HEADER()) { (warpResult) in
             switch warpResult {
             case .success(let JSON):
                 let warpResponse = WarpResponse(json: JSON, result: [String: Any].self)

@@ -12,14 +12,15 @@ open class WarpFunction {
     fileprivate var functionName: String = ""
     fileprivate init () { }
     
-    open static func run(_ functionName: String, parameters: [String: Any]?, completion: @escaping (_ result: AnyObject?, _ error: WarpError?) -> Void) {
+    open static func run(_ functionName: String, parameters: [String: Any]?, completion: @escaping (_ result: Any?, _ error: WarpError?) -> Void) {
         guard let warp = Warp.shared else {
             fatalError("WarpServer is not yet initialized")
         }
-        let _ = WarpAPI.post(warp.API_ENDPOINT + "functions/" + functionName, parameters: parameters, headers: warp.HEADER()) { (warpResult) in
+        
+        let _ = WarpAPI.post(warp.generateEndpoint(.functions(endpoint: functionName)), parameters: parameters, headers: warp.HEADER()) { (warpResult) in
             switch warpResult {
             case .success(let JSON):
-                let warpResponse = WarpResponse(json: JSON, result: AnyObject.self)
+                let warpResponse = WarpResponse(json: JSON, result: Any.self)
                 switch warpResponse.statusType {
                 case .success:
                     completion(warpResponse.result, nil)
