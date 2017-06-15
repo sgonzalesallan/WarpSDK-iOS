@@ -12,8 +12,12 @@ open class WarpTools {
     open static let CONTENT_TYPE = "application/json"
     open static let dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
     
-    open static func showLog(_ value: Any?, key: String, model: String){
-        print("---> setValue '\(String(describing: value))' for key '\(String(describing: key))' should be handled. MODEL:\(String(describing: model))")
+    open static func showLog(_ value: Any?, key: String, model: String, file: String = #file) {
+        print("---> setValue '\(String(describing: value))' for key '\(String(describing: key))' should be handled. MODEL:\(String(describing: model)) & FILE:\(file)")
+    }
+    
+    open static func showLog(_ value: Any?, key: String, _ model: WarpModel, file: String = #file) {
+        print("---> setValue '\(String(describing: value))' for key '\(String(describing: key))' should be handled. MODEL:\(String(describing: model.className)) & FILE:\(file)")
     }
     
     open static func toResult(_ response: DataResponse<Any>) -> WarpResult {
@@ -50,17 +54,15 @@ public enum WarpResult {
     
     public var isSuccess: Bool {
         switch self {
-        case .success:
-            return true
-        case .failure:
-            return false
+        case .success: return true
+        case .failure: return false
         }
     }
     
-    public func showResult() {
+    public func showResult(_ file: String = #file, _ function: String = #function) {
         switch self {
-        case .success(let JSON): print("Success Result: \(JSON)")
-        case .failure(let ERROR): print("Error Result: \(ERROR)")
+        case .success(let JSON): print(file + " " + function + "Success Result: \(JSON)")
+        case .failure(let ERROR): print(file + " " + function + "Error Result: \(ERROR)")
         }
     }
     
