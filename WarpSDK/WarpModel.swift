@@ -52,6 +52,6 @@ public extension WarpModel {
     }
     
     public func map() -> [String : Any] {
-        return ["":""]
+        return ["": ""]
     }
 }

@@ -25,7 +25,6 @@ open class Warp {
             API_ENDPOINT = baseURL
         }
         
-        
         API_KEY = apiKey
     }
     
@@ -34,13 +33,14 @@ open class Warp {
     }
     
     func HEADER() -> [String: String] {
+        
         return [
             WarpHeaderKeys.APIKey.rawValue      : API_KEY,
             WarpHeaderKeys.ContentType.rawValue : WarpTools.CONTENT_TYPE,
             WarpHeaderKeys.Session.rawValue     : WarpUser.current() == nil ? "" : WarpUser.current()!.sessionToken,
             WarpHeaderKeys.Client.rawValue      : "ios",
             WarpHeaderKeys.WarpVersion.rawValue : "0.0.2",
-            WarpHeaderKeys.AppVersion.rawValue  : Bundle.main.infoDictionary?["CFBundleShortVersionString"] == nil ? "0.0.0" : Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
+            WarpHeaderKeys.AppVersion.rawValue  : (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String) ?? "0.0.0"
         ]
     }
 }
@@ -166,7 +166,6 @@ public struct APIResult<T> {
     public var message: String = ""
     public var error: Error?
     public var result: T?
-    
     
     public var isSuccess: Bool {
         return !hasFailed
