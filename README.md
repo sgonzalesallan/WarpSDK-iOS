@@ -2,37 +2,37 @@
 
 [![Twitter](https://img.shields.io/badge/Twitter-%40kuyazee-blue.svg)](http://twitter.com/kuyazee)
 [![Github](https://img.shields.io/badge/Github-kuyazee-blue.svg)](https://github.com/kuyazee)
-[![Cocoapods](https://img.shields.io/badge/Cocoapods-0.0.1-red.svg)](#installation)
+[![Cocoapods](https://img.shields.io/badge/Cocoapods-1.0.3-red.svg)](#installation)
 [![DividedByZero](https://img.shields.io/badge/Divided%20By%20Zero-Exploring%20the%20undefined-yellow.svg)](https://github.com/dividedbyzeroco)
 
 __The Warp iOS SDK__ is available through the dependency manager [CocoaPods](http://cocoapods.org). 
 
 ===================
 
-__The Warp iOS SDK__ is a library built in top of **[Alamofire](https://github.com/Alamofire/Alamofire)** for implementing the Warp Framework using Swift. It is designed to work with projects built on-top of the **[Warp Server](http://github.com/dividedbyzeroco/warp-server)**.
+__The Warp iOS SDK__ is a library built in top of **[Alamofire](https://github.com/Alamofire/Alamofire)**, **[EVReflection](https://github.com/evermeer/EVReflection)**, and **[SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON)** for implementing the Warp Framework using Swift. It is designed to work with projects built on-top of the **[Warp Server](http://github.com/dividedbyzeroco/warp-server)**.
 
 ## Table of Contents
 - **[Installation](#installation)**  
 - **[Configuration](#configuration)**
 - **[Objects](#objects)**
-    - **[Saving Objects](#saving-objects)**
-    - **[Retrieving Objects](#retrieving-objects)**
-    - **[Updating Objects](#updating-objects)**
-    - **[Deleting Objects](#deleting-objects)**
-    - **[Pointers](#pointers)**
+- **[Saving Objects](#saving-objects)**
+- **[Retrieving Objects](#retrieving-objects)**
+- **[Updating Objects](#updating-objects)**
+- **[Deleting Objects](#deleting-objects)**
+- **[Pointers](#pointers)**
 - **[Queries](#queries)**
-    - **[Constraints](#constraints)**
-    - **[Limit](#limit)**
-    - **[Sorting](#sorting)**
-    - **[Including Pointer Keys](#including-pointer-keys)**
+- **[Constraints](#constraints)**
+- **[Limit](#limit)**
+- **[Sorting](#sorting)**
+- **[Including Pointer Keys](#including-pointer-keys)**
 - **[Users](#users)**
-    - **[Getting Special User Keys](#getting-special-user-keys)**
-    - **[Logging In](#logging-in)**
-    - **[Fetching Current User](#fetching-current-user)**
-    - **[Signing Up](#signing-up)**
-    - **[Logging Out](#logging-out)**
+- **[Getting Special User Keys](#getting-special-user-keys)**
+- **[Logging In](#logging-in)**
+- **[Fetching Current User](#fetching-current-user)**
+- **[Signing Up](#signing-up)**
+- **[Logging Out](#logging-out)**
 - **[Functions](#functions)**
-    
+
 ## Installation
 
 To install the Warp iOS SDK via cocoapods, simply use the add this in your podfile and then run `pod install`
@@ -40,6 +40,8 @@ To install the Warp iOS SDK via cocoapods, simply use the add this in your podfi
 ```Cocoapods
 pod 'WarpSDK'
 ```
+
+For projects using Swift 2.3 use the Swift 2.3 branch. 
 
 ## Configuration
 
@@ -51,7 +53,7 @@ import WarpSDK
 
 // Initialize Warp Inside AppDelegate 
 func applicationDidFinishLaunching(application: UIApplication) {
-    Warp.Initialize("http://my-warp-server.com/api/1/", apiKey: "12345678abcdefg")
+Warp.Initialize("http://my-warp-server.com/api/1/", apiKey: "12345678abcdefg")
 }
 ```
 
@@ -76,12 +78,12 @@ To save an Object for a specific model, use the `WarpObject` class:
 let alien = WarpObject(className: "alien")
 ```
 
-You can set the values of the Object's keys using the `.setObject(value: AnyObject, forKey: String)` method:
+You can set the values of the Object's keys using the `.set(object: value: AnyObject, forKey: String)` method:
 
 ```Swift
-alien.setObject("TheDoctor", forKey: "name")
-alien.setObject("150000", forKey: "age")
-alien.setObject(4, forKey: "type")
+alien.set(object: "TheDoctor", forKey: "name")
+alien.set(object: "150000", forKey: "age")
+alien.set(object: 4, forKey: "type")
 ```
 
 Then, save the Object using the `.save()` method:
@@ -92,12 +94,12 @@ alien.save()
 // or 
 
 alien.save { (success, error) in
-    if error != nil {
-        print(error)
-    } else {
-        print("The alien has been created with the following ID:", alien.objectId)
-        print("The alien has been named:", alien.objectForKey("name"))
-    }
+if error != nil {
+print(error)
+} else {
+print("The alien has been created with the following ID:", alien.objectId)
+print("The alien has been named:", alien.get(object: "name"))
+}
 }
 ```
 
@@ -110,16 +112,16 @@ To retrieve an Object for a specific model, you can use `Warp Queries`. For more
 let alienQuery = WarpQuery(className: "alien")
 alienQuery.equalTo(16, forKey: "id")
 alienQuery.first { (warpObject, error) in
-    // You now have a copy of alien (id: 16) from the database        
+// You now have a copy of alien (id: 16) from the database        
 }
 ```
 
-Now that you have fetched the object, you can also get its keys using the `.objectForKey(key: String)` method:
+Now that you have fetched the object, you can also get its keys using the `.get(object: key: String)` method:
 
 ```Swift
-let name = alien.objectForKey("name")
-let age = alien.objectForKey("age")
-let type = alien.objectForKey("type")
+let name = alien.get(object: "name")
+let age = alien.get(object: "age")
+let type = alien.get(object: "type")
 ```
 
 For special keys as mentioned in the section on [Objects](#objects), you can retrieve their values via the following properties:
@@ -130,30 +132,30 @@ var createdAt = alien.createdAt
 var updatedAt = alien.updatedAt
 ```
 
-Note that these fields cannot be retrieved via the `.objectForKey(key: String)` method.
+Note that these fields cannot be retrieved via the `.get(object: key: String)` method.
 
 
 ### Updating Objects
 
-Whenever you use `.save()` or `Warp Queries` to save/retrieve objects, you can modify the keys of these objects directly using the same `.setObject(value: AnyObject, forKey: String)` method. Warp automatically knows that you've updated these fields and prepares the object for updating.
+Whenever you use `.save()` or `Warp Queries` to save/retrieve objects, you can modify the keys of these objects directly using the same `.set(object: value: AnyObject, forKey: String)` method. Warp automatically knows that you've updated these fields and prepares the object for updating.
 
 For example, after the `.save()` method:
 
 ```Swift
 let alien = WarpObject(className: "alien")
-alien.setObject("Madam Vestra", forKey: "name")
-alien.setObject(4, forKey: "type")
+alien.set(object: "Madam Vestra", forKey: "name")
+alien.set(object: 4, forKey: "type")
 
 alien.save { (success, error) in
-    // If this is the 200th alien, change its type, for example
-    if alien.objectId > 200 {
-        alien.setObject(5, forKey: "type")
-    }
-    
-    // Update the alien
-    alien.save { (success, error) in
-        // The alien has been successfully updated
-    }
+// If this is the 200th alien, change its type, for example
+if alien.objectId > 200 {
+alien.set(object: 5, forKey: "type")
+}
+
+// Update the alien
+alien.save { (success, error) in
+// The alien has been successfully updated
+}
 }
 ```
 
@@ -164,11 +166,11 @@ let alienQuery = WarpQuery(className: "alien")
 alienQuery.equalTo(5, forKey: "id")
 
 alienQuery.first { (warpObject, error) in
-    alien.setObject(5, forKey: "age")
-    
-    alien.save { (success, error) in
-        // The alien has been successfully updated
-    }
+alien.set(object: 5, forKey: "age")
+
+alien.save { (success, error) in
+// The alien has been successfully updated
+}
 }
 ```
 
@@ -184,7 +186,7 @@ alien.destroy()
 // or
 
 alien.destroy { (success, error) in
-    print("The alien has been destroyed")            
+print("The alien has been destroyed")            
 }
 ```
 
@@ -197,13 +199,13 @@ For example, if you are creating a `planet` for an `alien` object, you can use t
 
 ```Swift
 planet.save { (success, error) in
-    let alien = WarpObject(className: "alien")
-    alien.setObject("Slitheen", forKey: "name")
-    alien.setObject(planet, forKey: "planet")
+let alien = WarpObject(className: "alien")
+alien.set(object: "Slitheen", forKey: "name")
+alien.set(object: planet, forKey: "planet")
 
-    alien.save { (success, error) in
-        // The alien has been successfully saved
-    }
+alien.save { (success, error) in
+// The alien has been successfully saved
+}
 }
 ```
 
@@ -218,7 +220,7 @@ alien.set('name', 'Captain Jack Harkness');
 alien.set('planet', planet); // Set the object directly
 
 alien.save { (success, error) in
-    // The alien has been successfully saved
+// The alien has been successfully saved
 }
 ```
 
@@ -234,12 +236,12 @@ let alienQuery = WarpQuery(className: "alien")
 
 // Use `.find()` to get all the objects in the `alien` table
 alienQuery.find { (aliens, error) in
-    // You now have a collection of all the aliens        
+// You now have a collection of all the aliens        
 }
 
 // Use `.first()` to get the first object in the `alien` table
 alienQuery.first { (alien, error) in
-    // You now have the first alien object            
+// You now have the first alien object            
 }
 ```
 
@@ -315,12 +317,12 @@ The above query will return aliens with their respective planets as pointers:
 
 ```Swift
 alienQuery.find { (aliens, error) in
-    if error == nil {
-        for alien in aliens! {
-            let greeting = "I am " + (alien.objectForKey("name") as! String) + " and I come from the Planet " + (alien.objectForKey("planet")?.objectForKey("name") as! String)
-            print(greeting)
-        }
-    }
+if error == nil {
+for alien in aliens! {
+let greeting = "I am " + (alien.get(object: "name") as! String) + " and I come from the Planet " + (alien.get(object: "planet")?.get(object: "name") as! String)
+print(greeting)
+}
+}
 }
 ```
 
@@ -334,17 +336,21 @@ User accounts are often an essential part of an application. In Warp, these are 
 Aside from id, createdAt and updatedAt, Warp User also has the following get methods:
 
 ```Swift
-var userQuery = new Warp.Query(Warp.User);
-userQuery.equalTo('id', 5).first().then(user => {
-    var id = user.id;
-    var createdAt = user.createdAt;
-    var updatedAt = user.updatedAt;
-    var username = user.getUsername();
-    var email = user.getEmail();
-});
+let userQuery = WarpUser.query()
+userQuery.equalTo(5, forKey: "id").first { (user, error) in
+if let unwrappedError = error {
+print(unwrappedError)
+} else {
+var id = user?.objectId
+var createdAt = user?.createdAt
+var updatedAt = user?.updatedAt
+var username = user?.username
+var email = user?.email
+}
+}
 ```
 
-Note that for Warp Query, instead of specifiying 'user' as the string, we can simply place Warp.User as the parameter.
+Note that for User Queries, instead of using `WarpQuery(className: "user")` we should use `WarpUser.query()` instead.
 
 
 ### Logging In
@@ -353,14 +359,13 @@ In order to log in to a user account, you would use the `.login(username: String
 
 ```Swift
 WarpUser().login("username", password: "password") { (success, error) in
-    if error != nil {
-        // Successfully logged in
-    } else {
-        // There was an error
-    }
+if error != nil {
+// Successfully logged in
+} else {
+// There was an error
+}
 }
 ```
-
 
 ### Fetching Current User
 
@@ -381,12 +386,12 @@ user.setUsername("Luke Smith")
 user.setPassword("k9_and_sara")
 
 user.signUp { (success, error) in
-    if error != nil {
-        // Signed up; `.current()` returns the registered user
-        let current = WarpUser.current()
-    } else {
-        // There was an error
-    }
+if error != nil {
+// Signed up; `.current()` returns the registered user
+let current = WarpUser.current()
+} else {
+// There was an error
+}
 }
 ```
 
@@ -399,12 +404,12 @@ To log out of a user account, you would use the `.logOut()` method:
 
 ```Swift
 user.logout { (success, error) in
-    if error != nil {
-        // Logged out; `.current()` now returns nil
-        var current = WarpUser.current()
-    } else {
-        // There was an error
-    }
+if error != nil {
+// Logged out; `.current()` now returns nil
+var current = WarpUser.current()
+} else {
+// There was an error
+}
 }
 ```
 
@@ -416,10 +421,10 @@ To run Warp [Functions](http://github.com/dividedbyzeroco/warp-server#functions)
 // WarpFunction.run(functionName: String, parameters: [String: Any]?, completion: { (result, error) in })
 
 WarpFunction.run("get-votes", parameters: ["from":"2016-08-14", "to":"2016-08-15"]) { (result, error) in
-    if error == nil {
-        // `result` contains a JSON Object of the results from the API
-    } else {
-        // There was an error
-    }
+if error == nil {
+// `result` contains a JSON Object of the results from the API
+} else {
+// There was an error
+}
 }
 ```
