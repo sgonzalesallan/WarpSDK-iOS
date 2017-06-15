@@ -77,12 +77,14 @@ public class WarpObject: WarpObjectProtocol {
         }
         self._updatedAt = updatedAt
     }
-    
-    
-    public func set(object value: Any, forKey: String) -> WarpObject {
+}
+
+// MARK: - Getter and Setter functions
+public extension WarpObject {
+    public func set(object value: Any, forKey: String) -> Self {
         switch forKey {
         case "created_at", "updated_at", "id":
-            return self
+            fatalError("This action is not permitted")
         default:
             if value is WarpObject {
                 self.param[forKey] = WarpPointer.map(warpObject: value as! WarpObject) as AnyObject?
@@ -112,13 +114,11 @@ public class WarpObject: WarpObjectProtocol {
     }
     
     public func destroy(_ completion: @escaping (_ success: Bool, _ error: WarpError?) -> Void) {
-        let warp = Warp.sharedInstance
-        guard warp != nil else {
-            completion(false, WarpError(code: .serverNotInitialized))
-            return
+        guard let warp = Warp.shared else {
+            fatalError("WarpServer is not yet initialized")
         }
         if objectId > 0 {
-            let _ = WarpAPI.delete(warp!.API_ENDPOINT! + "classes/\(className)/\(objectId)", parameters: param, headers: warp!.HEADER()) { (warpResult) in
+            let _ = WarpAPI.delete(warp.API_ENDPOINT + "classes/\(className)/\(objectId)", parameters: param, headers: warp.HEADER()) { (warpResult) in
                 switch warpResult {
                 case .success(let JSON):
                     let warpResponse = WarpResponse(json: JSON, result: [String: Any].self)
@@ -146,13 +146,11 @@ public class WarpObject: WarpObjectProtocol {
     }
     
     public func save(_ completion: @escaping (_ success: Bool, _ error: WarpError?) -> Void) {
-        let warp = Warp.sharedInstance
-        guard warp != nil else {
-            completion(false, WarpError(code: .serverNotInitialized))
-            return
+        guard let warp = Warp.shared else {
+            fatalError("WarpServer is not yet initialized")
         }
         if objectId > 0 {
-            let _ = WarpAPI.put(warp!.API_ENDPOINT! + "classes/\(className)/\(objectId)", parameters: param, headers: warp!.HEADER()) { (warpResult) in
+            let _ = WarpAPI.put(warp.API_ENDPOINT + "classes/\(className)/\(objectId)", parameters: param, headers: warp.HEADER()) { (warpResult) in
                 switch warpResult {
                 case .success(let JSON):
                     let warpResponse = WarpResponse(json: JSON, result: [String: Any].self)
@@ -169,7 +167,7 @@ public class WarpObject: WarpObjectProtocol {
                 }
             }
         } else {
-            let _ = WarpAPI.post(warp!.API_ENDPOINT! + "classes/\(className)", parameters: param, headers: warp!.HEADER()) { (warpResult) in
+            let _ = WarpAPI.post(warp.API_ENDPOINT + "classes/\(className)", parameters: param, headers: warp.HEADER()) { (warpResult) in
                 switch warpResult {
                 case .success(let JSON):
                     let warpResponse = WarpResponse(json: JSON, result: [String: Any].self)

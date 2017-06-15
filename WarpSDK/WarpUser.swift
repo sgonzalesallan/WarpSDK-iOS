@@ -83,10 +83,10 @@ public class WarpUser: WarpUserProtocol {
         return self.param[forKey]
     }
     
-    public func set(object value: Any, forKey: String) -> WarpUser {
+    public func set(object value: Any, forKey: String) -> Self {
         switch forKey {
         case "created_at", "updated_at", "id":
-            return self
+            fatalError("This action is not permitted")
         default:
             if value is WarpObject {
                 self.param[forKey] = WarpPointer.map(warpObject: value as! WarpObject) as Any?
@@ -108,13 +108,11 @@ public class WarpUser: WarpUserProtocol {
     }
     
     public func save(_ completion: @escaping (_ success: Bool, _ error: WarpError?) -> Void) {
-        let warp = Warp.sharedInstance
-        guard warp != nil else {
-            completion(false, WarpError(code: .serverNotInitialized))
-            return
+        guard let warp = Warp.shared else {
+            fatalError("WarpServer is not yet initialized")
         }
         if objectId > 0 {
-            let _ = WarpAPI.put(warp!.API_ENDPOINT! + "users/\(objectId)", parameters: self.objects, headers: warp!.HEADER()) { (warpResult) in
+            let _ = WarpAPI.put(warp.API_ENDPOINT + "users/\(objectId)", parameters: self.objects, headers: warp.HEADER()) { (warpResult) in
                 switch warpResult {
                 case .success(let JSON):
                     let warpResponse = WarpResponse(json: JSON, result: [String: Any].self)
@@ -130,7 +128,7 @@ public class WarpUser: WarpUserProtocol {
                 }
             }
         } else {
-            let _ = WarpAPI.post(warp!.API_ENDPOINT! + "users", parameters: self.objects, headers: warp!.HEADER()) { (warpResult) in
+            let _ = WarpAPI.post(warp.API_ENDPOINT + "users", parameters: self.objects, headers: warp.HEADER()) { (warpResult) in
                 switch warpResult {
                 case .success(let JSON):
                     let warpResponse = WarpResponse(json: JSON, result: [String: Any].self)
@@ -161,12 +159,10 @@ public class WarpUser: WarpUserProtocol {
     }
     
     public func login(_ username: String, password: String, completion: @escaping (_ success: Bool, _ error: WarpError?) -> Void) {
-        let warp = Warp.sharedInstance
-        guard warp != nil else {
-            completion(false, WarpError(code: .serverNotInitialized))
-            return
+        guard let warp = Warp.shared else {
+            fatalError("WarpServer is not yet initialized")
         }
-        let _ = WarpAPI.post(warp!.API_ENDPOINT! + "login", parameters: ["username":username,"password":password], headers: warp!.HEADER()) { (warpResult) in
+        let _ = WarpAPI.post(warp.API_ENDPOINT + "login", parameters: ["username":username,"password":password], headers: warp.HEADER()) { (warpResult) in
             switch warpResult {
             case .success(let JSON):
                 let warpResponse = WarpResponse(json: JSON, result: [String: Any].self)
@@ -187,12 +183,10 @@ public class WarpUser: WarpUserProtocol {
     }
     
     public func signUp(_ completion: @escaping (_ success: Bool, _ error: WarpError?) -> Void) {
-        let warp = Warp.sharedInstance
-        guard warp != nil else {
-            completion(false, WarpError(code: .serverNotInitialized))
-            return
+        guard let warp = Warp.shared else {
+            fatalError("WarpServer is not yet initialized")
         }
-        let _ = WarpAPI.post(warp!.API_ENDPOINT! + "users", parameters: self.objects, headers: warp!.HEADER()) { (warpResult) in
+        let _ = WarpAPI.post(warp.API_ENDPOINT + "users", parameters: self.objects, headers: warp.HEADER()) { (warpResult) in
             switch warpResult {
             case .success(let JSON):
                 let warpResponse = WarpResponse(json: JSON, result: [String: Any].self)
@@ -209,14 +203,12 @@ public class WarpUser: WarpUserProtocol {
             }
         }
     }
-
+    
     public func logout(_ completion: @escaping (_ success: Bool, _ error: WarpError?) -> Void) {
-        let warp = Warp.sharedInstance
-        guard warp != nil else {
-            completion(false, WarpError(code: .serverNotInitialized))
-            return
+        guard let warp = Warp.shared else {
+            fatalError("WarpServer is not yet initialized")
         }
-        let _ = WarpAPI.get(warp!.API_ENDPOINT! + "logout", parameters: nil, headers: warp!.HEADER()) { (warpResult) in
+        let _ = WarpAPI.get(warp.API_ENDPOINT + "logout", parameters: nil, headers: warp.HEADER()) { (warpResult) in
             switch warpResult {
             case .success(let JSON):
                 let warpResponse = WarpResponse(json: JSON, result: [String: Any].self)
