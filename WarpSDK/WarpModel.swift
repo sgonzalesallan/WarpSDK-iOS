@@ -61,7 +61,7 @@ open class WarpModel: EVObject, WarpModelProtocol {
         guard let endpoint = sharedEndpoint else {
             fatalError("class not yet registered")
         }
-        return "\(endpoint)\(className)/"
+        return "\(endpoint)\(className())/"
     }
     
     public class func endPoint(_ id: Int) -> String {
