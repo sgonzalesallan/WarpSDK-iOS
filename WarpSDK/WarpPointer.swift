@@ -20,7 +20,7 @@ open class WarpPointer<Attribute>: EVObject where Attribute: WarpModel {
     
     public init(model: Attribute) {
         super.init()
-        self.className = model.className
+        self.className = type(of: model).className()
         self.id = model.id
         self.attributes = model
     }

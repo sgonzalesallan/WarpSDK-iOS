@@ -17,7 +17,7 @@ open class WarpTools {
     }
     
     open static func showLog(_ value: Any?, key: String, _ model: WarpModel, file: String = #file) {
-        print("---> setValue '\(String(describing: value))' for key '\(String(describing: key))' should be handled. MODEL:\(String(describing: model.className)) & FILE:\(file)")
+        print("---> setValue '\(String(describing: value))' for key '\(String(describing: key))' should be handled. MODEL:\(String(describing: type(of: model).className())) & FILE:\(file)")
     }
     
     open static func toResult(_ response: DataResponse<Any>) -> WarpResult {
