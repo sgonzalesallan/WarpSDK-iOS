@@ -16,6 +16,7 @@ open class WarpPointer<Attribute>: EVObject where Attribute: WarpModel {
     
     public required init(){
         super.init()
+        self.className = type(of: attributes).className()
     }
     
     public init(model: Attribute) {
