@@ -8,7 +8,9 @@
 
 import Alamofire
 
+public typealias WarpRequest = Alamofire.Request
 
+public typealias WarpDataRequest = Alamofire.DataRequest
 
 open class Warp {
     static var shared: Warp?
@@ -92,7 +94,6 @@ protocol WarpObjectInterface {
     var param: [String: Any] { get set }
     var className: String { get set }
     
-    
     var _objectId: Int { get set }
     
     var _createdAt: String { get set }
@@ -135,6 +136,10 @@ protocol WarpObjectProtocol: WarpObjectInterface, CanGet, CanSet, CanSave, CanDe
     init(className: String)
 }
 
+extension WarpObjectProtocol where Self: WarpObject {
+    
+}
+
 
 public struct APIResult<T> {
     public var hasFailed: Bool = true
@@ -146,7 +151,7 @@ public struct APIResult<T> {
         return !hasFailed
     }
     
-    public init(hasFailed: Bool, message: String?, result: T){
+    public init(hasFailed: Bool, message: String?, result: T) {
         self.hasFailed = hasFailed
         self.message = message ?? ""
         self.result = result

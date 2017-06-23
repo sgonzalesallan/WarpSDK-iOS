@@ -9,7 +9,12 @@
 import EVReflection
 
 public protocol WarpModelProtocol {
-    var className: String { get }
+    
+    /** Set the class' endpoint url */
+    static func className() -> String
+    
+    /** This variable is handled by the WarpSDK */
+    static var sharedEndpoint: String? { get set }
     
     func map() -> [String: Any]
     
@@ -23,9 +28,11 @@ open class WarpModel: EVObject, WarpModelProtocol {
     open var createdAt: String = ""
     open var updatedAt: String = ""
     
-    open var className: String {
+    open class func className() -> String {
         return ""
     }
+    
+    public static var sharedEndpoint: String?
     
     convenience public init?(warpJSON: WarpJSON) {
         if let data = try? warpJSON.rawData() {
@@ -50,15 +57,30 @@ open class WarpModel: EVObject, WarpModelProtocol {
         }
     }
 
-    public class func endPoint() -> String {
-        return ""
+    public static func endPoint() -> String {
+        guard let endpoint = sharedEndpoint else {
+            fatalError("class not yet registered")
+        }
+        return "\(endpoint)\(className)/"
     }
     
     public class func endPoint(_ id: Int) -> String {
-        return ""
+        return "\(endPoint())\(id)"
     }
     
     public func map() -> [String : Any] {
         return ["": ""]
+    }
+}
+
+public extension Warp {
+    open static func registerModels<T>(_ models: T.Type...) where T: WarpModelProtocol {
+        guard let warp = Warp.shared else {
+            fatalError("WarpServer is not yet initialized")
+        }
+        
+        models.forEach { (model) in
+            model.sharedEndpoint = warp.API_ENDPOINT
+        }
     }
 }
