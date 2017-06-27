@@ -68,7 +68,7 @@ open class WarpModel: EVObject, WarpModelProtocol {
         return "\(endPoint())\(id)"
     }
     
-    public func map() -> [String : Any] {
+    open func map() -> [String : Any] {
         return ["": ""]
     }
 }
