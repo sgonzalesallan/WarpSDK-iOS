@@ -14,19 +14,23 @@ open class WarpAPI {
 
 public extension WarpAPI {
     public static func get(_ URLString: URLConvertible, parameters: [String : Any]?, headers: [String : String]) -> WarpDataRequest {
-        return Alamofire.request(URLString, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: headers)
+        return self.service(.get, URLString: URLString, parameters: parameters)
     }
     
     public static func post(_ URLString: URLConvertible, parameters: [String : Any]?, headers: [String : String]) -> WarpDataRequest {
-        return Alamofire.request(URLString, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
+        return self.service(.post, URLString: URLString, parameters: parameters)
     }
     
     public static func put(_ URLString: URLConvertible, parameters: [String : Any]?, headers: [String : String]) -> WarpDataRequest {
-        return Alamofire.request(URLString, method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
+        return self.service(.put, URLString: URLString, parameters: parameters)
     }
     
     public static func delete(_ URLString: URLConvertible, parameters: [String : Any]?, headers: [String : String]) -> WarpDataRequest {
-        return Alamofire.request(URLString, method: .delete, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
+        return self.service(.delete, URLString: URLString, parameters: parameters)
+    }
+    
+    public static func service(_ method: HTTPMethod, URLString: URLConvertible, parameters: [String : Any]?) -> WarpDataRequest {
+        return Alamofire.request(URLString, method: method, parameters: parameters, encoding: JSONEncoding.default, headers: Warp.HEADERS)
     }
 }
 

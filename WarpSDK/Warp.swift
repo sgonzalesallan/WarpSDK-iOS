@@ -18,6 +18,23 @@ open class Warp {
     fileprivate var APPLICATION_VERSION: String?
     var API_KEY: String
     
+    static var HEADERS: [String: String] {
+        let warp = Warp.shared!
+        var header = [
+            WarpHeaderKeys.APIKey.rawValue      : warp.API_KEY,
+            WarpHeaderKeys.ContentType.rawValue : WarpTools.CONTENT_TYPE,
+            WarpHeaderKeys.Client.rawValue      : "ios",
+            WarpHeaderKeys.AppVersion.rawValue  : (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String) ?? "0.0.0"
+        
+        ]
+        
+        if let user = WarpUserDefault.current() as? WarpUserDefault {
+            header.updateValue(user.sessionToken, forKey: WarpHeaderKeys.Session.rawValue)
+        }
+        
+        return header
+    }
+    
     fileprivate init(baseURL: String, apiKey: String) {
         
         // TODO: Improve This
