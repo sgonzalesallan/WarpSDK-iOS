@@ -28,7 +28,7 @@ open class Warp {
         
         ]
         
-        if let user = WarpUserDefault.current() as? WarpUserDefault {
+        if let user = WarpUserDefault.current() {
             header.updateValue(user.sessionToken, forKey: WarpHeaderKeys.Session.rawValue)
         }
         

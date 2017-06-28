@@ -13,6 +13,7 @@ open class WarpAPI {
 }
 
 public extension WarpAPI {
+    
     public static func get(_ URLString: URLConvertible, parameters: [String : Any]?, headers: [String : String]) -> WarpDataRequest {
         return self.service(.get, URLString: URLString, parameters: parameters)
     }
@@ -30,6 +31,10 @@ public extension WarpAPI {
     }
     
     public static func service(_ method: HTTPMethod, URLString: URLConvertible, parameters: [String : Any]?) -> WarpDataRequest {
+        guard let _ = Warp.shared else {
+            fatalError("WarpServer is not yet initialized")
+        }
+
         return Alamofire.request(URLString, method: method, parameters: parameters, encoding: JSONEncoding.default, headers: Warp.HEADERS)
     }
 }
